@@ -1,0 +1,30 @@
+$footer-background: #d0d0d0;
+$footer-height: 50px;
+$footer-font-color: #5b5b5b;
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: $footer-height;
+    background-color: $footer-background;
+    color: $footer-font-color;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    a:visited {
+        color: $footer-font-color;
+    }
+
+    a:hover {
+        color: black;
+        text-decoration: none;
+    }
+}

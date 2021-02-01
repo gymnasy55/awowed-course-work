@@ -1,0 +1,48 @@
+$header-background: #333;
+$header-height: 50px;
+$header-item-font-color: white;
+$header-item-hover-back-color: #111;
+$header-active-item-back-color: #007aac;
+
+.header {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    
+    .navbar {
+        overflow: hidden;
+        background-color: $header-background;
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: inline;
+                float: left;
+
+                a {
+                    display: block;
+                    color: $header-item-font-color;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                    transition: 0.5s ease-out;
+                }
+
+                a:hover {
+                    background-color: $header-item-hover-back-color;
+                }
+
+                .active {
+                    background-color: $header-active-item-back-color;
+                    font-style: italic;
+                }
+
+                .active:hover {
+                    background-color: $header-active-item-back-color;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,90 @@
+$border-color: #d0d0d0;
+$header-active-item-back-color: #007aac;
+
+.wrapper {
+    margin-top: $header-height;
+    margin-bottom: $footer-height;
+    width: 100%;
+    max-width: 960px;
+    padding: 0 15px;
+
+    main {
+        width: 64%;
+        float: right;
+    }
+
+    aside {
+        width: 33%;
+        float: left;
+        margin: auto;
+
+        .widget {
+            border-radius: 5px;
+            box-shadow: 3px 3px 1px rgba(0, 0, 0, .05);
+            padding: 20px 15px;
+            margin-bottom: 30px;
+
+            .widget__title {
+                font-size: 18px;
+                padding: 10px;
+                margin-bottom: 20px;
+                text-align: center;
+                border: 2px solid $header-active-item-back-color;
+                box-shadow: 3px 3px 0 0 $header-active-item-back-color;
+            }
+    
+            .widget__category-list {
+                width: 100%;
+
+                li {
+                    border-bottom: 1px solid #EBEBE3;
+                    padding: 10px 0;
+                    color: #c6c6c6;
+                    font-style: italic;
+
+                    a {
+                        color: #626262;
+                        margin-right: 6px;
+                        font-style: normal;
+                    }
+
+                    a:before {
+                        content: "\f105";
+                        display: inline-block;
+                        font-family: 'FontAwesome';
+                        margin-right: 10px;
+                        color: #c6c6c6;
+                     }
+                }
+
+                li:nth-child(1) {
+                    border-top: none;
+                }
+
+                li:last-child{
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        main, aside {
+            width: 100%;
+            float: none;
+        }
+    }
+
+    @media(max-width: 480px) {
+        aside {
+            width: 100%;
+            float: none;
+
+            .widget{
+                .widget-post-title {
+                    font-size: 1.2em;
+                 }
+            }
+        }
+    }
+}
