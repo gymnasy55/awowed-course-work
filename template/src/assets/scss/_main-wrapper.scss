@@ -1,0 +1,41 @@
+$border-color: #007aac;
+
+.main-wrapper {
+    margin-top: $header-height;
+    margin-bottom: $footer-height;
+    width: 100%;
+    padding: 0;
+}
+
+.popular {
+    width: 100%;
+    margin: auto 0;
+}
+
+.popular__items {
+    width: 100%;
+}
+
+.popular__item {
+    width: 30%;
+    height: 50px;
+    border: 1px solid $border-color;
+    border-radius: 10px;
+
+    @media (max-width: 960px) {
+        .popular__item {
+            width: 50%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .popular__item {
+            width: 100%;
+        }
+    }
+}
+
+.card {
+    margin: 0 auto;
+    
+}

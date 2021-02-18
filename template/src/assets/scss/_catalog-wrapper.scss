@@ -1,12 +1,12 @@
 $border-color: #d0d0d0;
 $header-active-item-back-color: #007aac;
 
-.wrapper {
+.catalog-wrapper {
     margin-top: $header-height;
     margin-bottom: $footer-height;
     width: 100%;
     max-width: 960px;
-    padding: 0 15px;
+    padding: 0;
 
     main {
         width: 64%;
@@ -54,7 +54,7 @@ $header-active-item-back-color: #007aac;
                         font-family: 'FontAwesome';
                         margin-right: 10px;
                         color: #c6c6c6;
-                     }
+                    }
                 }
 
                 li:nth-child(1) {
