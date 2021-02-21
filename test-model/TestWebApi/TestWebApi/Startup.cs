@@ -32,6 +32,8 @@ namespace TestWebApi
 
             services.AddTransient<IUsersRepository, EFUsersRepository>();
             services.AddDbContext<AppDbContext>(x => x.UseMySQL("server=127.0.0.1;uid=root;pwd=root;database=test_users"));
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +45,8 @@ namespace TestWebApi
             }
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader());
 
             app.UseAuthorization();
 

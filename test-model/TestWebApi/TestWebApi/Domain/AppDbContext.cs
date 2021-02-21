@@ -32,6 +32,16 @@ namespace TestWebApi.Domain
                     .IsRequired()
                     .HasMaxLength(255)
                     .HasColumnName("name");
+                
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnName("email");
+                
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnName("phone");
             });
         }
     }

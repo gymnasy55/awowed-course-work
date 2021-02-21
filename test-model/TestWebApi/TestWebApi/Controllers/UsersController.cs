@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TestWebApi.Domain;
@@ -21,13 +21,13 @@ namespace TestWebApi.Controllers
             _logger = logger;
             _users = users;
         }
-
+        
         [HttpGet]
         public IEnumerable<User> Get()
         {
             return _users.GetUsers();
         }
-
+        
         [HttpGet("{name}", Name = "GetN")]
         public IEnumerable<User> Get(string name)
         {
