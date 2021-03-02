@@ -11,9 +11,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Coursework.Api.Domain;
+using Coursework.Api.Domain.Repositories;
 using Coursework.Api.Domain.Repositories.Abstract;
 using Coursework.Api.Domain.Repositories.EntityFramework;
 using Coursework.Api.Service;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Coursework.Api
@@ -43,6 +45,8 @@ namespace Coursework.Api
             services.AddTransient<IProductssalesRepository, EfProductssalesRepository > ();
             services.AddTransient<ISuppliersRepository, EfSuppliersRepository>();
             services.AddTransient<IUsersRepository, EfUsersRepository>();
+
+            services.AddTransient<DataManager>();
 
             services.AddDbContext<AppDbContext>(x => x.UseMySQL(Config.ConnectionString));
 
