@@ -14,7 +14,7 @@
         "outputPath": "C:\\Users\\polcr\\source\\repos\\sirGAY\\awowed-course-work\\test-model\\TestWebApi\\TestWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "E:\\Microsoft\\Xamarin\\NuGet"
+          "E:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\polcr\\AppData\\Roaming\\NuGet\\NuGet.Config",

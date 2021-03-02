@@ -7,28 +7,8 @@ export const AboutPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [contacts, setContacts] = useState([]);
 
-  // const contacts = [
-  //   {
-  //     id: Date.now(),
-  //     name: 'Сергій Ковальов',
-  //     phone: '+380XXXXXXXXXX',
-  //     email: 'messi5serg@gmail.com'
-  //   },
-  // ]
-
   useEffect(() => {
-    window.fetch(`${apiPath}users`, {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'force-cache',
-      credentials: 'same-origin',
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:3000'
-      }
-      })
+    window.fetch(`${apiPath}users`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -56,7 +36,8 @@ export const AboutPage = () => {
           <div className="row">
             {contacts.map((contact, idx) => {
               return (
-                <div className="col-sm-12 col-md-12 col-lg-12 col-xl-12" key={contact.id}>
+                <div className="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-1"
+                     key={contact.id}>
                   <Card>
                     <Card.Img variant="top" src="https://via.placeholder.com/60"/>
                     <Card.Body>
@@ -66,7 +47,6 @@ export const AboutPage = () => {
                         <br/>
                         <b>Email: </b>{contact.email}
                       </Card.Text>
-                      <Button variant="primary" className="w-100">Перейти до...</Button>
                     </Card.Body>
                   </Card>
                 </div>

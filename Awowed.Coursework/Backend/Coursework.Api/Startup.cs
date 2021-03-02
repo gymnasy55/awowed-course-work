@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,12 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Coursework.Api.Domain;
+using Coursework.Api.Domain.Repositories.Abstract;
+using Coursework.Api.Domain.Repositories.EntityFramework;
+using Coursework.Api.Service;
 using Microsoft.EntityFrameworkCore;
-using TestWebApi.Domain;
-using TestWebApi.Domain.Repositories.Abstract;
-using TestWebApi.Domain.Repositories.EntityFramework;
 
-namespace TestWebApi
+namespace Coursework.Api
 {
     public class Startup
     {
@@ -28,11 +30,21 @@ namespace TestWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Configuration.Bind("Project", new Config());
+
             services.AddControllers();
 
-            services.AddTransient<IUsersRepository, EFUsersRepository>();
-            services.AddDbContext<AppDbContext>(x 
-                => x.UseMySQL("server=127.0.0.1;uid=root;pwd=root;database=test_users"));
+            services.AddTransient<IEmployeesRepository, EfEmployeesRepository>();
+            services.AddTransient<IInsertionsRepository, EfInsertionsRepository>();
+            services.AddTransient<IMetalsRepository, EfMetalsRepository>();
+            services.AddTransient<IOrdersRepository, EfOrdersRepository>();
+            services.AddTransient<IProdgroupsRepository, EfProdgroupsRepository>();
+            services.AddTransient<IProductsRepository, EfProductsRepository>();
+            services.AddTransient<IProductssalesRepository, EfProductssalesRepository > ();
+            services.AddTransient<ISuppliersRepository, EfSuppliersRepository>();
+            services.AddTransient<IUsersRepository, EfUsersRepository>();
+
+            services.AddDbContext<AppDbContext>(x => x.UseMySQL(Config.ConnectionString));
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -49,6 +61,8 @@ namespace TestWebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
