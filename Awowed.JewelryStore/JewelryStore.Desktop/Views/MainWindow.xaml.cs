@@ -61,6 +61,7 @@ namespace JewelryStore.Desktop.Views
 
         private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
         {
+            FindTb.Text = string.Empty;
             ShowItems();
         }
 
