@@ -95,7 +95,6 @@ namespace JewelryStore.Desktop.Views
                         ClearWeight = Convert.ToSingle(TbClearWeight.Text),
                         IdIns = _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id,
                         Faceting = TbFaceting.Text,
-                        ProdLength = Convert.ToSingle(TbLength.Text),
                         WeaveWay = CbWeaveWay.SelectionBoxItem.ToString(),
                         WeaveType = TbWeaveType.Text,
                         PriceForTheWork = Convert.ToSingle(TblWorkPrice.Text.Substring(0, TblWorkPrice.Text.IndexOf('U') - 1)),
@@ -117,11 +116,12 @@ namespace JewelryStore.Desktop.Views
             CbMetal.Text = string.Empty;
             CbProdGr.Text = string.Empty;
             CbSupplier.Text = string.Empty;
+            TbProdType.Text = string.Empty;
+            CbInsert.Text = string.Empty;
             TbSize.Text = string.Empty;
             TbWeight.Text = string.Empty;
             TbClearWeight.Text = string.Empty;
             TbFaceting.Text = string.Empty;
-            TbLength.Text = string.Empty;
             CbWeaveWay.Text = string.Empty;
             TbWeaveType.Text = string.Empty;
         }

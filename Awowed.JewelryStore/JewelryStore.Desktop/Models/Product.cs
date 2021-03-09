@@ -25,7 +25,6 @@ namespace JewelryStore.Desktop.Models
         public float ClearWeight { get; set; }
         public string ProdType { get; set; }
         public float? ProdSize { get; set; }
-        public float? ProdLength { get; set; }
         public string WeaveType { get; set; }
         public string WeaveWay { get; set; }
         public string Faceting { get; set; }

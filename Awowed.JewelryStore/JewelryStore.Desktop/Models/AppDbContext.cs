@@ -26,7 +26,7 @@ namespace JewelryStore.Desktop.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("server=127.0.0.1;uid=root;pwd=root;database=jewerly_store_app");
+                optionsBuilder.UseMySQL("server=127.0.0.1;uid=root;pwd=Serg19072003;database=jewerly_store_app");
                 optionsBuilder.UseLazyLoadingProxies();
                 base.OnConfiguring(optionsBuilder);
             }
@@ -140,8 +140,6 @@ namespace JewelryStore.Desktop.Models
                     .HasMaxLength(9)
                     .HasColumnName("prod_item")
                     .IsFixedLength(true);
-
-                entity.Property(e => e.ProdLength).HasColumnName("prod_length");
 
                 entity.Property(e => e.ProdSize).HasColumnName("prod_size");
 
