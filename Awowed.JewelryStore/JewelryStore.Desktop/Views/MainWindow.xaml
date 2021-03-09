@@ -61,7 +61,10 @@
                     </Canvas>
                 </Viewbox>
 
-                <TextBox Grid.Column="1" Style ="{StaticResource BaseTextBox}" Name ="FindBtn" />
+                <TextBox Grid.Column="1" 
+                         Style ="{StaticResource BaseTextBox}"
+                         Name ="FindTb"
+                         TextChanged="FindTb_OnTextChanged" />
 
                 <Button Grid.Column="2"
                         Click="RefreshButton_OnClick">
@@ -115,9 +118,7 @@
             <!-- #region CONTENT -->
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Vertical" x:Name="MainStackPanel">
-                    
-                </StackPanel>
+                <StackPanel Orientation="Vertical" x:Name="MainStackPanel" />
             </ScrollViewer>
 
             <!-- #endregion -->

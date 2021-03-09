@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
+using JewelryStore.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.Controls
@@ -22,7 +23,6 @@ namespace JewelryStore.Desktop.Controls
     /// </summary>
     public partial class JewerlyItem : UserControl
     {
-
         #region Dependency Properties
 
         public static readonly DependencyProperty TextBlockContentProperty = DependencyProperty.Register(
@@ -36,14 +36,25 @@ namespace JewelryStore.Desktop.Controls
 
         #endregion
 
+        #region Private Fields
+
+        private readonly JewerlyItemViewModel _jewerlyItemViewModel;
+
+        #endregion
+
         #region Constructor
 
-        public JewerlyItem()
+        public JewerlyItem(JewerlyItemViewModel jewerlyItemViewModel)
         {
             InitializeComponent();
+
+            _jewerlyItemViewModel = jewerlyItemViewModel;
+
+            TextBlockContent = _jewerlyItemViewModel.ProdItem;
         }
 
         #endregion
+
         //TODO: ACTIONS ON THESE BUTTS
         private void ExpandButton_OnClick(object sender, RoutedEventArgs e)
         {

@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using Castle.Core.Internal;
 using JewelryStore.Desktop.Controls;
 using JewelryStore.Desktop.Models;
+using JewelryStore.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.Views
@@ -42,6 +45,8 @@ namespace JewelryStore.Desktop.Views
 
         private void ShowItems()
         {
+            MainStackPanel.Children.Clear();
+
             _context.Database.EnsureCreated();
             _context.Products.Load();
 
@@ -49,19 +54,34 @@ namespace JewelryStore.Desktop.Views
 
             foreach (var product in _products)
             {
-                var jewerlyItem = new JewerlyItem { TextBlockContent = product.ProdItem };
-                MainStackPanel.Children.Add(jewerlyItem);
+                var jewerlyItemViewModel = new JewerlyItemViewModel(product);
+                MainStackPanel.Children.Add(new JewerlyItem(jewerlyItemViewModel));
             }
         }
 
         private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MainStackPanel.Children.Clear();
             ShowItems();
         }
 
-        //TODO FIND: https://www.youtube.com/watch?v=lBmMfHqqSXc https://github.com/angelsix/fasetto-word/blob/47cffef752d5608be94154f78e6c5746aa28967b/Source/Fasetto.Word.Core/ViewModel/Chat/ChatMessage/ChatMessageListViewModel.cs
+        private void FindTb_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var text = FindTb.Text;
+            if (text == string.Empty)
+            {
+                ShowItems();
+                return;
+            }
 
+            MainStackPanel.Children.Clear();
 
+            var temp = _context.Products.Where(x => x.ProdItem.Contains(text));
+
+            foreach (var product in temp)
+            {
+                var jewerlyItemViewModel = new JewerlyItemViewModel(product);
+                MainStackPanel.Children.Add(new JewerlyItem(jewerlyItemViewModel));
+            }
+        }
     }
 }

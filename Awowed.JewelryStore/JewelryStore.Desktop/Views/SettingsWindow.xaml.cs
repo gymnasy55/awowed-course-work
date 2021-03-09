@@ -29,6 +29,7 @@ namespace JewelryStore.Desktop.Views
                     Settings.GramSalePrice = Convert.ToSingle(PricePerGramSaleTb.Text == string.Empty
                         ? Settings.GramSalePrice.ToString(CultureInfo.InvariantCulture)
                         : PricePerGramSaleTb.Text);
+                    Settings.WriteConfig();
                     break;
                 case MessageBoxResult.No:
                     break;
@@ -37,6 +38,13 @@ namespace JewelryStore.Desktop.Views
             }
 
             this.Close();
+        }
+
+        private void SettingsWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Settings.ReadConfig();
+            PricePerGramWorkTb.Text = Settings.GramWorkPrice.ToString(CultureInfo.InvariantCulture);
+            PricePerGramSaleTb.Text = Settings.GramSalePrice.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

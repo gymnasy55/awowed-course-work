@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="300" Width="800" MinWidth="640" MinHeight="300">
+        Title="SettingsWindow" Height="300" Width="800" MinWidth="640" MinHeight="300"
+        Loaded="SettingsWindow_OnLoaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

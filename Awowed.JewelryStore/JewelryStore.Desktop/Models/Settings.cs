@@ -8,42 +8,52 @@ using Newtonsoft.Json;
 
 namespace JewelryStore.Desktop.Models
 {
-    //TODO: THIS SHIT
-    //public struct _Settings
-    //{
-    //    [JsonProperty("work-price")]
-    //    public float GramWorkPrice { get; set; }
-
-    //    [JsonProperty("sale-price")]
-    //    public float GramSalePrice { get; set; }
-    //}
-
-    //public static class Settings
-    //{
-    //    public static float GramWorkPrice { get; set; }
-
-    //    public static float GramSalePrice { get; set; }
-
-    //    static Settings()
-    //    {
-    //        var json = string.Empty;
-    //        using (var fs = File.OpenRead("config.json"))
-    //        {
-    //            using var sr = new StreamReader(fs, new UTF8Encoding(false));
-    //            json = sr.ReadToEnd();
-    //        }
-
-    //        var k = JsonConvert.DeserializeObject<_Settings>(json);
-
-    //        GramWorkPrice = k.GramWorkPrice;
-    //        GramSalePrice = k.GramSalePrice;
-    //    }
-    //}
-
     public static class Settings
     {
-        public static float GramWorkPrice { get; set; } = 500;
+        private struct JsonSettingsStruct
+        {
+            [JsonProperty("work-price")]
+            public float GramWorkPriceJson { get; set; }
 
-        public static float GramSalePrice { get; set; } = 2200;
+            [JsonProperty("sale-price")]
+            public float GramSalePriceJson { get; set; }
+        }
+
+        public static float GramWorkPrice { get; set; }
+
+        public static float GramSalePrice { get; set; }
+
+        static Settings()
+        {
+            ReadConfig();
+        }
+
+        public static void ReadConfig()
+        {
+            string json;
+            using (var fs = File.OpenRead("config.json"))
+            {
+                using var sr = new StreamReader(fs, new UTF8Encoding(false));
+                json = sr.ReadToEnd();
+            }
+
+            var jsonStruct = JsonConvert.DeserializeObject<JsonSettingsStruct>(json);
+
+            GramWorkPrice = jsonStruct.GramWorkPriceJson;
+            GramSalePrice = jsonStruct.GramSalePriceJson;
+        }
+
+        public static void WriteConfig()
+        {
+            var jsonStruct = new JsonSettingsStruct
+            {
+                GramWorkPriceJson = GramWorkPrice, GramSalePriceJson = GramSalePrice
+            };
+
+            var jsonString = JsonConvert.SerializeObject(jsonStruct);
+
+            using var sw = new StreamWriter("config.json", false);
+            sw.Write(jsonString);
+        }
     }
 }
