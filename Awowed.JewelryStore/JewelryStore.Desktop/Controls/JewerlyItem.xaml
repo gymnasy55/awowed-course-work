@@ -15,6 +15,7 @@
                 <ColumnDefinition Width="48" />
                 <ColumnDefinition Width="48" />
                 <ColumnDefinition Width="48" />
+                <ColumnDefinition Width="48" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -29,7 +30,31 @@
                        FontSize="16" 
                        Text="{Binding TextBlockContent, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:JewerlyItem}}, StringFormat=Артикул: {0}}"/>
 
-            <Button Grid.Column="1">
+            <Button Grid.Column="1"
+                    Click ="ExpandButton_OnClick">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Center" />
+                        <Setter Property="VerticalContentAlignment"
+                                Value="Center" />
+                        <Setter Property="ToolTip" Value="Подробнее" />
+
+                    </Style>
+                </Button.Style>
+
+                <Viewbox Width="24" Height="20" Stretch="Uniform">
+                    <Canvas Width="24" Height="24">
+                        <Path Fill="Black" Data="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+
+            <Button Grid.Column="2"
+                    Click ="ChangeButton_OnClick">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent" />
@@ -48,7 +73,8 @@
                 </Viewbox>
             </Button>
 
-            <Button Grid.Column="2">
+            <Button Grid.Column="3"
+                    Click ="DeleteButton_OnClick">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent" />
@@ -69,7 +95,8 @@
                 </Viewbox>
             </Button>
 
-            <Button Grid.Column="3">
+            <Button Grid.Column="4"
+                    Click ="PrintTagButton_OnClick">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent" />

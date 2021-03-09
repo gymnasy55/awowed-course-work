@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JewelryStore.Desktop.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.Controls
 {
@@ -20,6 +22,7 @@ namespace JewelryStore.Desktop.Controls
     /// </summary>
     public partial class JewerlyItem : UserControl
     {
+
         #region Dependency Properties
 
         public static readonly DependencyProperty TextBlockContentProperty = DependencyProperty.Register(
@@ -41,5 +44,25 @@ namespace JewelryStore.Desktop.Controls
         }
 
         #endregion
+        //TODO: ACTIONS ON THESE BUTTS
+        private void ExpandButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ChangeButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PrintTagButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using JewelryStore.Desktop.Controls;
 using JewelryStore.Desktop.Models;
 using Microsoft.EntityFrameworkCore;
@@ -57,5 +59,9 @@ namespace JewelryStore.Desktop.Views
             MainStackPanel.Children.Clear();
             ShowItems();
         }
+
+        //TODO FIND: https://www.youtube.com/watch?v=lBmMfHqqSXc https://github.com/angelsix/fasetto-word/blob/47cffef752d5608be94154f78e6c5746aa28967b/Source/Fasetto.Word.Core/ViewModel/Chat/ChatMessage/ChatMessageListViewModel.cs
+
+
     }
 }
