@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
+using JewelryStore.Desktop.Views;
 using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.Controls
@@ -63,7 +64,8 @@ namespace JewelryStore.Desktop.Controls
 
         private void ChangeButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var changeWindow = new ChangeWindow();
+            changeWindow.Show();
         }
 
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
