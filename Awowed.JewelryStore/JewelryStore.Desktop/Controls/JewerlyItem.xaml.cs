@@ -70,7 +70,18 @@ namespace JewelryStore.Desktop.Controls
 
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            using var context = new AppDbContext();
+            var product = context.Products.FirstOrDefault(x => x.Id == _jewerlyItemViewModel.Id);
+            if (product != null)
+            {
+                context.Products.Remove(product);
+                context.SaveChanges();
+                MessageBox.Show("Успішно видалено з бд!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Помилка видалення з бд!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void PrintTagButton_OnClick(object sender, RoutedEventArgs e)
