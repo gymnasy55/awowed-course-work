@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         mc:Ignorable="d"
-        Title="Добавление" Width="600" Height="600" MinWidth="500" MinHeight="500" FontFamily="Calibri" FontSize="14"
+        Title="Додавання виробу" Width="600" Height="600" MinWidth="500" MinHeight="500" FontFamily="Calibri" FontSize="14"
         Loaded="AddWindow_Loaded">
     <Window.Resources>
 
@@ -71,20 +71,20 @@
 
             <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource BaseLabel}" Content="Артикул" />
             <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource BaseLabel}" Content="Штрих-код" />
-            <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource BaseLabel}" Content="Дата прибытия" />
-            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource BaseLabel}" Content="Металл" />
-            <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource BaseLabel}" Content="Группа изделия" />
-            <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource BaseLabel}" Content="Тип изделия" />
-            <Label Grid.Column="0" Grid.Row="6" Style="{StaticResource BaseLabel}" Content="Поставщик" />
-            <Label Grid.Column="0" Grid.Row="7" Style="{StaticResource BaseLabel}" Content="Размер" />
-            <Label Grid.Column="0" Grid.Row="8" Style="{StaticResource BaseLabel}" Content="Вес" />
-            <Label Grid.Column="0" Grid.Row="9" Style="{StaticResource BaseLabel}" Content="Чистый вес" />
+            <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource BaseLabel}" Content="Дата прибуття" />
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource BaseLabel}" Content="Метал" />
+            <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource BaseLabel}" Content="Група виробу" />
+            <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource BaseLabel}" Content="Тип виробу" />
+            <Label Grid.Column="0" Grid.Row="6" Style="{StaticResource BaseLabel}" Content="Постачальник" />
+            <Label Grid.Column="0" Grid.Row="7" Style="{StaticResource BaseLabel}" Content="Розмір" />
+            <Label Grid.Column="0" Grid.Row="8" Style="{StaticResource BaseLabel}" Content="Вага" />
+            <Label Grid.Column="0" Grid.Row="9" Style="{StaticResource BaseLabel}" Content="Чиста вага" />
             <Label Grid.Column="0" Grid.Row="10" Style="{StaticResource BaseLabel}" Content="Вставка" />
             <Label Grid.Column="0" Grid.Row="11" Style="{StaticResource BaseLabel}" Content="Огранка" />
-            <Label Grid.Column="0" Grid.Row="12" Style="{StaticResource BaseLabel}" Content="Способ плетения" />
-            <Label Grid.Column="0" Grid.Row="13" Style="{StaticResource BaseLabel}" Content="Тип плетения" />
-            <Label Grid.Column="0" Grid.Row="14" Style="{StaticResource BaseLabel}" Content="Цена за работу" />
-            <Label Grid.Column="0" Grid.Row="15" Style="{StaticResource BaseLabel}" Content="Цена" />
+            <Label Grid.Column="0" Grid.Row="12" Style="{StaticResource BaseLabel}" Content="Спосіб плетіння" />
+            <Label Grid.Column="0" Grid.Row="13" Style="{StaticResource BaseLabel}" Content="Тип плетіння" />
+            <Label Grid.Column="0" Grid.Row="14" Style="{StaticResource BaseLabel}" Content="Ціна за работу" />
+            <Label Grid.Column="0" Grid.Row="15" Style="{StaticResource BaseLabel}" Content="Ціна" />
 
             <TextBox Grid.Row="0" Grid.Column="1" Name="TbProdItem" Style="{StaticResource BaseTextBox}" />
             <TextBlock Grid.Row="1" Grid.Column="1" Name="TblBarCode" Style="{StaticResource BaseTextBlock}" />
@@ -110,9 +110,9 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Style="{StaticResource BaseButton}" Content="Добавить" Name="AddBtn"
+                <Button Grid.Column="0" Style="{StaticResource BaseButton}" Content="Додати" Name="AddBtn"
                         Click="AddBtn_Clicked" />
-                <Button Grid.Column="1" Style="{StaticResource BaseButton}" Content="Очистить" Name="ClearBtn"
+                <Button Grid.Column="1" Style="{StaticResource BaseButton}" Content="Очистити" Name="ClearBtn"
                         Click="ClearBtn_Clicked" />
             </Grid>
 

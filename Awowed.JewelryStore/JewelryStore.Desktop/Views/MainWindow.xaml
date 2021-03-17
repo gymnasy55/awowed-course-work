@@ -132,9 +132,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Style ="{StaticResource BaseButton}" Name ="addBtn" Content="Добавить" Click="AddWindowBtn_Clicked"/>
-                <Button Grid.Column="1" Style ="{StaticResource BaseButton}" Name ="printBtn" Content="Печать"/>
-                <Button Grid.Column="2" Style ="{StaticResource BaseButton}" Name ="salesBtn" Content="Продажи"/>
+                <Button Grid.Column="0" Style ="{StaticResource BaseButton}" Name ="addBtn" Content="Додавання" Click="AddWindowBtn_Clicked"/>
+                <Button Grid.Column="1" Style ="{StaticResource BaseButton}" Name ="printBtn" Content="Друк"/>
+                <Button Grid.Column="2" Style ="{StaticResource BaseButton}" Name ="salesBtn" Content="Продаж"/>
             </Grid>
 
             <!-- #endregion -->

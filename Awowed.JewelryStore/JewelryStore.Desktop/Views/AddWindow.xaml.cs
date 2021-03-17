@@ -29,7 +29,7 @@ namespace JewelryStore.Desktop.Views
 
         private void AddWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DpArrDate.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            DpArrDate.Text = DateTime.Now.ToString();
             TblPrice.Text = "0 UAH";
             TblWorkPrice.Text = "0 UAH";
 
