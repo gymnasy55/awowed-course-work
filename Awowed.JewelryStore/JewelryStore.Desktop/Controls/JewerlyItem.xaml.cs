@@ -64,8 +64,7 @@ namespace JewelryStore.Desktop.Controls
 
         private void ChangeButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var changeWindow = new ChangeWindow();
-            changeWindow.Show();
+            throw new NotImplementedException();
         }
 
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
