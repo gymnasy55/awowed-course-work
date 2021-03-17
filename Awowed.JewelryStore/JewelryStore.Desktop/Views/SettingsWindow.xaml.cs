@@ -17,7 +17,7 @@ namespace JewelryStore.Desktop.Views
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Сохранить параметры?", "Внимание!", MessageBoxButton.YesNoCancel, MessageBoxImage.Exclamation);
+            var result = MessageBox.Show("Зберегти параметри?", "Увага!", MessageBoxButton.YesNoCancel, MessageBoxImage.Exclamation);
             switch (result)
             {
                 case MessageBoxResult.Cancel:
