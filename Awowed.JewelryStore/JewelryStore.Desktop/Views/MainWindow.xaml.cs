@@ -17,8 +17,6 @@ namespace JewelryStore.Desktop.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly AppDbContext _context = new AppDbContext();
-
         private IQueryable<Product> _products;
 
         public MainWindow()
@@ -34,7 +32,7 @@ namespace JewelryStore.Desktop.Views
         private void AddWindowBtn_Clicked(object sender, RoutedEventArgs e)
         {
             var addWindow = new AddWindow();
-            addWindow.Show();
+            addWindow.ShowDialog();
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -43,14 +41,17 @@ namespace JewelryStore.Desktop.Views
             settingsWindow.ShowDialog();
         }
 
-        private void ShowItems()
+        private void ShowItems(Func<Product, bool> predicate = null)
         {
+            using var context = new AppDbContext();
             MainStackPanel.Children.Clear();
 
-            _context.Database.EnsureCreated();
-            _context.Products.Load();
+            context.Database.EnsureCreated();
+            context.Products.Load();
 
-            _products = _context.Products;
+            _products = predicate == null 
+                ? context.Products 
+                : context.Products.Where(predicate).AsQueryable();   
 
             foreach (var product in _products)
             {
@@ -74,15 +75,7 @@ namespace JewelryStore.Desktop.Views
                 return;
             }
 
-            MainStackPanel.Children.Clear();
-
-            var temp = _context.Products.Where(x => x.ProdItem.Contains(text));
-
-            foreach (var product in temp)
-            {
-                var jewerlyItemViewModel = new JewerlyItemViewModel(product);
-                MainStackPanel.Children.Add(new JewerlyItem(jewerlyItemViewModel));
-            }
+            ShowItems(x => x.ProdItem.Contains(text));
         }
     }
 }

@@ -13,9 +13,6 @@
     <Compile Update="Views\AddWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ChangeWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\SalesWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,9 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\JewerlyItem.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\ChangeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">
