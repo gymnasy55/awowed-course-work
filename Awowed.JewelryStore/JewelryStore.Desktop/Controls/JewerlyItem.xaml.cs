@@ -64,8 +64,8 @@ namespace JewelryStore.Desktop.Controls
 
         private void ChangeButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var EditWindow = new EditWindow();
-            EditWindow.Show();
+            var editWindow = new EditWindow(_jewerlyItemViewModel);
+            editWindow.Show();
         }
 
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)

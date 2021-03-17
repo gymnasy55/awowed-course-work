@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
+using JewelryStore.Desktop.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.Views
 {
@@ -21,25 +24,122 @@ namespace JewelryStore.Desktop.Views
     /// </summary>
     public partial class EditWindow : Window
     {
-        public EditWindow()
+        private readonly AppDbContext _context = new AppDbContext();
+
+        private JewerlyItemViewModel _vm;
+        private IQueryable<Metal> _metals;
+        private IQueryable<Prodgroup> _prodgroups;
+        private IQueryable<Supplier> _suppliers;
+        private IQueryable<Insertion> _insertions;
+        private List<string> _weaveWays = new List<string> { "", "Машинна", "Ручна" };
+
+        public EditWindow(JewerlyItemViewModel vm)
         {
+            _vm = vm;
             InitializeComponent();
         }
 
         private void EditWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
-        }
+            TblPrice.Text = "0 UAH";
+            TblWorkPrice.Text = "0 UAH";
 
-        private void TbWeight_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-            TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+            _context.Database.EnsureCreated();
+            _context.Products.Load();
+            _context.Metals.Load();
+            _context.Prodgroups.Load();
+            _context.Suppliers.Load();
+            _context.Insertions.Load();
+
+            _metals = _context.Metals;
+            _prodgroups = _context.Prodgroups;
+            _suppliers = _context.Suppliers;
+            _insertions = _context.Insertions;
+
+            foreach (var insertion in _insertions)
+            {
+                CbInsert.Items.Add(insertion.InsertColor == string.Empty ? $"{insertion.InsertName}" : $"{insertion.InsertName} | {insertion.InsertColor}");
+            }
+
+            foreach (var metal in _metals)
+            {
+                CbMetal.Items.Add(metal.MetalName);
+            }
+
+            foreach (var prodgroup in _prodgroups)
+            {
+                CbProdGr.Items.Add(prodgroup.ProdGroupName);
+            }
+
+            foreach (var supplier in _suppliers)
+            {
+                CbSupplier.Items.Add(supplier.Suplname);
+            }
+
+            foreach (var weaveWay in _weaveWays)
+            {
+                CbWeaveWay.Items.Add(weaveWay);
+            }
+
+            TbProdItem.Text = _vm.ProdItem;
+            DpArrDate.DisplayDate = _vm.ArrivalDate ?? DateTime.Now;
+            DpArrDate.Text = DpArrDate.DisplayDate.ToString();
+            CbMetal.SelectedIndex = _vm.IdMet - 1;
+            CbProdGr.SelectedIndex = _vm.IdProdGr - 1;
+            TbProdType.Text = _vm.ProdType;
+            CbSupplier.SelectedIndex = _vm.IdSupp - 1;
+            TbSize.Text = _vm.ProdSize.ToString();
+            TbWeight.Text = _vm.Weight.ToString();
+            TbClearWeight.Text = _vm.ClearWeight.ToString();
+            CbInsert.SelectedIndex = _vm.IdIns - 1;
+            TbFaceting.Text = _vm.Faceting;
+            CbWeaveWay.SelectedIndex = _weaveWays.IndexOf(_vm.WeaveWay);
+            TbWeaveType.Text = _vm.WeaveType;
+            TblWorkPrice.Text = $"{_vm.PriceForTheWork} UAH";
+            TblPrice.Text = $"{_vm.Price} UAH";
         }
 
         private void EditBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var result = MessageBox.Show("Уверены ли Вы, что хотите добавить товар?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    var product = _context.Products.FirstOrDefault(x => x.Id == _vm.Id);
+                    if (product != null)
+                    {
+                        product.ProdItem = TbProdItem.Text;
+                        product.BarCode = TbProdItem.Text; //todo: MAKE BARCODE
+                        product.ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks);
+                        product.IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString()).Id;
+                        product.IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString()).Id;
+                        product.ProdType = TbProdType.Text;
+                        product.IdSupp = _suppliers.First(x => x.Suplname == CbSupplier.SelectionBoxItem.ToString()).Id;
+                        product.ProdSize = Convert.ToSingle(TbSize.Text);
+                        product.Weight = Convert.ToSingle(TbWeight.Text);
+                        product.ClearWeight = Convert.ToSingle(TbClearWeight.Text);
+                        product.IdIns = CbInsert.SelectedItem.ToString().Contains('|') 
+                            ? _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id
+                            : _insertions.First(x => x.InsertName == CbInsert.SelectedItem.ToString()).Id;
+                        product.Faceting = TbFaceting.Text;
+                        product.WeaveWay = CbWeaveWay.SelectionBoxItem.ToString();
+                        product.WeaveType = TbWeaveType.Text;
+                        product.PriceForTheWork = Convert.ToSingle(TblWorkPrice.Text.Substring(0, TblWorkPrice.Text.IndexOf('U') - 1));
+                        product.Price = Convert.ToSingle(TblPrice.Text.Substring(0, TblPrice.Text.IndexOf('U') - 1));
+
+                        _context.SaveChanges();
+                        MessageBox.Show("Успішно змінено в бд!", "Успіх", MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка при зміні в бд!", "Помилка", MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
         }
 
         private void ClearBtn_Clicked(object sender, RoutedEventArgs e)
@@ -57,6 +157,12 @@ namespace JewelryStore.Desktop.Views
             TbFaceting.Text = string.Empty;
             CbWeaveWay.Text = string.Empty;
             TbWeaveType.Text = string.Empty;
+        }
+
+        private void TbWeight_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+            TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
         }
     }
 }
