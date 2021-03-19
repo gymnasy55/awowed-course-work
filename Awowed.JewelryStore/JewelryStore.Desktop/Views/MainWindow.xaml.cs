@@ -80,5 +80,11 @@ namespace JewelryStore.Desktop.Views
                 ShowItems(x => x.ProdItem.Contains(text) || context.Suppliers.First(c => c.Id == x.IdSupp).Suplname.Contains(text));
             }
         }
+
+        private void PrintBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var printWindow = new PrintWindow();
+            printWindow.ShowDialog();
+        }
     }
 }
