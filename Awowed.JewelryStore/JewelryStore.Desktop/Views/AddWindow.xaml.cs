@@ -76,7 +76,7 @@ namespace JewelryStore.Desktop.Views
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
         {
             DpArrDate.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-            var result = MessageBox.Show("Уверены ли Вы, что хотите добавить товар?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            var result = MessageBox.Show("Чи впевнені Ви, що бажаєте додати товар?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
             {
                 case MessageBoxResult.Yes:
@@ -102,7 +102,7 @@ namespace JewelryStore.Desktop.Views
                     };
                     _context.Products.Add(product);
                     _context.SaveChanges();
-                    MessageBox.Show("Добавлено в бд!");
+                    MessageBox.Show("Додано в бд!");
                     break;
                 case MessageBoxResult.No:
                     break;

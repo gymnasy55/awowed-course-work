@@ -101,7 +101,7 @@ namespace JewelryStore.Desktop.Views
 
         private void EditBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Уверены ли Вы, что хотите добавить товар?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            var result = MessageBox.Show("Чи впевнені Ви, що бажаєте змінити товар?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
             {
                 case MessageBoxResult.Yes:
