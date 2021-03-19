@@ -1,0 +1,49 @@
+﻿<Window x:Class="JewelryStore.Desktop.Views.PrintWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="PrintWindow" Height="450" Width="800"
+        Loaded="PrintWindow_OnLoaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="PrintGrid"  Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Margin="5" 
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="Calibri" 
+                       FontSize="16" 
+                       Text="Накладна №"/>
+
+            <DataGrid Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Path=Id}"/>
+                    <DataGridTextColumn Header="Артикул" Binding="{Binding Path=ProdItem}"/>
+                    <DataGridTextColumn Header="Штрих-код" Binding="{Binding Path=BarCode}"/>
+                    <DataGridTextColumn Header="Дата пр." Binding="{Binding Path=ArrivalDateString}"/>
+                    <DataGridTextColumn Header="Назва" Binding="{Binding Path=ProdType}"/>
+                    <DataGridTextColumn Header="Ч. вага" Binding="{Binding Path=ClearWeight}"/>
+                    <DataGridTextColumn Header="Вага" Binding="{Binding Path=Weight}"/>
+                    <DataGridTextColumn Header="Ціна роб." Binding="{Binding Path=PriceForTheWork}"/>
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Path=Price}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Button Grid.Row="1" Click="ButtonBase_OnClick">
+            Друк
+        </Button>
+    </Grid>
+</Window>

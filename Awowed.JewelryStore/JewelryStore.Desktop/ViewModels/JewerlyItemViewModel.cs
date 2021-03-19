@@ -49,6 +49,8 @@ namespace JewelryStore.Desktop.ViewModels
             set => _product.ArrivalDate = value;
         }
 
+        public string ArrivalDateString => ArrivalDate.Value.ToString("dd-MM-yyyy");
+
         public string BarCode
         {
             get => _product.BarCode;
