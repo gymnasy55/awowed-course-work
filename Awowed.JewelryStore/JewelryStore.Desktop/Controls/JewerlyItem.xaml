@@ -19,19 +19,22 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Margin="5" 
-                       Grid.Column="0"
-                       TextAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontFamily="Calibri" 
-                       FontSize="16" 
-                       Text="{Binding TextBlockContent, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:JewerlyItem}}, StringFormat=Артикул: {0}}"/>
+            <StackPanel Grid.Column="0" Orientation="Vertical" x:Name="ItemStackPanel">
+                <TextBlock Margin="5" 
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontFamily="Calibri" 
+                           FontSize="16" 
+                           Text="{Binding TextBlockContent, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:JewerlyItem}}, StringFormat=Артикул: {0}}"/>
+            </StackPanel>
+            
 
             <Button Grid.Column="1"
-                    Click ="ExpandButton_OnClick">
+                    Click ="ExpandButton_OnClick"
+                    x:Name="ExpandButton">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="Transparent" />
@@ -41,14 +44,14 @@
                                 Value="Center" />
                         <Setter Property="VerticalContentAlignment"
                                 Value="Center" />
-                        <Setter Property="ToolTip" Value="Подробнее" />
+                        <Setter Property="ToolTip" Value="Розгорнути" />
 
                     </Style>
                 </Button.Style>
 
                 <Viewbox Width="24" Height="20" Stretch="Uniform">
                     <Canvas Width="24" Height="24">
-                        <Path Fill="Black" Data="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                        <Path x:Name="ExpandIcon" Fill="Black" Data="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                     </Canvas>
                 </Viewbox>
             </Button>
@@ -62,7 +65,7 @@
                         <Setter Property="BorderThickness" Value="0" />
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
-                        <Setter Property="ToolTip" Value="Изменить" />
+                        <Setter Property="ToolTip" Value="Змінити" />
                     </Style>
                 </Button.Style>
 
@@ -84,7 +87,7 @@
                                             Value="Center" />
                         <Setter Property="VerticalContentAlignment"
                                             Value="Center" />
-                        <Setter Property="ToolTip" Value="Удалить" />
+                        <Setter Property="ToolTip" Value="Видалити" />
                     </Style>
                 </Button.Style>
 
@@ -106,7 +109,7 @@
                                 Value="Center" />
                         <Setter Property="VerticalContentAlignment"
                                 Value="Center" />
-                        <Setter Property="ToolTip" Value="Печать" />
+                        <Setter Property="ToolTip" Value="Друк" />
                     </Style>
                 </Button.Style>
 

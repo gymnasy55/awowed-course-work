@@ -75,7 +75,10 @@ namespace JewelryStore.Desktop.Views
                 return;
             }
 
-            ShowItems(x => x.ProdItem.Contains(text));
+            using (var context = new AppDbContext())
+            {
+                ShowItems(x => x.ProdItem.Contains(text) || context.Suppliers.First(c => c.Id == x.IdSupp).Suplname.Contains(text));
+            }
         }
     }
 }
