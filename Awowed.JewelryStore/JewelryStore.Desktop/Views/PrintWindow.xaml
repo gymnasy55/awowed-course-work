@@ -58,7 +58,7 @@
                     </TextBox.RenderTransform>
                 </TextBox>
 
-                <ComboBox Name="CbSupplier" Style="{StaticResource BaseComboBox}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="120" Height="20" IsSynchronizedWithCurrentItem="False" >
+                <ComboBox Name="CbSupplier" Style="{StaticResource BaseComboBox}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="120" Height="20" SelectionChanged="CbSupplier_OnSelectionChanged">
                     <ComboBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>

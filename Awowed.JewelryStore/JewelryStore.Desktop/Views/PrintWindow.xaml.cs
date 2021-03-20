@@ -76,9 +76,9 @@ namespace JewelryStore.Desktop.Views
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
 
-        private void CbSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbSupplier_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            throw new NotImplementedException();
         }
     }
 }
