@@ -24,6 +24,7 @@
 
         <Style TargetType="ComboBox" x:Key="BaseComboBox">
             <Setter Property="Margin" Value="3" />
+            <Setter Property="FontSize" Value = "12" />
         </Style>
 
     </Window.Resources>
@@ -57,13 +58,13 @@
                     </TextBox.RenderTransform>
                 </TextBox>
 
-                <ComboBox Name="CbSupplier" Style="{StaticResource BaseComboBox}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="100" Height="13" IsSynchronizedWithCurrentItem="False" >
+                <ComboBox Name="CbSupplier" Style="{StaticResource BaseComboBox}" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="120" Height="20" IsSynchronizedWithCurrentItem="False" >
                     <ComboBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-250" Y="3"/>
+                            <TranslateTransform X="-270" Y="6"/>
                         </TransformGroup>
                     </ComboBox.RenderTransform>
                 </ComboBox>

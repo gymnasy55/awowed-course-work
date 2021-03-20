@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.Views
 {
@@ -21,6 +22,12 @@ namespace JewelryStore.Desktop.Views
     /// </summary>
     public partial class PrintWindow : Window
     {
+        private readonly AppDbContext _context = new AppDbContext();
+
+        private JewerlyItemViewModel _vm;
+        private IQueryable<Prodgroup> _prodgroups;
+        private IQueryable<Supplier> _suppliers;
+
         public PrintWindow()
         {
             InitializeComponent();
@@ -28,6 +35,26 @@ namespace JewelryStore.Desktop.Views
 
         private void PrintWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
+            _context.Database.EnsureCreated();
+            _context.Products.Load();
+            _context.Metals.Load();
+            _context.Prodgroups.Load();
+            _context.Suppliers.Load();
+            _context.Insertions.Load();
+
+            _prodgroups = _context.Prodgroups;
+            _suppliers = _context.Suppliers;
+
+            //foreach (var prodgroup in _prodgroups)
+            //{
+            //    CbProdGr.Items.Add(prodgroup.ProdGroupName);
+            //}
+
+            foreach (var supplier in _suppliers)
+            {
+                CbSupplier.Items.Add(supplier.Suplname);
+            }
+
             using (var context = new AppDbContext())
             {
                 var tempList = context.Products.ToList().Select(x => new JewerlyItemViewModel(x));
@@ -47,6 +74,11 @@ namespace JewelryStore.Desktop.Views
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
+        private void CbSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
