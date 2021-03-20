@@ -94,7 +94,9 @@ namespace JewelryStore.Desktop.Views
                         ProdSize = Convert.ToSingle(TbSize.Text),
                         Weight = Convert.ToSingle(TbWeight.Text),
                         ClearWeight = Convert.ToSingle(TbClearWeight.Text),
-                        IdIns = _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id,
+                        IdIns = CbInsert.SelectedItem.ToString().Contains('|')
+                            ? _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id
+                            : _insertions.First(x => x.InsertName == CbInsert.SelectedItem.ToString()).Id,
                         Faceting = TbFaceting.Text,
                         WeaveWay = CbWeaveWay.SelectionBoxItem.ToString(),
                         WeaveType = TbWeaveType.Text,

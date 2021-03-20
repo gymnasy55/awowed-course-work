@@ -84,14 +84,16 @@ namespace JewelryStore.Desktop.Views
             TbProdItem.Text = _vm.ProdItem;
             DpArrDate.DisplayDate = _vm.ArrivalDate ?? DateTime.Now;
             DpArrDate.Text = DpArrDate.DisplayDate.ToString();
-            CbMetal.SelectedIndex = _vm.IdMet - 1;
-            CbProdGr.SelectedIndex = _vm.IdProdGr - 1;
+            CbMetal.SelectedItem = _metals.First(x => x.Id == _vm.IdMet).MetalName.ToString();
+            CbProdGr.SelectedItem = _prodgroups.First(x => x.Id == _vm.IdProdGr).ProdGroupName.ToString();
             TbProdType.Text = _vm.ProdType;
-            CbSupplier.SelectedIndex = _vm.IdSupp - 1;
+            CbSupplier.SelectedItem = _suppliers.First(x => x.Id == _vm.IdSupp).Suplname.ToString();
             TbSize.Text = _vm.ProdSize.ToString();
             TbWeight.Text = _vm.Weight.ToString();
             TbClearWeight.Text = _vm.ClearWeight.ToString();
-            CbInsert.SelectedIndex = _vm.IdIns - 1;
+            CbInsert.SelectedItem = _insertions.First(x => x.Id == _vm.IdIns).InsertColor != string.Empty 
+                ? $"{_insertions.First(x => x.Id == _vm.IdIns).InsertName} | {_insertions.First(x => x.Id == _vm.IdIns).InsertColor}"
+                : $"{_insertions.First(x => x.Id == _vm.IdIns).InsertName}";
             TbFaceting.Text = _vm.Faceting;
             CbWeaveWay.SelectedIndex = _weaveWays.IndexOf(_vm.WeaveWay);
             TbWeaveType.Text = _vm.WeaveType;
