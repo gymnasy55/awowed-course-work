@@ -157,8 +157,6 @@ namespace JewelryStore.Desktop.Controls
                         FontFamily = new FontFamily("Calibri"),
                         FontSize = 16,
                     });
-
-
                 }
 
                 _isExpanded = true;

@@ -55,11 +55,7 @@ namespace JewelryStore.Desktop.Views
                 CbSupplier.Items.Add(supplier.Suplname);
             }
 
-            using (var context = new AppDbContext())
-            {
-                var tempList = context.Products.ToList().Select(x => new JewerlyItemViewModel(x));
-                DataGrid.ItemsSource = tempList;
-            }
+            ShowItems();
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -76,9 +72,33 @@ namespace JewelryStore.Desktop.Views
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
 
+        private void ShowItems(Func<Product, bool> predicate = null)
+        {
+            using (var context = new AppDbContext())
+            {
+                var tempList = predicate == null
+                    ? context.Products.ToList().Select(x => new JewerlyItemViewModel(x))
+                    : context.Products.Where(predicate).ToList().Select(x => new JewerlyItemViewModel(x));
+                DataGrid.ItemsSource = tempList;
+            }
+        }
+
         private void CbSupplier_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            using (var context = new AppDbContext())
+            {
+                var supplier = context.Suppliers.FirstOrDefault(x => x.Suplname == CbSupplier.SelectedItem.ToString());
+                if (supplier == null)
+                {
+                    DataGrid.ItemsSource = null;
+                }
+                else
+                {
+                    ShowItems(x => x.IdSupp == context.Suppliers.First(c => c.Suplname == supplier.Suplname).Id);
+                }
+
+                MessageBox.Show(supplier?.Suplname);
+            }
         }
     }
 }
