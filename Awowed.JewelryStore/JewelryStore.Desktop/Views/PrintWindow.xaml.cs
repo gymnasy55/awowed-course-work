@@ -43,5 +43,10 @@ namespace JewelryStore.Desktop.Views
                 printDialog.PrintVisual(PrintGrid, "Grid");
             }
         }
+
+        private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
     }
 }
