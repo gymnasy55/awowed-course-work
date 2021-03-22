@@ -79,6 +79,7 @@ namespace JewelryStore.Desktop.Views
                 var tempList = predicate == null
                     ? context.Products.ToList().Select(x => new JewerlyItemViewModel(x))
                     : context.Products.Where(predicate).ToList().Select(x => new JewerlyItemViewModel(x));
+                
                 DataGrid.ItemsSource = tempList;
             }
         }
@@ -97,7 +98,7 @@ namespace JewelryStore.Desktop.Views
                     ShowItems(x => x.IdSupp == context.Suppliers.First(c => c.Suplname == supplier.Suplname).Id);
                 }
 
-                MessageBox.Show(supplier?.Suplname);
+                //MessageBox.Show(supplier?.Suplname);
             }
         }
     }

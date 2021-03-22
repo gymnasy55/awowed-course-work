@@ -8,6 +8,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using JewelryStore.Desktop.Models;
 using Microsoft.EntityFrameworkCore;
+using Ubiety.Dns.Core.Records;
+using ZXing;
 
 namespace JewelryStore.Desktop.Views
 {
@@ -17,6 +19,7 @@ namespace JewelryStore.Desktop.Views
     public partial class AddWindow : Window
     {
         private readonly AppDbContext _context = new AppDbContext();
+        private static Random random = new Random();
 
         private IQueryable<Metal> _metals;
         private IQueryable<Prodgroup> _prodgroups;
@@ -28,11 +31,18 @@ namespace JewelryStore.Desktop.Views
             InitializeComponent();
         }
 
+        public string BarCodeCreation()
+        {
+            const string chars = "0123456789";
+            return new string(Enumerable.Repeat(chars, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         private void AddWindow_Loaded(object sender, RoutedEventArgs e)
         {
             DpArrDate.Text = DateTime.Now.ToString();
             TblPrice.Text = "0 UAH";
             TblWorkPrice.Text = "0 UAH";
+            //TblBarCode.Text = BarCodeCreation().Any<Product>();
 
             _context.Database.EnsureCreated();
             _context.Products.Load();
@@ -139,5 +149,7 @@ namespace JewelryStore.Desktop.Views
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
+
+
     }
 }
