@@ -19,7 +19,6 @@ namespace JewelryStore.Desktop.Views
     public partial class AddWindow : Window
     {
         private readonly AppDbContext _context = new AppDbContext();
-        private static Random random = new Random();
 
         private IQueryable<Metal> _metals;
         private IQueryable<Prodgroup> _prodgroups;
@@ -31,10 +30,18 @@ namespace JewelryStore.Desktop.Views
             InitializeComponent();
         }
 
-        public string BarCodeCreation()
+        private string BarCodeCreation()
         {
             const string chars = "0123456789";
-            return new string(Enumerable.Repeat(chars, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+            string barcode = "";
+            var rnd = new Random();
+
+            do
+            {
+                barcode = new string(Enumerable.Repeat(chars, 8).Select(s => s[rnd.Next(s.Length)]).ToArray());
+            } while (_context.Products.Any(x => x.BarCode == barcode));
+
+            return barcode;
         }
 
         private void AddWindow_Loaded(object sender, RoutedEventArgs e)
@@ -42,7 +49,7 @@ namespace JewelryStore.Desktop.Views
             DpArrDate.Text = DateTime.Now.ToString();
             TblPrice.Text = "0 UAH";
             TblWorkPrice.Text = "0 UAH";
-            //TblBarCode.Text = BarCodeCreation().Any<Product>();
+            TblBarCode.Text = BarCodeCreation();
 
             _context.Database.EnsureCreated();
             _context.Products.Load();
@@ -95,7 +102,7 @@ namespace JewelryStore.Desktop.Views
                     {
                         Id = _context.Products.OrderBy(x => x.Id).Last().Id + 1,
                         ProdItem = TbProdItem.Text,
-                        BarCode = TbProdItem.Text, //todo: MAKE BARCODE
+                        BarCode = TbProdItem.Text,
                         ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks),
                         IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString()).Id,
                         IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString()).Id,

@@ -111,7 +111,7 @@ namespace JewelryStore.Desktop.Views
                     if (product != null)
                     {
                         product.ProdItem = TbProdItem.Text;
-                        product.BarCode = TbProdItem.Text; //todo: MAKE BARCODE
+                        product.BarCode = TbProdItem.Text;
                         product.ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks);
                         product.IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString()).Id;
                         product.IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString()).Id;
