@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using NewsStyleUriParser = System.NewsStyleUriParser;
 
 namespace JewelryStore.Desktop.Views
 {
@@ -54,6 +56,10 @@ namespace JewelryStore.Desktop.Views
             {
                 CbSupplier.Items.Add(supplier.Suplname);
             }
+
+            var header = "Дата пр.";
+            //DataGrid.Columns[header].CellStyle.Setters.
+            //DateColumn.CellStyle.TargetType = typeof(DateTime);
 
             ShowItems();
         }

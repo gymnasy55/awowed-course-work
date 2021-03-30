@@ -49,7 +49,7 @@ namespace JewelryStore.Desktop.ViewModels
             set => _product.ArrivalDate = value;
         }
 
-        public string ArrivalDateString => ArrivalDate.Value.ToString("dd-MM-yyyy");
+        public dynamic ArrivalDateString => ArrivalDate.Value.ToShortDateString();
 
         public string BarCode
         {
