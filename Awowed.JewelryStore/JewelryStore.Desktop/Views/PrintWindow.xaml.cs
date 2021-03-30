@@ -57,7 +57,6 @@ namespace JewelryStore.Desktop.Views
                 CbSupplier.Items.Add(supplier.Suplname);
             }
 
-            var header = "Дата пр.";
             //DataGrid.Columns[header].CellStyle.Setters.
             //DateColumn.CellStyle.TargetType = typeof(DateTime);
 

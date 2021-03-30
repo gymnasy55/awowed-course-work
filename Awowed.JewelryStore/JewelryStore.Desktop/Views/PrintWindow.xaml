@@ -224,7 +224,14 @@
             </Grid.RowDefinitions>
 
 
-            <TextBlock Margin="5" TextAlignment="Center" VerticalAlignment="Center"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" TextAlignment="Center" VerticalAlignment="Center"
                        FontFamily="Calibri" 
                        FontSize="16" 
                        Text="Накладна №">
@@ -260,14 +267,16 @@
                             <ScaleTransform/>
                             <SkewTransform/>
                             <RotateTransform/>
-                            <TranslateTransform X="-270" Y="6"/>
+                            <TranslateTransform X="10" Y="6"/>
                         </TransformGroup>
                     </ComboBox.RenderTransform>
                 </ComboBox>
 
             </TextBlock>
 
-            <DataGrid Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
+            <DatePicker Grid.Row="0" Grid.Column="1" Width="120" Height="25" Name="dtFind" />
+
+            <DataGrid Grid.ColumnSpan="2" Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
                 <DataGrid.Columns >
                     <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=Id}"/>
                     <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
