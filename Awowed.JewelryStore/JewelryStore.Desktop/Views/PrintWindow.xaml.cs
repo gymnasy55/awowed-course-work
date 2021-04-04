@@ -67,11 +67,6 @@ namespace JewelryStore.Desktop.Views
             _prodgroups = _context.Prodgroups;
             _suppliers = _context.Suppliers;
 
-            //foreach (var prodgroup in _prodgroups)
-            //{
-            //    CbProdGr.Items.Add(prodgroup.ProdGroupName);
-            //}
-
             foreach (var supplier in _suppliers)
             {
                 CbSupplier.Items.Add(supplier.Suplname);
@@ -91,7 +86,7 @@ namespace JewelryStore.Desktop.Views
 
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !(Char.IsDigit(e.Text, 0));
+            e.Handled = !(char.IsDigit(e.Text, 0));
         }
 
         private void ShowItems(Func<Product, bool> predicate = null)
