@@ -221,6 +221,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
 
@@ -282,13 +283,25 @@
                     <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
                     <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Штрих-код" Binding="{Binding Path=BarCode}"/>
                     <DataGridTextColumn x:Name="DateColumn" MinWidth="100" MaxWidth="300" Header="Дата пр." Binding="{Binding Path=ArrivalDateString}"/>
-                    <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Назва" Binding="{Binding Path=ProdType}"/>
+                    <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Назва" Binding="{Binding Path=ProdGroupString}"/>
                     <DataGridTextColumn MinWidth="50" MaxWidth="120" Header="Ч. вага" Binding="{Binding Path=ClearWeight}" />
                     <DataGridTextColumn MinWidth="50" MaxWidth="120" Header="Вага" Binding="{Binding Path=Weight}"/>
                     <DataGridTextColumn MinWidth="80" MaxWidth="200" Header="Ціна роб." Binding="{Binding Path=PriceForTheWork}"/>
                     <DataGridTextColumn MinWidth="80" MaxWidth="200" Header="Ціна" Binding="{Binding Path=Price}"/>
                 </DataGrid.Columns>
             </DataGrid>
+
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Margin="20,0,20,0" FontWeight="Bold">Итого:</TextBlock>
+                <TextBlock Margin="0,0,5,0">Чистого веса:</TextBlock>
+                <TextBlock x:Name="ClearWeightTb" Margin="0,0,10,0">ХХ</TextBlock>
+                <TextBlock Margin="0,0,5,0">Веса:</TextBlock>
+                <TextBlock x:Name="WeightTb" Margin="0,0,10,0">ХХ</TextBlock>
+                <TextBlock Margin="0,0,5,0">Цены за работу:</TextBlock>
+                <TextBlock x:Name="WorkPriceTb" Margin="0,0,10,0">ХХ</TextBlock>
+                <TextBlock Margin="0,0,5,0">Цены на продажу:</TextBlock>
+                <TextBlock x:Name="PriceTb">ХХ</TextBlock>
+            </StackPanel>
         </Grid>
 
         <Button Grid.Row="1" Click="ButtonBase_OnClick" Content="Друк" Style ="{StaticResource BaseButton}"/>

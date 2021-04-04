@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JewelryStore.Desktop.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.ViewModels
 {
@@ -49,7 +50,18 @@ namespace JewelryStore.Desktop.ViewModels
             set => _product.ArrivalDate = value;
         }
 
-        public dynamic ArrivalDateString => ArrivalDate.Value.ToShortDateString();
+        public string ArrivalDateString => ArrivalDate.Value.ToShortDateString();
+
+        public string ProdGroupString
+        {
+            get
+            {
+                using var context = new AppDbContext();
+                var prodgroups = context.Prodgroups;
+                prodgroups.Load();
+                return prodgroups.FirstOrDefault(x => x.Id == IdProdGr).ProdGroupName.ToString();
+            }
+        }
 
         public string BarCode
         {

@@ -36,6 +36,25 @@ namespace JewelryStore.Desktop.Views
             InitializeComponent();
         }
 
+        private void CountOverall()
+        {
+            var temp = DataGrid.Items;
+            float overallPrice = 0, overallWorkPrice = 0, overallWeight = 0, overallClearWeight = 0;
+            foreach (var item in temp)
+            {
+                var tempItem = item as JewerlyItemViewModel;
+                overallClearWeight += tempItem.ClearWeight;
+                overallWeight += tempItem.Weight;
+                overallPrice += tempItem.Price;
+                overallWorkPrice += tempItem.PriceForTheWork;
+            }
+
+            PriceTb.Text = $"{overallPrice} UAH";
+            WorkPriceTb.Text = $"{overallWorkPrice} UAH";
+            ClearWeightTb.Text = $"{overallClearWeight} г";
+            WeightTb.Text = $"{overallWeight} г";
+        }
+
         private void PrintWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             _context.Database.EnsureCreated();
@@ -85,6 +104,7 @@ namespace JewelryStore.Desktop.Views
                 
                 DataGrid.ItemsSource = tempList;
             }
+            CountOverall();
         }
 
         private void CbSupplier_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
