@@ -30,6 +30,7 @@ namespace JewelryStore.Desktop.Views
         private IQueryable<Prodgroup> _prodgroups;
         private IQueryable<Supplier> _suppliers;
 
+
         public PrintWindow()
         {
             InitializeComponent();
@@ -56,9 +57,6 @@ namespace JewelryStore.Desktop.Views
             {
                 CbSupplier.Items.Add(supplier.Suplname);
             }
-
-            //DataGrid.Columns[header].CellStyle.Setters.
-            //DateColumn.CellStyle.TargetType = typeof(DateTime);
 
             ShowItems();
         }
@@ -103,8 +101,25 @@ namespace JewelryStore.Desktop.Views
                     ShowItems(x => x.IdSupp == context.Suppliers.First(c => c.Suplname == supplier.Suplname).Id);
                 }
 
-                //MessageBox.Show(supplier?.Suplname);
+                MessageBox.Show(supplier?.Suplname);
             }
+        }
+
+        private void DtFind_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            using (var context = new AppDbContext())
+            {
+                var date = context.Products.FirstOrDefault(x => x.ArrivalDate == dtFind.SelectedDate);
+                if (date == null)
+                {
+                    ShowItems();
+                }
+                else
+                {
+                    ShowItems(x => x.ArrivalDate == context.Products.First(x => x.ArrivalDate == date.ArrivalDate).ArrivalDate);
+                }
+            }
+
         }
     }
 }

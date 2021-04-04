@@ -274,7 +274,7 @@
 
             </TextBlock>
 
-            <DatePicker Grid.Row="0" Grid.Column="1" Width="120" Height="25" Name="dtFind" />
+            <DatePicker Grid.Row="0" Grid.Column="1" Width="120" Height="25" x:Name="dtFind" SelectedDateChanged="DtFind_OnSelectedDateChanged" />
 
             <DataGrid Grid.ColumnSpan="2" Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
                 <DataGrid.Columns >
