@@ -60,7 +60,6 @@ namespace JewelryStore.Desktop.Controls
 
         #region Private Methods
 
-        //TODO: ACTIONS ON THESE BUTTS
         private void ExpandButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!_isExpanded)
@@ -197,7 +196,8 @@ namespace JewelryStore.Desktop.Controls
 
         private void PrintTagButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var articleWindow = new ArticleWindow(_jewerlyItemViewModel);
+            articleWindow.ShowDialog();
         }
 
         #endregion
