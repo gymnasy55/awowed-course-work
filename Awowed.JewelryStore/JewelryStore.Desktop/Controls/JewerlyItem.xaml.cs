@@ -39,21 +39,21 @@ namespace JewelryStore.Desktop.Controls
 
         #region Private Fields
 
-        private readonly JewerlyItemViewModel _jewerlyItemViewModel;
+        private readonly JewerlyItemViewModel _vm;
         private bool _isExpanded;
 
         #endregion
 
         #region Constructor
 
-        public JewerlyItem(JewerlyItemViewModel jewerlyItemViewModel)
+        public JewerlyItem(JewerlyItemViewModel vm)
         {
             InitializeComponent();
 
-            _jewerlyItemViewModel = jewerlyItemViewModel;
+            _vm = vm;
             _isExpanded = false;
             using var context = new AppDbContext();
-            TextBlockContent = _jewerlyItemViewModel.ProdItem + $" Постачальник: {context.Suppliers.FirstOrDefault(x => x.Id == _jewerlyItemViewModel.IdSupp).Suplname}";
+            TextBlockContent = _vm.ProdItem + $" Постачальник: {context.Suppliers.FirstOrDefault(x => x.Id == _vm.IdSupp).Suplname}";
         }
 
         #endregion
@@ -68,7 +68,7 @@ namespace JewelryStore.Desktop.Controls
                 {
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Штрих-код: {_jewerlyItemViewModel.BarCode}",
+                        Text = $"Штрих-код: {_vm.BarCode}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -77,7 +77,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Дата прибуття: {_jewerlyItemViewModel.ArrivalDate?.ToString()}",
+                        Text = $"Дата прибуття: {_vm.ArrivalDate?.ToString()}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -86,7 +86,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Метал: {context.Metals.FirstOrDefault(x => x.Id == _jewerlyItemViewModel.IdMet).MetalName}",
+                        Text = $"Метал: {context.Metals.FirstOrDefault(x => x.Id == _vm.IdMet).MetalName}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -95,7 +95,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Група виробу: {context.Prodgroups.FirstOrDefault(x => x.Id == _jewerlyItemViewModel.IdProdGr).ProdGroupName}",
+                        Text = $"Група виробу: {context.Prodgroups.FirstOrDefault(x => x.Id == _vm.IdProdGr).ProdGroupName}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -104,7 +104,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Розмір: {_jewerlyItemViewModel.ProdSize}",
+                        Text = $"Розмір: {_vm.ProdSize}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -113,7 +113,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Вага: {_jewerlyItemViewModel.Weight}",
+                        Text = $"Вага: {_vm.Weight}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -122,7 +122,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Чиста Вага: {_jewerlyItemViewModel.ClearWeight}",
+                        Text = $"Чиста Вага: {_vm.ClearWeight}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -131,7 +131,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Вставка: {context.Insertions.FirstOrDefault(x => x.Id == _jewerlyItemViewModel.IdIns).InsertName}",
+                        Text = $"Вставка: {context.Insertions.FirstOrDefault(x => x.Id == _vm.IdIns).InsertName}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -140,7 +140,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Ціна за роботу: {_jewerlyItemViewModel.PriceForTheWork}",
+                        Text = $"Ціна за роботу: {_vm.PriceForTheWork}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -149,7 +149,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Ціна: {_jewerlyItemViewModel.Price}",
+                        Text = $"Ціна: {_vm.Price}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -174,14 +174,14 @@ namespace JewelryStore.Desktop.Controls
 
         private void ChangeButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var editWindow = new EditWindow(_jewerlyItemViewModel);
+            var editWindow = new EditWindow(_vm);
             editWindow.Show();
         }
 
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
             using var context = new AppDbContext();
-            var product = context.Products.FirstOrDefault(x => x.Id == _jewerlyItemViewModel.Id);
+            var product = context.Products.FirstOrDefault(x => x.Id == _vm.Id);
             if (product != null)
             {
                 context.Products.Remove(product);
@@ -196,7 +196,7 @@ namespace JewelryStore.Desktop.Controls
 
         private void PrintTagButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var articleWindow = new ArticleWindow(_jewerlyItemViewModel);
+            var articleWindow = new ArticleWindow(_vm);
             articleWindow.ShowDialog();
         }
 

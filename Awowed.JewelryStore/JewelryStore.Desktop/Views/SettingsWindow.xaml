@@ -7,8 +7,30 @@
         mc:Ignorable="d"
         Title="SettingsWindow" Height="300" Width="800" MinWidth="800" MinHeight="300"
         Loaded="SettingsWindow_OnLoaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Label" x:Key ="BaseLabel">
+            <Setter Property="FontWeight" Value = "Bold"/>
+
+        </Style>
+
+        <Style TargetType="Button" x:Key ="BaseButton">
+            <Setter Property="FontWeight" Value = "Bold" />
+            <Setter Property="Padding" Value = "5,2"/>
+            <Setter Property="FontSize" Value = "25"/>
+            <Setter Property="Margin" Value = "2 1"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="BaseTextBox">
+            <Setter Property="FontWeight" Value = "Regular" />
+            <Setter Property="Padding" Value = "5,2"/>
+            <Setter Property="FontSize" Value = "25"/>
+            <Setter Property="Margin" Value = "5"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="Auto" />
@@ -60,12 +82,22 @@
         <Button Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2" 
-                Content="Сохранить"
+                Content="Зберегти ціну"
                 Height="40"
                 Margin="5"
                 FontFamily="Calibri"
                 FontSize="24"
                 FontWeight="Bold" 
                 Click="ButtonBase_OnClick" />
+        <!--TODO: добавить кнопку для добавления вставки И мб просмотр всех вставок-->
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Style ="{StaticResource BaseButton}" Name ="addMetalBtn" Content="Додавання металу" Click="AddMetWindowBtn_Clicked"/>
+            <Button Grid.Column="1" Style ="{StaticResource BaseButton}" Name ="addSuppBtn" Content="Додавання постачальника" Click="AddSuppWindowBtn_Clicked"/>
+        </Grid>
     </Grid>
 </Window>

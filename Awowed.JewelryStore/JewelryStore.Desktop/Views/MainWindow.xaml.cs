@@ -40,7 +40,7 @@ namespace JewelryStore.Desktop.Views
             var settingsWindow = new SettingsWindow();
             settingsWindow.ShowDialog();
         }
-
+        //TODO: Придумать как изменять цену в зависимости от металла и наличии вставки.
         private void ShowItems(Func<Product, bool> predicate = null)
         {
             using var context = new AppDbContext();

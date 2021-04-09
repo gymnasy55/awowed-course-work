@@ -102,6 +102,9 @@ namespace JewelryStore.Desktop.Views
             CountOverall();
         }
 
+        //TODO: При выборе поставщика в комбо Боксе нельзя выбрать - показать все товары.
+        //TODO: Выбор Даты между двумя Пикерами
+
         private void CbSupplier_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             using (var context = new AppDbContext())
@@ -115,8 +118,6 @@ namespace JewelryStore.Desktop.Views
                 {
                     ShowItems(x => x.IdSupp == context.Suppliers.First(c => c.Suplname == supplier.Suplname).Id);
                 }
-
-                MessageBox.Show(supplier?.Suplname);
             }
         }
 
@@ -131,7 +132,23 @@ namespace JewelryStore.Desktop.Views
                 }
                 else
                 {
-                    ShowItems(x => x.ArrivalDate == context.Products.First(x => x.ArrivalDate == date.ArrivalDate).ArrivalDate);
+                    ShowItems(x => x.ArrivalDate >= context.Products.First(x => x.ArrivalDate == date.ArrivalDate).ArrivalDate);
+                }
+            }
+        }
+
+        private void DtFind2_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            using (var context = new AppDbContext())
+            {
+                var date = context.Products.FirstOrDefault(x => x.ArrivalDate == dtFind.SelectedDate);
+                if (date == null)
+                {
+                    ShowItems();
+                }
+                else
+                {
+                    ShowItems(x => x.ArrivalDate <= context.Products.First(x => x.ArrivalDate == date.ArrivalDate).ArrivalDate);
                 }
             }
 

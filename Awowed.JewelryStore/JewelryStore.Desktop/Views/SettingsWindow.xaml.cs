@@ -46,5 +46,17 @@ namespace JewelryStore.Desktop.Views
             PricePerGramWorkTb.Text = Settings.GramWorkPrice.ToString(CultureInfo.InvariantCulture);
             PricePerGramSaleTb.Text = Settings.GramSalePrice.ToString(CultureInfo.InvariantCulture);
         }
+
+        private void AddMetWindowBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            var addMetWindow = new AddMetWindow();
+            addMetWindow.ShowDialog();
+        }
+
+        private void AddSuppWindowBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            var addSuppWindow = new AddSuppWindow();
+            addSuppWindow.ShowDialog();
+        }
     }
 }

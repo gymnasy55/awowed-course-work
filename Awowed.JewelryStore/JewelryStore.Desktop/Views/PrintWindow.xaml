@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="PrintWindow" MinHeight="700" Height="700" MaxHeight="1050" MinWidth="700" Width="646" MaxWidth="750"
+        Title="PrintWindow" MinHeight="700" Height="700" MaxHeight="1050" MinWidth="700" Width="700" MaxWidth="750"
         Loaded="PrintWindow_OnLoaded" WindowStartupLocation="CenterScreen"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
@@ -227,6 +227,7 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="160" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -276,8 +277,9 @@
             </TextBlock>
 
             <DatePicker Grid.Row="0" Grid.Column="1" Width="120" Height="25" x:Name="dtFind" SelectedDateChanged="DtFind_OnSelectedDateChanged" />
+            <DatePicker Grid.Row="0" Grid.Column="2" Width="120" Height="25" x:Name="dtFind2" SelectedDateChanged="DtFind2_OnSelectedDateChanged" />
 
-            <DataGrid Grid.ColumnSpan="2" Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
+            <DataGrid Grid.ColumnSpan="3" Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
                 <DataGrid.Columns >
                     <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=Id}"/>
                     <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
@@ -291,7 +293,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal">
+            <StackPanel Grid.ColumnSpan="3" Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Margin="20,0,20,0" FontWeight="Bold">Итого:</TextBlock>
                 <TextBlock Margin="0,0,5,0">Чистого веса:</TextBlock>
                 <TextBlock x:Name="ClearWeightTb" Margin="0,0,10,0">ХХ</TextBlock>

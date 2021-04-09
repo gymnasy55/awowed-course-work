@@ -10,6 +10,12 @@
     <Compile Update="Controls\JewerlyItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\AddMetWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AddSuppWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\AddWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\JewerlyItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AddMetWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AddSuppWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ArticleWindow.xaml">
