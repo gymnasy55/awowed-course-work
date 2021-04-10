@@ -34,7 +34,6 @@ namespace JewelryStore.Desktop.Views
             TbSupp.Text = string.Empty;
         }
 
-        //TODO: такого постачльника нет в БД. Мб поменять форму на просмотр всех поставщиков
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте додати постачальника?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
@@ -44,8 +43,13 @@ namespace JewelryStore.Desktop.Views
                     var supplier = new Supplier
                     {
                         Id = (byte)(_context.Suppliers.OrderBy(x => x.Id).Last().Id + 1),
-                        Suplname = TbSupp.Text,
+                        Suplname = TbSupp.Text.Trim(),
                     };
+                    if (_context.Suppliers.Any(x => x.Suplname == supplier.Suplname))
+                    {
+                        MessageBox.Show("Такий постачальник вже є в бд","Помилка",MessageBoxButton.OK, MessageBoxImage.Error  );
+                        return;
+                    }
                     _context.Suppliers.Add(supplier);
                     _context.SaveChanges();
                     MessageBox.Show("Додано постачальника в бд!");

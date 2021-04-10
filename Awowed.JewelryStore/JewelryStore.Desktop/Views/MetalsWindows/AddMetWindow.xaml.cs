@@ -29,7 +29,6 @@ namespace JewelryStore.Desktop.Views
             InitializeComponent();
         }
 
-        //TODO: 1 > SAMPLE <1000, такого металла нет в БД. Мб поменять форму на просмотр всех металлов
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте додати метал?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
@@ -39,9 +38,14 @@ namespace JewelryStore.Desktop.Views
                     var metal = new Metal
                     {
                         Id =  (byte) (_context.Metals.OrderBy(x => x.Id).Last().Id + 1),
-                        MetalName = TbMetal.Text,
+                        MetalName = TbMetal.Text.Trim(),
                         Sample = System.Convert.ToInt32(TbSample.Text)
                     };
+                    if (_context.Metals.Any(x => x.Sample == metal.Sample))
+                    {
+                        MessageBox.Show("Такий метал вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                     _context.Metals.Add(metal);
                     _context.SaveChanges();
                     MessageBox.Show("Додано метал в бд!");

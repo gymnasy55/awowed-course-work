@@ -7,31 +7,73 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\InsertionItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\JewerlyItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\AddMetWindow.xaml.cs">
+    <Compile Update="Controls\MetalItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\AddSuppWindow.xaml.cs">
+    <Compile Update="Controls\ProdGroupItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\AddWindow.xaml.cs">
+    <Compile Update="Controls\SupplierItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ArticleWindow.xaml.cs">
+    <Compile Update="Views\InsertionsWindows\AddInsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\EditWindow.xaml.cs">
+    <Compile Update="Views\InsertionsWindows\EditInsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PrintWindow.xaml.cs">
+    <Compile Update="Views\InsertionsWindows\InsertionsMainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\SalesWindow.xaml.cs">
+    <Compile Update="Views\MetalsWindows\AddMetWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\SettingsWindow.xaml.cs">
+    <Compile Update="Views\MetalsWindows\EditMetWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MetalsWindows\MetalsMainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProdGroupsWindows\AddProdGrWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProdGroupsWindows\EditProdGrWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProdGroupsWindows\ProdGroupsMainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SuppliersWindows\AddSuppWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProductsWindows\AddWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProductsWindows\ArticleWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProductsWindows\EditWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProductsWindows\PrintWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProductsWindows\SalesWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ProductsWindows\SettingsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SuppliersWindows\EditSuppWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SuppliersWindows\SuppliersMainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\TestWindow.xaml.cs">
@@ -39,34 +81,76 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Controls\InsertionItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\JewerlyItem.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\AddMetWindow.xaml">
+    <Page Update="Controls\MetalItem.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\AddSuppWindow.xaml">
+    <Page Update="Controls\ProdGroupItem.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\ArticleWindow.xaml">
+    <Page Update="Controls\SupplierItem.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\EditWindow.xaml">
+    <Page Update="Views\InsertionsWindows\AddInsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\MainWindow.xaml">
+    <Page Update="Views\InsertionsWindows\EditInsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\AddWindow.xaml">
+    <Page Update="Views\InsertionsWindows\InsertionsMainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\PrintWindow.xaml">
+    <Page Update="Views\MetalsWindows\AddMetWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\SalesWindow.xaml">
+    <Page Update="Views\MetalsWindows\EditMetWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\SettingsWindow.xaml">
+    <Page Update="Views\MetalsWindows\MetalsMainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProdGroupsWindows\AddProdGrWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProdGroupsWindows\EditProdGrWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProdGroupsWindows\ProdGroupsMainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SuppliersWindows\AddSuppWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductsWindows\ArticleWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductsWindows\EditWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductsWindows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductsWindows\AddWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductsWindows\PrintWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductsWindows\SalesWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductsWindows\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SuppliersWindows\EditSuppWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SuppliersWindows\SuppliersMainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\TestWindow.xaml">
