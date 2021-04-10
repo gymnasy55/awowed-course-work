@@ -152,9 +152,11 @@ namespace JewelryStore.Desktop.Views
             TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
         }
 
+        // TODO: Сделать ввод только цифр с одной точкой - и что бы это работало в TBWeight_OnTextChanged
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !(Char.IsDigit(e.Text, 0));
+            if (e.Text.Last() == '.') 
+                e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == '.');
         }
 
 

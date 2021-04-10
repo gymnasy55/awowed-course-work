@@ -184,9 +184,18 @@ namespace JewelryStore.Desktop.Controls
             var product = context.Products.FirstOrDefault(x => x.Id == _vm.Id);
             if (product != null)
             {
-                context.Products.Remove(product);
-                context.SaveChanges();
-                MessageBox.Show("Успішно видалено з бд!", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
+                var result = MessageBox.Show("Чи впевнені Ви, що бажаєте видалити товар?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        context.Products.Remove(product);
+                        context.SaveChanges();
+                        MessageBox.Show("Успішно видалено з бд!", "Успіх", MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
             else
             {
