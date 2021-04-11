@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JewelryStore.Desktop"
         xmlns:ui="clr-namespace:JewelryStore.Desktop.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" MinWidth="640" MinHeight="600" FontFamily="Calibri" FontSize="14"
+        Title="Вироби" Height="600" Width="800" MinWidth="640" MinHeight="600" FontFamily="Calibri" FontSize="14"
         Loaded="MainWindow_OnLoaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Label" x:Key ="BaseLabel">

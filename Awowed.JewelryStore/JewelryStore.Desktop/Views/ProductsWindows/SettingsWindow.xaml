@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="300" Width="800" MinWidth="800" MinHeight="300"
+        Title="Налаштування" Height="300" Width="800" MinWidth="800" MinHeight="300"
         Loaded="SettingsWindow_OnLoaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Label" x:Key ="BaseLabel">
             <Setter Property="FontWeight" Value = "Bold"/>
-
         </Style>
 
         <Style TargetType="Button" x:Key ="BaseButton">
@@ -26,6 +25,14 @@
             <Setter Property="FontSize" Value = "25"/>
             <Setter Property="Margin" Value = "5"/>
         </Style>
+
+        <Style TargetType="ComboBox" x:Key="BaseComboBox">
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="Padding" Value = "5,2"/>
+            <Setter Property="FontSize" Value = "25"/>
+            <Setter Property="Margin" Value = "2 1"/>
+        </Style>
+
     </Window.Resources>
 
     <Grid>
@@ -49,7 +56,7 @@
                    FontFamily="Calibri"
                    FontSize="16"
                    FontWeight="Bold"
-                   Text="Цена грамма за работу:" />
+                   Text="Ціна грама за працю:" />
 
         <TextBox Grid.Row="0"
                  Grid.Column="1"
@@ -68,7 +75,7 @@
                    FontFamily="Calibri"
                    FontSize="16"
                    FontWeight="Bold"
-                   Text="Цена грамма на продажу:" />
+                   Text="Ціна грама за продаж:" />
 
         <TextBox Grid.Row="1"
                  Grid.Column="1"
@@ -89,15 +96,16 @@
                 FontSize="24"
                 FontWeight="Bold" 
                 Click="ButtonBase_OnClick" />
-        <!--TODO: добавить кнопку для добавления вставки И мб просмотр всех вставок-->
+        
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Style ="{StaticResource BaseButton}" Name ="addMetalBtn" Content="Додавання металу" Click="AddMetWindowBtn_Clicked"/>
-            <Button Grid.Column="1" Style ="{StaticResource BaseButton}" Name ="addSuppBtn" Content="Додавання постачальника" Click="AddSuppWindowBtn_Clicked"/>
+
+            <ComboBox Grid.Column="0" Name="cbOpen"  Style="{StaticResource BaseComboBox}" RenderTransformOrigin="0.5,0.5" />
+            <Button Grid.Column="1" Style ="{StaticResource BaseButton}" Name ="openBtn" Content="Перейти" Click="OpenFromCbWindowBtn_Clicked"/>
         </Grid>
     </Grid>
 </Window>

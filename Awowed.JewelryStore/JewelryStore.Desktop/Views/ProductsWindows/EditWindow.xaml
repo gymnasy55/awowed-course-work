@@ -91,7 +91,7 @@
             <DatePicker Grid.Row="2" Grid.Column="1" Name="DpArrDate" Style="{StaticResource BaseDatePicker}" />
             <ComboBox Grid.Row="3" Grid.Column="1" Name="CbMetal" Style="{StaticResource BaseComboBox}" />
             <ComboBox Grid.Row="4" Grid.Column="1" Name="CbProdGr" Style="{StaticResource BaseComboBox}" />
-            <TextBox Grid.Row="5" Grid.Column="1" Name="TbProdType" Style="{StaticResource BaseTextBox}" />
+            <TextBox TextBox.MaxLength="20" Grid.Row="5" Grid.Column="1" Name="TbProdType" Style="{StaticResource BaseTextBox}" />
             <ComboBox Grid.Row="6" Grid.Column="1" Name="CbSupplier" Style="{StaticResource BaseComboBox}" />
             <TextBox PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="20" Grid.Row="7" Grid.Column="1" Name="TbSize" Style="{StaticResource BaseTextBox}" />
             <TextBox PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="20" Grid.Row="8" Grid.Column="1" Name="TbWeight" TextChanged="TbWeight_OnTextChanged" Style="{StaticResource BaseTextBox}" />

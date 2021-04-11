@@ -29,6 +29,11 @@ namespace JewelryStore.Desktop.Views
             InitializeComponent();
         }
 
+        private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте додати метал?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
@@ -59,11 +64,6 @@ namespace JewelryStore.Desktop.Views
         {
             TbMetal.Text = string.Empty;
             TbSample.Text = string.Empty;
-        }
-
-        private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !(Char.IsDigit(e.Text, 0));
         }
     }
 }

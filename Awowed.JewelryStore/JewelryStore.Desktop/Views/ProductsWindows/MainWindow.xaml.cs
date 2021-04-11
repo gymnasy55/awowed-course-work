@@ -67,7 +67,7 @@ namespace JewelryStore.Desktop.Views
 
         private void FindTb_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            var text = FindTb.Text;
+            var text = FindTb.Text.ToLower();
             if (text == string.Empty)
             {
                 ShowItems();
@@ -76,7 +76,7 @@ namespace JewelryStore.Desktop.Views
 
             using (var context = new AppDbContext())
             {
-                ShowItems(x => x.ProdItem.Contains(text) || context.Suppliers.First(c => c.Id == x.IdSupp).Suplname.Contains(text));
+                ShowItems(x => x.ProdItem.Contains(text) || context.Suppliers.First(c => c.Id == x.IdSupp).Suplname.ToLower().Contains(text));
             }
         }
 

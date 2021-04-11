@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         mc:Ignorable="d"
-        Title="Додавання постачальника" Width="400" Height="150" MinWidth="400" MinHeight="150" MaxWidth="1000" MaxHeight="500" FontFamily="Calibri" FontSize="18"
+        Title="Додавання постачальника" Width="600" Height="150" MinWidth="600" MinHeight="150" MaxWidth="1000" MaxHeight="600" FontFamily="Calibri" FontSize="18"
         WindowStartupLocation="CenterScreen" >
     <Window.Resources>
 
@@ -57,7 +57,7 @@
 
             <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource BaseLabel}" Content="Постачальник" />
 
-            <TextBox TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbSupp" Style="{StaticResource BaseTextBox}" />
+            <TextBox TextBox.MaxLength="40" Grid.Row="0" Grid.Column="1" Name="TbSupp" Style="{StaticResource BaseTextBox}" />
           
             <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>

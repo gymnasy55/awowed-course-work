@@ -2,6 +2,10 @@
 using System.Globalization;
 using System.Windows;
 using JewelryStore.Desktop.Models;
+using JewelryStore.Desktop.Views.InsertionsWindows;
+using JewelryStore.Desktop.Views.MetalsWindows;
+using JewelryStore.Desktop.Views.ProdGroupsWindows;
+using JewelryStore.Desktop.Views.SuppliersWindows;
 
 namespace JewelryStore.Desktop.Views
 {
@@ -45,18 +49,35 @@ namespace JewelryStore.Desktop.Views
             Settings.ReadConfig();
             PricePerGramWorkTb.Text = Settings.GramWorkPrice.ToString(CultureInfo.InvariantCulture);
             PricePerGramSaleTb.Text = Settings.GramSalePrice.ToString(CultureInfo.InvariantCulture);
+            cbOpen.Items.Add("Вставки");
+            cbOpen.Items.Add("Групи Виробів");
+            cbOpen.Items.Add("Метали");
+            cbOpen.Items.Add("Постачальники");
+
         }
 
-        private void AddMetWindowBtn_Clicked(object sender, RoutedEventArgs e)
+        private void OpenFromCbWindowBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            var addMetWindow = new AddMetWindow();
-            addMetWindow.ShowDialog();
-        }
-
-        private void AddSuppWindowBtn_Clicked(object sender, RoutedEventArgs e)
-        {
-            var addSuppWindow = new AddSuppWindow();
-            addSuppWindow.ShowDialog();
+            var result = cbOpen.SelectionBoxItem;
+            switch (result)
+            {
+                case "Вставки":
+                    var insertionsMainWindow = new InsertionsMainWindow();
+                    insertionsMainWindow.ShowDialog();
+                    break;
+                case "Групи Виробів":
+                    var prodGroupsMainwWindow = new ProdGroupsMainWindow();
+                    prodGroupsMainwWindow.ShowDialog();
+                    break;
+                case "Метали":
+                    var metalsMainWindow = new MetalsMainWindow();
+                    metalsMainWindow.ShowDialog();
+                    break;
+                case "Постачальники":
+                    var suppliersMainWindow = new SuppliersMainWindow();
+                    suppliersMainWindow.ShowDialog();
+                    break;
+            }
         }
     }
 }

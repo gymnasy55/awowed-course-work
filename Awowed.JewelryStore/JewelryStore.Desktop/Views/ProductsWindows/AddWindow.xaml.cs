@@ -101,22 +101,22 @@ namespace JewelryStore.Desktop.Views
                     var product = new Product
                     {
                         Id = _context.Products.OrderBy(x => x.Id).Last().Id + 1,
-                        ProdItem = TbProdItem.Text,
-                        BarCode = TbProdItem.Text,
+                        ProdItem = TbProdItem.Text.Trim(),
+                        BarCode = TbProdItem.Text.Trim(),
                         ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks),
-                        IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString()).Id,
-                        IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString()).Id,
-                        ProdType = TbProdType.Text,
-                        IdSupp = _suppliers.First(x => x.Suplname == CbSupplier.SelectionBoxItem.ToString()).Id,
-                        ProdSize = Convert.ToSingle(TbSize.Text),
-                        Weight = Convert.ToSingle(TbWeight.Text),
-                        ClearWeight = Convert.ToSingle(TbClearWeight.Text),
+                        IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Trim()).Id,
+                        IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString().Trim()).Id,
+                        ProdType = TbProdType.Text.Trim(),
+                        IdSupp = _suppliers.First(x => x.Suplname == CbSupplier.SelectionBoxItem.ToString().Trim()).Id,
+                        ProdSize = Convert.ToSingle(TbSize.Text.Trim()),
+                        Weight = Convert.ToSingle(TbWeight.Text.Trim()),
+                        ClearWeight = Convert.ToSingle(TbClearWeight.Text.Trim()),
                         IdIns = CbInsert.SelectedItem.ToString().Contains('|')
                             ? _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id
                             : _insertions.First(x => x.InsertName == CbInsert.SelectedItem.ToString()).Id,
-                        Faceting = TbFaceting.Text,
-                        WeaveWay = CbWeaveWay.SelectionBoxItem.ToString(),
-                        WeaveType = TbWeaveType.Text,
+                        Faceting = TbFaceting.Text.Trim(),
+                        WeaveWay = CbWeaveWay.SelectionBoxItem.ToString().Trim(),
+                        WeaveType = TbWeaveType.Text.Trim(),
                         PriceForTheWork = Convert.ToSingle(TblWorkPrice.Text.Substring(0, TblWorkPrice.Text.IndexOf('U') - 1)),
                         Price = Convert.ToSingle(TblPrice.Text.Substring(0, TblPrice.Text.IndexOf('U') - 1))
                     };

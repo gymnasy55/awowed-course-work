@@ -5,8 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views.ProdGroupsWindows"
         mc:Ignorable="d"
-        Title="AddProdGrWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Додавання Групи Виробу" Width="500" Height="150" MinWidth="500" MinHeight="150" MaxWidth="1000" MaxHeight="600" FontFamily="Calibri" FontSize="18"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+
+        <Style TargetType="Label" x:Key="BaseLabel">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="BaseButton">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Padding" Value="5,2" />
+            <Setter Property="Margin" Value="1" />
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="BaseTextBox">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="BaseTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+
+        <Style TargetType="DatePicker" x:Key="BaseDatePicker">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="BaseComboBox">
+            <Setter Property="Margin" Value="3" />
+        </Style>
+
+    </Window.Resources>
+
+    <Border BorderThickness="0" x:Name="Main">
+        <Grid Height="{Binding ElementName=Main, Path=ActualHeight}" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="*" />
+                <RowDefinition Height ="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource BaseLabel}" Content="Група виробу" />
+
+            <TextBox TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbProdGroupName" Style="{StaticResource BaseTextBox}" />
+           
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource BaseButton}" Content="Додати" Name="AddBtn"
+                        Click="AddBtn_Clicked" />
+                <Button Grid.Column="1" Style="{StaticResource BaseButton}" Content="Очистити" Name="ClearBtn"
+                        Click="ClearBtn_Clicked" />
+            </Grid>
+
+        </Grid>
+    </Border>
 </Window>
