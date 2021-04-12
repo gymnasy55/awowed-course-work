@@ -19,6 +19,15 @@ using NewsStyleUriParser = System.NewsStyleUriParser;
 
 namespace JewelryStore.Desktop.Views
 {
+    public class ExtendedViewModel : JewerlyItemViewModel
+    {
+        public int ShowId { get; set; }
+        public ExtendedViewModel(Product product, int id) : base(product)
+        {
+            ShowId = id;
+        }
+    };
+
     /// <summary>
     /// Interaction logic for PrintWindow.xaml
     /// </summary>
@@ -67,10 +76,12 @@ namespace JewelryStore.Desktop.Views
             _prodgroups = _context.Prodgroups;
             _suppliers = _context.Suppliers;
 
+            CbSupplier.Items.Add("Усі");
             foreach (var supplier in _suppliers)
             {
                 CbSupplier.Items.Add(supplier.Suplname);
             }
+            
 
             ShowItems();
         }
@@ -94,16 +105,13 @@ namespace JewelryStore.Desktop.Views
             using (var context = new AppDbContext())
             {
                 var tempList = predicate == null
-                    ? context.Products.ToList().Select(x => new JewerlyItemViewModel(x))
-                    : context.Products.Where(predicate).ToList().Select(x => new JewerlyItemViewModel(x));
+                    ? context.Products.ToList().Select((x,i) => new ExtendedViewModel(x,i + 1))
+                    : context.Products.Where(predicate).ToList().Select((x, i) => new ExtendedViewModel(x, i + 1));
                 
                 DataGrid.ItemsSource = tempList;
             }
             CountOverall();
         }
-
-        //TODO: При выборе поставщика в комбо Боксе нельзя выбрать - показать все товары.
-        //TODO: Выбор Даты между двумя Пикерами
 
         private void CbSupplier_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -112,7 +120,7 @@ namespace JewelryStore.Desktop.Views
                 var supplier = context.Suppliers.FirstOrDefault(x => x.Suplname == CbSupplier.SelectedItem.ToString());
                 if (supplier == null)
                 {
-                    DataGrid.ItemsSource = null;
+                    ShowItems();
                 }
                 else
                 {
@@ -121,37 +129,36 @@ namespace JewelryStore.Desktop.Views
             }
         }
 
+        private void Date_Pickers(DateTime? date1 = null, DateTime? date2 = null)
+        {
+            if (date1.HasValue && date2.HasValue)
+            {
+                ShowItems(x => x.ArrivalDate >= date1.Value && x.ArrivalDate <= date2.Value);
+                return;
+            }
+
+            if (date1.HasValue)
+            {
+                ShowItems(x => x.ArrivalDate == date1.Value);
+                return;
+            }
+
+            if (date2.HasValue)
+            {
+                ShowItems(x => x.ArrivalDate == date2.Value);
+                return;
+            }
+            ShowItems();
+        }
+
         private void DtFind_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            using (var context = new AppDbContext())
-            {
-                var date = context.Products.FirstOrDefault(x => x.ArrivalDate == dtFind.SelectedDate);
-                if (date == null)
-                {
-                    ShowItems();
-                }
-                else
-                {
-                    ShowItems(x => x.ArrivalDate >= context.Products.First(x => x.ArrivalDate == date.ArrivalDate).ArrivalDate);
-                }
-            }
+           Date_Pickers(dtFind.SelectedDate, dtFind2.SelectedDate);
         }
 
         private void DtFind2_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            using (var context = new AppDbContext())
-            {
-                var date = context.Products.FirstOrDefault(x => x.ArrivalDate == dtFind.SelectedDate);
-                if (date == null)
-                {
-                    ShowItems();
-                }
-                else
-                {
-                    ShowItems(x => x.ArrivalDate <= context.Products.First(x => x.ArrivalDate == date.ArrivalDate).ArrivalDate);
-                }
-            }
-
+            Date_Pickers(dtFind.SelectedDate, dtFind2.SelectedDate);
         }
     }
 }

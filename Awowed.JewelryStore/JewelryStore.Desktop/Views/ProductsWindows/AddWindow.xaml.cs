@@ -155,8 +155,8 @@ namespace JewelryStore.Desktop.Views
         // TODO: Сделать ввод только цифр с одной точкой - и что бы это работало в TBWeight_OnTextChanged
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (e.Text.Last() == '.') 
-                e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == '.');
+            if (e.Text.Last() == ',') 
+                e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == ',');
         }
 
 

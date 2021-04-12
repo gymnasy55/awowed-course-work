@@ -7,7 +7,7 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="PrintWindow" MinHeight="700" Height="700" MaxHeight="1050" MinWidth="700" Width="700" MaxWidth="750"
-        Loaded="PrintWindow_OnLoaded" WindowStartupLocation="CenterScreen"
+        Loaded="PrintWindow_OnLoaded" WindowStartupLocation="CenterScreen" FontFamily="Calibri" FontSize="16" 
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Resources>
@@ -24,8 +24,8 @@
         </Style>
 
         <Style TargetType="ComboBox" x:Key="BaseComboBox">
-            <Setter Property="Margin" Value="3" />
-            <Setter Property="FontSize" Value = "12" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="FontSize" Value = "18" />
         </Style>
         <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="#FFF" Offset="0.0"/>
@@ -235,7 +235,7 @@
 
             <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" TextAlignment="Center" VerticalAlignment="Center"
                        FontFamily="Calibri" 
-                       FontSize="16" 
+                       FontSize="18" 
                        Text="Накладна №">
 
                 <TextBox PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="5" Width="50" MaxWidth="50" Height="20" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" BorderThickness="0.2" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" SelectionBrush="#FF008EFF">
@@ -254,7 +254,7 @@
                           HorizontalAlignment="Center" 
                           VerticalAlignment="Center" 
                           RenderTransformOrigin="0.5,0.5" 
-                          Width="120" Height="20"
+                          Width="160" Height="25"
                           SelectionChanged="CbSupplier_OnSelectionChanged">
 
                     <!--<ComboBox.ItemContainerStyle>
@@ -281,12 +281,12 @@
 
             <DataGrid Grid.ColumnSpan="3" Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
                 <DataGrid.Columns >
-                    <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=Id}"/>
-                    <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
-                    <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Штрих-код" Binding="{Binding Path=BarCode}"/>
+                    <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=ShowId}"/>
+                    <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
+                    <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Штрих-код" Binding="{Binding Path=BarCode}"/>
                     <DataGridTextColumn x:Name="DateColumn" MinWidth="100" MaxWidth="300" Header="Дата пр." Binding="{Binding Path=ArrivalDateString}"/>
                     <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Назва" Binding="{Binding Path=ProdGroupString}"/>
-                    <DataGridTextColumn MinWidth="50" MaxWidth="120" Header="Ч. вага" Binding="{Binding Path=ClearWeight}" />
+                    <DataGridTextColumn MinWidth="70" MaxWidth="120" Header="Ч. вага" Binding="{Binding Path=ClearWeight}" />
                     <DataGridTextColumn MinWidth="50" MaxWidth="120" Header="Вага" Binding="{Binding Path=Weight}"/>
                     <DataGridTextColumn MinWidth="80" MaxWidth="200" Header="Ціна роб." Binding="{Binding Path=PriceForTheWork}"/>
                     <DataGridTextColumn MinWidth="80" MaxWidth="200" Header="Ціна" Binding="{Binding Path=Price}"/>
@@ -294,14 +294,14 @@
             </DataGrid>
 
             <StackPanel Grid.ColumnSpan="3" Grid.Row="2" Orientation="Horizontal">
-                <TextBlock Margin="20,0,20,0" FontWeight="Bold">Итого:</TextBlock>
-                <TextBlock Margin="0,0,5,0">Чистого веса:</TextBlock>
+                <TextBlock Margin="20,0,20,0" FontWeight="Bold">Всього:</TextBlock>
+                <TextBlock Margin="0,0,5,0">Чистої ваги:</TextBlock>
                 <TextBlock x:Name="ClearWeightTb" Margin="0,0,10,0">ХХ</TextBlock>
-                <TextBlock Margin="0,0,5,0">Веса:</TextBlock>
+                <TextBlock Margin="0,0,5,0">Ваги:</TextBlock>
                 <TextBlock x:Name="WeightTb" Margin="0,0,10,0">ХХ</TextBlock>
-                <TextBlock Margin="0,0,5,0">Цены за работу:</TextBlock>
+                <TextBlock Margin="0,0,5,0">Ціни за роботу:</TextBlock>
                 <TextBlock x:Name="WorkPriceTb" Margin="0,0,10,0">ХХ</TextBlock>
-                <TextBlock Margin="0,0,5,0">Цены на продажу:</TextBlock>
+                <TextBlock Margin="0,0,5,0">Ціна за продаж:</TextBlock>
                 <TextBlock x:Name="PriceTb">ХХ</TextBlock>
             </StackPanel>
         </Grid>

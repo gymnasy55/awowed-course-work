@@ -169,7 +169,8 @@ namespace JewelryStore.Desktop.Views
 
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !(Char.IsDigit(e.Text, 0));
+            if (e.Text.Last() == ',')
+                e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == ',');
         }
     }
 }

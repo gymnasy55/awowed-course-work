@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         mc:Ignorable="d"
-        Title="Додавання виробу" Width="600" Height="600" MinWidth="500" MinHeight="500" FontFamily="Calibri" FontSize="14"
+        Title="Додавання виробу" Width="600" Height="630" MinWidth="500"
+        MinHeight="630" FontFamily="Calibri" FontSize="20"
         Loaded="AddWindow_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
@@ -15,6 +16,7 @@
 
         <Style TargetType="Button" x:Key="BaseButton">
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="25" />
             <Setter Property="Padding" Value="5,2" />
             <Setter Property="Margin" Value="1" />
         </Style>
@@ -38,6 +40,9 @@
 
         <Style TargetType="ComboBox" x:Key="BaseComboBox">
             <Setter Property="Margin" Value="3" />
+            <Setter Property="Padding" Value = "5,2"/>
+            <Setter Property="FontSize" Value = "25"/>
+            <Setter Property="Margin" Value = "2 1"/>
         </Style>
 
     </Window.Resources>
