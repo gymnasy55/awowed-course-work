@@ -80,18 +80,23 @@ namespace JewelryStore.Desktop.Views
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var fileDialog = new SaveFileDialog
+            var printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
             {
-                Filter = "PNG files|*.png|All Files|*.*", 
-                Title = "Save diagram as PNG"
-            };
-            if (fileDialog.ShowDialog() != true) return;
-            var bitmap = new RenderTargetBitmap((int)PrintGrid.ActualWidth, (int)PrintGrid.ActualHeight, 96, 96, PixelFormats.Pbgra32);
-            bitmap.Render(PrintGrid);
-            using var stream = File.Create(fileDialog.FileName);
-            var encoder = new JpegBitmapEncoder { QualityLevel = 300 };
-            encoder.Frames.Add(BitmapFrame.Create(bitmap));
-            encoder.Save(stream);
+                printDialog.PrintVisual(PrintGrid, "Grid");
+            }
+            //var fileDialog = new SaveFileDialog
+            //{
+            //    Filter = "PNG files|*.png|All Files|*.*", 
+            //    Title = "Save diagram as PNG"
+            //};
+            //if (fileDialog.ShowDialog() != true) return;
+            //var bitmap = new RenderTargetBitmap((int)PrintGrid.ActualWidth, (int)PrintGrid.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            //bitmap.Render(PrintGrid);
+            //using var stream = File.Create(fileDialog.FileName);
+            //var encoder = new JpegBitmapEncoder { QualityLevel = 300 };
+            //encoder.Frames.Add(BitmapFrame.Create(bitmap));
+            //encoder.Save(stream);
         }
     }
 }
