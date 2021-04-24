@@ -85,5 +85,11 @@ namespace JewelryStore.Desktop.Views
             var printWindow = new PrintWindow();
             printWindow.ShowDialog();
         }
+
+        private void SalesBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var salesWindow = new SalesWindow();
+            salesWindow.ShowDialog();
+        }
     }
 }

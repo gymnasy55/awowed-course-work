@@ -19,7 +19,7 @@ namespace JewelryStore.Desktop.Models
         public virtual DbSet<Metal> Metals { get; set; }
         public virtual DbSet<Prodgroup> Prodgroups { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Productssale> Productssales { get; set; }
+        public virtual DbSet<ProductsSale> Productssales { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -181,7 +181,7 @@ namespace JewelryStore.Desktop.Models
                     .HasConstraintName("fk_supp");
             });
 
-            modelBuilder.Entity<Productssale>(entity =>
+            modelBuilder.Entity<ProductsSale>(entity =>
             {
                 entity.ToTable("productssales");
 

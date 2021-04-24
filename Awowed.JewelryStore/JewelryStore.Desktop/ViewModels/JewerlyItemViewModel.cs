@@ -52,17 +52,6 @@ namespace JewelryStore.Desktop.ViewModels
 
         public string ArrivalDateString => ArrivalDate.Value.ToShortDateString();
 
-        public string ProdGroupString
-        {
-            get
-            {
-                using var context = new AppDbContext();
-                var prodgroups = context.Prodgroups;
-                prodgroups.Load();
-                return prodgroups.FirstOrDefault(x => x.Id == IdProdGr).ProdGroupName.ToString();
-            }
-        }
-
         public string BarCode
         {
             get => _product.BarCode;

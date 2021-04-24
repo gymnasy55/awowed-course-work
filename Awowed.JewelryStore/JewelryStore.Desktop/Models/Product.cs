@@ -10,7 +10,7 @@ namespace JewelryStore.Desktop.Models
     {
         public Product()
         {
-            Productssales = new HashSet<Productssale>();
+            Productssales = new HashSet<ProductsSale>();
         }
 
         public int Id { get; set; }
@@ -35,7 +35,7 @@ namespace JewelryStore.Desktop.Models
         public virtual Metal IdMetNavigation { get; set; }
         public virtual Prodgroup IdProdGrNavigation { get; set; }
         public virtual Supplier IdSuppNavigation { get; set; }
-        public virtual ICollection<Productssale> Productssales { get; private set; }
-            = new ObservableCollection<Productssale>();
+        public virtual ICollection<ProductsSale> Productssales { get; private set; }
+            = new ObservableCollection<ProductsSale>();
     }
 }

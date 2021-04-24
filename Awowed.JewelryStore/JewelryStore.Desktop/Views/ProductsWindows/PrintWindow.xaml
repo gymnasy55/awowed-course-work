@@ -226,60 +226,53 @@
 
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="180" />
                 <ColumnDefinition Width="160" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
 
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" TextAlignment="Center" VerticalAlignment="Center"
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" 
+                       TextAlignment="Left" VerticalAlignment="Center"
                        FontFamily="Calibri" 
                        FontSize="18" 
-                       Text="Накладна №">
+                       Text="Накладна №"/>
 
-                <TextBox PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="5" Width="50" MaxWidth="50" Height="20" RenderTransformOrigin="0.5,0.5" TextAlignment="Center" BorderThickness="0.2" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" SelectionBrush="#FF008EFF">
-                    <TextBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="10" Y="3"/>
-                        </TransformGroup>
-                    </TextBox.RenderTransform>
-                </TextBox>
+            <TextBox Grid.Row="0" Grid.Column="0" 
+                     PreviewTextInput="IntPreviewTextInput" 
+                     TextBox.MaxLength="5" Width="50" MaxWidth="50" Height="20" 
+                     RenderTransformOrigin="0.5,0.5" TextAlignment="Center" 
+                     BorderThickness="0.2" 
+                     HorizontalAlignment="Left" VerticalAlignment="Center" 
+                     BorderBrush="Black" SelectionBrush="#FF008EFF" Margin="115,0,0,0"/>
 
-                <ComboBox Template="{DynamicResource ComboBoxTemplate1}" Name="CbSupplier" 
-                          Style="{StaticResource BaseComboBox}"
-                          HorizontalAlignment="Center" 
-                          VerticalAlignment="Center" 
-                          RenderTransformOrigin="0.5,0.5" 
-                          Width="160" Height="25"
-                          SelectionChanged="CbSupplier_OnSelectionChanged">
+            <ComboBox Grid.Row="0" Grid.Column="1" 
+                      Template="{DynamicResource ComboBoxTemplate1}" Name="CbSupplier" 
+                      Style="{StaticResource BaseComboBox}"
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Center" 
+                      RenderTransformOrigin="0.5,0.5" 
+                      Width="160" Height="25"
+                      SelectionChanged="CbSupplier_OnSelectionChanged">
 
-                    <!--<ComboBox.ItemContainerStyle>
-                        <Style TargetType="ComboBoxItem">
-                            <Setter Property="Background" Value="Yellow"/>
-                            <Setter Property="BorderBrush" Value="Yellow"/>
-                        </Style>
-                    </ComboBox.ItemContainerStyle>-->
+                <!--<ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Background" Value="Yellow"/>
+                        <Setter Property="BorderBrush" Value="Yellow"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>-->
 
-                    <ComboBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="10" Y="6"/>
-                        </TransformGroup>
-                    </ComboBox.RenderTransform>
-                </ComboBox>
+            </ComboBox>
 
-            </TextBlock>
 
-            <DatePicker Grid.Row="0" Grid.Column="1" Width="120" Height="25" x:Name="dtFind" SelectedDateChanged="DtFind_OnSelectedDateChanged" />
-            <DatePicker Grid.Row="0" Grid.Column="2" Width="120" Height="25" x:Name="dtFind2" SelectedDateChanged="DtFind2_OnSelectedDateChanged" />
+            <DatePicker Grid.Row="0" Grid.Column="2" Width="120" Height="25" 
+                        x:Name="dtFind" SelectedDateChanged="DtFind_OnSelectedDateChanged" />
+            <DatePicker Grid.Row="0" Grid.Column="3" Width="120" Height="25" 
+                        x:Name="dtFind2" SelectedDateChanged="DtFind2_OnSelectedDateChanged" />
 
-            <DataGrid Grid.ColumnSpan="3" Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
+            <DataGrid Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
                 <DataGrid.Columns >
                     <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=ShowId}"/>
                     <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
@@ -293,7 +286,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <StackPanel Grid.ColumnSpan="3" Grid.Row="2" Orientation="Horizontal">
+            <StackPanel Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Margin="20,0,20,0" FontWeight="Bold">Всього:</TextBlock>
                 <TextBlock Margin="0,0,5,0">Чистої ваги:</TextBlock>
                 <TextBlock x:Name="ClearWeightTb" Margin="0,0,10,0">ХХ</TextBlock>

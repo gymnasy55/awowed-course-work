@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace JewelryStore.Desktop.Models
 {
-    public partial class Productssale
+    public partial class ProductsSale
     {
         public int Id { get; set; }
         public int IdProd { get; set; }

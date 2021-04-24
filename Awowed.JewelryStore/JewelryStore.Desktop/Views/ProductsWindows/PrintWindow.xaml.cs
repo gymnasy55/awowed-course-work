@@ -36,7 +36,6 @@ namespace JewelryStore.Desktop.Views
         private readonly AppDbContext _context = new AppDbContext();
 
         private JewerlyItemViewModel _vm;
-        private IQueryable<Prodgroup> _prodgroups;
         private IQueryable<Supplier> _suppliers;
 
 
@@ -73,7 +72,6 @@ namespace JewelryStore.Desktop.Views
             _context.Suppliers.Load();
             _context.Insertions.Load();
 
-            _prodgroups = _context.Prodgroups;
             _suppliers = _context.Suppliers;
 
             CbSupplier.Items.Add("Усі");

@@ -76,7 +76,7 @@ namespace JewelryStore.Desktop.Views
             ResultTbDate.Text = TbDate.Text;
         }
 
-        //TODO: Save like an image and change article design
+        //TODO: Save it or transpose for BarTender
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
