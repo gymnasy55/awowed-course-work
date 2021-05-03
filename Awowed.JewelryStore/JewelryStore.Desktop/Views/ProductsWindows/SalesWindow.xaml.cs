@@ -1,30 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using NewsStyleUriParser = System.NewsStyleUriParser;
 
 namespace JewelryStore.Desktop.Views
 {
     public class ExtendedProductsSaleViewModel : ProductsSaleItemViewModel
     {
         public int ShowId { get; set; }
+        public string ProdItem { get; set; }
+        public string BarCode { get; set; }
+        public string SaleDateString { get; set; }
+        public string ProdGroupString { get; set; }
+        public float ClearWeight { get; set; }
+        public float Weight { get; set; }
+        public float PriceForTheWork { get; set; }
+        public float Price { get; set; }
+        public string SupplierName { get; set; }
+
         public ExtendedProductsSaleViewModel(ProductsSale productsale, int id) : base(productsale)
         {
+            using (var context = new AppDbContext())
+            {
+                var product = context.Products.First(x => x.Id == productsale.IdProd);
+                ProdGroupString = context.Prodgroups.First(x => x.Id == product.IdProdGr).ProdGroupName;
+                ProdItem = product.ProdItem;
+                BarCode = product.BarCode;
+                ClearWeight = product.ClearWeight;
+                Weight = product.Weight;
+                PriceForTheWork = product.PriceForTheWork;
+                Price = product.Price;
+                SupplierName = context.Suppliers.First(x => x.Id == product.IdSupp).Suplname;
+            }
+            
+            
             ShowId = id;
+            SaleDateString = productsale.SaleDate.ToString();
         }
     };
 
@@ -50,7 +65,7 @@ namespace JewelryStore.Desktop.Views
             float overallPrice = 0, overallWorkPrice = 0, overallWeight = 0, overallClearWeight = 0;
             foreach (var item in temp)
             {
-                var tempItem = item as JewerlyItemViewModel;
+                var tempItem = item as ExtendedProductsSaleViewModel;
                 overallClearWeight += tempItem.ClearWeight;
                 overallWeight += tempItem.Weight;
                 overallPrice += tempItem.Price;
@@ -65,15 +80,15 @@ namespace JewelryStore.Desktop.Views
 
         private void ShowItems(Func<ProductsSale, bool> predicate = null)
         {
-            //using (var context = new AppDbContext())
-            //{
-            //    var tempList = predicate == null
-            //        ? context.Productssales.ToList().Select((x, i) => new ExtendedProductsSaleViewModel(x, i + 1))
-            //        : context.Productssales.Where(predicate).ToList().Select((x, i) => new ExtendedProductsSaleViewModel(x, i + 1));
+            using (var context = new AppDbContext())
+            {
+                var tempList = predicate == null
+                    ? context.Productssales.ToList().Select((x, i) => new ExtendedProductsSaleViewModel(x, i + 1))
+                    : context.Productssales.ToList().Where(predicate).Select((x, i) => new ExtendedProductsSaleViewModel(x, i + 1));
 
-            //    DataGrid.ItemsSource = tempList;
-            //}
-            //CountOverall();
+                DataGrid.ItemsSource = tempList;
+            }
+            CountOverall();
         }
 
         private void SalesWindow_OnLoaded(object sender, RoutedEventArgs e)
@@ -102,15 +117,15 @@ namespace JewelryStore.Desktop.Views
         {
             using (var context = new AppDbContext())
             {
-                //var supplier = context.Suppliers.FirstOrDefault(x => x.Suplname == CbSupplier.SelectedItem.ToString());
-                //if (supplier == null)
-                //{
-                //    ShowItems();
-                //}
-                //else
-                //{
-                //    ShowItems(x => x.IdSupp == context.Suppliers.First(c => c.Suplname == supplier.Suplname).Id);
-                //}
+                var supplier = context.Suppliers.FirstOrDefault(x => x.Suplname == CbSupplier.SelectedItem.ToString());
+                if (supplier == null)
+                {
+                    ShowItems();
+                }
+                else
+                {
+                    ShowItems(x => context.Suppliers.First(c => c.Id == context.Products.First(y => y.Id == x.IdProd).IdSupp).Id == context.Suppliers.First(c => c.Suplname == supplier.Suplname).Id);
+                }
             }
         }
 

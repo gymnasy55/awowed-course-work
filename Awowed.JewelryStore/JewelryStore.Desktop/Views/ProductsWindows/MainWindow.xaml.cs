@@ -2,9 +2,6 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media;
-using Castle.Core.Internal;
 using JewelryStore.Desktop.Controls;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
