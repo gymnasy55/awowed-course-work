@@ -271,9 +271,16 @@
             <DatePicker Grid.Row="0" Grid.Column="3" Width="120" Height="25" 
                         x:Name="dtFind2" SelectedDateChanged="DtFind2_OnSelectedDateChanged" />
 
-            <DataGrid Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" x:Name="DataGrid" AutoGenerateColumns="False" MinWidth="700" MaxWidth="750" ColumnWidth="*">
+            <DataGrid Grid.ColumnSpan="4" 
+                      Grid.Column="0" 
+                      Grid.Row="1" 
+                      x:Name="DataGrid" 
+                      AutoGenerateColumns="False" 
+                      MinWidth="700" MaxWidth="750" 
+                      ColumnWidth="*"
+                      IsReadOnly="True">
                 <DataGrid.Columns >
-                    <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=ShowId}"/>
+                    <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=ShowId}" />
                     <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
                     <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Штрих-код" Binding="{Binding Path=BarCode}"/>
                     <DataGridTextColumn x:Name="DateColumn" MinWidth="100" MaxWidth="300" Header="Дата прод." Binding="{Binding Path=SaleDateString}"/>
