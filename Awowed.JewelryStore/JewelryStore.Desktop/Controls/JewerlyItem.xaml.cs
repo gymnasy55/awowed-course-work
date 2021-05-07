@@ -77,7 +77,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Дата прибуття: {_vm.ArrivalDate?.ToString()}",
+                        Text = $"Дата прибуття: {_vm.ArrivalDate?.ToShortDateString()}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,

@@ -14,7 +14,6 @@ namespace JewelryStore.Desktop.Views
         public int ShowId { get; set; }
         public string ProdItem { get; set; }
         public string BarCode { get; set; }
-        public string SaleDateString { get; set; }
         public string ProdGroupString { get; set; }
         public float ClearWeight { get; set; }
         public float Weight { get; set; }
@@ -39,7 +38,6 @@ namespace JewelryStore.Desktop.Views
             
             
             ShowId = id;
-            SaleDateString = productsale.SaleDate.ToString();
         }
     };
 

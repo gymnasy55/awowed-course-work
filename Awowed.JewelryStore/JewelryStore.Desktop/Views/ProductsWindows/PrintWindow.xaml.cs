@@ -22,9 +22,16 @@ namespace JewelryStore.Desktop.Views
     public class ExtendedViewModel : JewerlyItemViewModel
     {
         public int ShowId { get; set; }
+
+        public string ProdGroupString { get; set; }
         public ExtendedViewModel(Product product, int id) : base(product)
         {
-            ShowId = id;
+            using (var context = new AppDbContext())
+            {
+
+                ShowId = id;
+                ProdGroupString = context.Prodgroups.First(x => x.Id == product.IdProdGr).ProdGroupName;
+            }
         }
     };
 
