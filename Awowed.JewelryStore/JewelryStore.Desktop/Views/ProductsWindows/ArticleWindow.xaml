@@ -73,8 +73,8 @@
                             </TransformGroup>
                         </Path.RenderTransform>
                     </Path>
-                    <Border CornerRadius="5" Canvas.Left="16" Canvas.Top="165" Background="White" Padding="1" Height="28">
-                        <Image x:Name="BarcodeImage" Height="100" Width="300" MaxWidth="57" MaxHeight="26"  />
+                    <Border CornerRadius="5" Canvas.Left="15" Canvas.Top="165" Background="White" Padding="1" Height="42" Width="61">
+                        <Image x:Name="BarcodeImage" MaxWidth="76" MaxHeight="40" Height="40" Width="76" Margin="-8,0,-9,0"  />
                     </Border>
                 </Canvas>
             </Viewbox>
@@ -85,18 +85,17 @@
             <TextBlock x:Name="ResultTbArticle"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="ResultTbSize"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="ResultTbWeight"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbPrice"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="ResultTbPriceWork"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="ResultTbArticle2"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,444,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="ResultTbWeight2"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,485,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbPrice2"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,526,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbBarcode"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,698,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="ResultTbPrice"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,526,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="ResultTbDate"  Width="200" Height="30" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
         </Grid>
 
         <Grid Grid.Column="1">
-
             <Grid.RowDefinitions>
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -120,7 +119,7 @@
 
             <StackPanel Grid.Row="1" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource BaseTextBlock}">Размер</TextBlock>
+                    <TextBlock Style="{StaticResource BaseTextBlock}">Розмір</TextBlock>
                     <TextBox x:Name="TbSize"
                              Width="Auto"
                              Style="{StaticResource BaseTextBox}" />
@@ -129,7 +128,7 @@
 
             <StackPanel Grid.Row="2" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource BaseTextBlock}">Вес</TextBlock>
+                    <TextBlock Style="{StaticResource BaseTextBlock}">Вага</TextBlock>
                     <TextBox x:Name="TbWeight"
                              Width="Auto"
                              Style="{StaticResource BaseTextBox}" />
@@ -139,7 +138,7 @@
 
             <StackPanel Grid.Row="3" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource BaseTextBlock}">Группа Изделия</TextBlock>
+                    <TextBlock Style="{StaticResource BaseTextBlock}">Група Виробу</TextBlock>
                     <TextBox x:Name="TbGroup"
                              Width="Auto"
                              Style="{StaticResource BaseTextBox}" />
@@ -148,7 +147,7 @@
 
             <StackPanel Grid.Row="4" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource BaseTextBlock}">Цена</TextBlock>
+                    <TextBlock Style="{StaticResource BaseTextBlock}">Ціна</TextBlock>
                     <TextBox x:Name="TbPrice"
                              Width="Auto"
                              Style="{StaticResource BaseTextBox}" />
@@ -158,14 +157,24 @@
 
             <StackPanel Grid.Row="5" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource BaseTextBlock}">Штрихкод</TextBlock>
+                    <TextBlock Style="{StaticResource BaseTextBlock}">Ціна за роботу</TextBlock>
+                    <TextBox x:Name="TbPriceWork"
+                             Width="Auto"
+                             Style="{StaticResource BaseTextBox}" />
+                    <TextBlock Style="{StaticResource BaseTextBlock}">UAH</TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="6" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BaseTextBlock}">Штрих-код</TextBlock>
                     <TextBox x:Name="TbBarcode"
                              Width="Auto"
                              Style="{StaticResource BaseTextBox}" />
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Grid.Row="6" Orientation="Vertical">
+            <StackPanel Grid.Row="7" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource BaseTextBlock}">Дата</TextBlock>
                     <TextBox x:Name="TbDate"
@@ -174,16 +183,16 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Grid.Row="7" Orientation="Vertical">
+            <StackPanel Grid.Row="8" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource BaseTextBlock}">Металл</TextBlock>
+                    <TextBlock Style="{StaticResource BaseTextBlock}">Метал</TextBlock>
                     <TextBox x:Name="TbMetal"
                              Width="Auto"
                              Style="{StaticResource BaseTextBox}" />
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Grid.Row="8" Orientation="Vertical">
+            <StackPanel Grid.Row="9" Orientation="Vertical">
                 <StackPanel  Orientation="Horizontal">
                     <TextBlock Style="{StaticResource BaseTextBlock}">Проба</TextBlock>
                     <TextBox x:Name="TbSample"
@@ -193,13 +202,27 @@
                 </StackPanel>
             </StackPanel>
 
-            <Button Margin="15" 
-                    Grid.Row="9"
-                    Click="ButtonBase_OnClick"
-                    Content="Друк"
-                    Style="{StaticResource BaseButton}">
+            <Grid Grid.Row = "10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269.4"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            </Button>
+                <Button Grid.Column = "0" Margin="10" 
+                        Name="FirstPartButton"
+                        Content="Друк 1-ї частини"
+                        Style="{StaticResource BaseButton}">
+                </Button>
+
+                <Button Grid.Column = "1"  Margin="10"
+                        Name="SecondPartButton"
+                        Content="Друк 2-ї частини"
+                        Style="{StaticResource BaseButton}">
+
+                </Button>
+
+            </Grid>
+                
 
         </Grid>
 

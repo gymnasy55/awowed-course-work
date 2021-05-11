@@ -11,6 +11,7 @@ using BarcodeLib;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
 using Microsoft.Win32;
+using ZXing;
 using Color = System.Drawing.Color;
 using Size = System.Windows.Size;
 
@@ -39,24 +40,23 @@ namespace JewelryStore.Desktop.Views
             bitmapImage.StreamSource = memory;
             bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
             bitmapImage.EndInit();
-
             return bitmapImage;
         }
 
         private void ArticleWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             var text = _vm.BarCode;
-            var barcode = new Barcode();
-            var barcodeImage = barcode.Encode(TYPE.EAN8, text, Color.Black, 
-                Color.White, (int)BarcodeImage.Width, (int)BarcodeImage.Height);
-            BarcodeImage.Source = BitmapToImageSource(new Bitmap(barcodeImage));
-
+            var writer = new BarcodeWriter() { Format = BarcodeFormat.CODE_128 };
+            var img = writer.Write(text);
+            BarcodeImage.Source = BitmapToImageSource(img);
+           
             TbArticle.Text = _vm.ProdItem;
             TbBarcode.Text = _vm.BarCode;
             TbWeight.Text = $"{_vm.Weight}";
             TbDate.Text = _vm.ArrivalDateString;
             TbSize.Text = $"{_vm.ProdSize}";
             TbPrice.Text = $"{_vm.Price}";
+            TbPriceWork.Text = $"{_vm.PriceForTheWork}";
             using (var context = new AppDbContext())
             {
                 TbMetal.Text = $"{context.Metals.First(x => x.Id == _vm.IdMet).MetalName}";
@@ -68,11 +68,10 @@ namespace JewelryStore.Desktop.Views
             ResultTbGroup.Text = TbGroup.Text;
             ResultTbMetalSample.Text = $"{TbMetal.Text} {TbSample.Text}°";
             ResultTbPrice.Text = $"Ціна: {TbPrice.Text} UAH";
-            ResultTbPrice2.Text = $"Ціна: {TbPrice.Text} UAH";
+            ResultTbPriceWork.Text = $"Ціна за роботу: {TbPriceWork.Text} UAH";
             ResultTbSize.Text = $"Розмір: {TbSize.Text}";
             ResultTbWeight.Text = $"Вага: {TbWeight.Text}";
             ResultTbWeight2.Text = $"Вага: {TbWeight.Text}";
-            ResultTbBarcode.Text = TbBarcode.Text;
             ResultTbDate.Text = TbDate.Text;
         }
 
