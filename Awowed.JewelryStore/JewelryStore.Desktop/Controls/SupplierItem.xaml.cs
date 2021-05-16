@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
-using JewelryStore.Desktop.Views.SuppliersWindows;
+using JewelryStore.Desktop.Views;
 
 namespace JewelryStore.Desktop.Controls
 {

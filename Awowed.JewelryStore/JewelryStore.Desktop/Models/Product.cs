@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 #nullable disable
 
@@ -30,12 +29,12 @@ namespace JewelryStore.Desktop.Models
         public string Faceting { get; set; }
         public float PriceForTheWork { get; set; }
         public float Price { get; set; }
+        public bool IsSold { get; set; }
 
         public virtual Insertion IdInsNavigation { get; set; }
         public virtual Metal IdMetNavigation { get; set; }
         public virtual Prodgroup IdProdGrNavigation { get; set; }
         public virtual Supplier IdSuppNavigation { get; set; }
-        public virtual ICollection<ProductsSale> Productssales { get; private set; }
-            = new ObservableCollection<ProductsSale>();
+        public virtual ICollection<ProductsSale> Productssales { get; set; }
     }
 }

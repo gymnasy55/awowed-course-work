@@ -2,10 +2,6 @@
 using System.Globalization;
 using System.Windows;
 using JewelryStore.Desktop.Models;
-using JewelryStore.Desktop.Views.InsertionsWindows;
-using JewelryStore.Desktop.Views.MetalsWindows;
-using JewelryStore.Desktop.Views.ProdGroupsWindows;
-using JewelryStore.Desktop.Views.SuppliersWindows;
 
 namespace JewelryStore.Desktop.Views
 {

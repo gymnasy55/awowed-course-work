@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 
 #nullable disable
 
@@ -18,7 +16,6 @@ namespace JewelryStore.Desktop.Models
         public string InsertColor { get; set; }
         public string GemCategory { get; set; }
 
-        public virtual ICollection<Product> Products { get; private set; }
-            = new ObservableCollection<Product>();
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

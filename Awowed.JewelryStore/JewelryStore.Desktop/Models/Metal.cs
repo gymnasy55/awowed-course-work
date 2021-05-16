@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+
+#nullable disable
 
 namespace JewelryStore.Desktop.Models
 {
@@ -15,7 +15,6 @@ namespace JewelryStore.Desktop.Models
         public string MetalName { get; set; }
         public int? Sample { get; set; }
 
-        public virtual ICollection<Product> Products { get; private set; } 
-            = new ObservableCollection<Product>();
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

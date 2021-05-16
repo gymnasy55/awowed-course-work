@@ -133,6 +133,8 @@ namespace JewelryStore.Desktop.Models
 
                 entity.Property(e => e.Price).HasColumnName("price");
 
+                entity.Property(e => e.IsSold).HasColumnName("is_sold");
+                
                 entity.Property(e => e.PriceForTheWork).HasColumnName("price_for_the_work");
 
                 entity.Property(e => e.ProdItem)
