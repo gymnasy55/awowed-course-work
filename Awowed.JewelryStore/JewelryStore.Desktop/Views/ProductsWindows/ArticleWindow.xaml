@@ -41,11 +41,68 @@
 
     </Window.Resources>
 
+
+
     <Grid Margin="1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
+
+        <!--<Grid Grid.Row="0" Grid.Column="0" x:Name="PrintGrid1">
+            <Viewbox Grid.Row="0" Margin="10,10,10,11">
+                <Canvas Width="100" Height="217">
+
+                    <Path Data="M497,51H15C6.716,51,0,57.716,0,66v380c0,8.284,6.716,15,15,15h482c8.284,0,15-6.716,15-15V66
+		        C512,57.716,505.284,51,497,51z" Fill="#000000" Stroke="#000000" StrokeThickness="5" Height="110" Stretch="Fill" RenderTransformOrigin="0.498,0.519" Width="90" Canvas.Left="1" >
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Canvas>
+            </Viewbox>
+
+            <Label Grid.Row="0" FontSize="22" FontWeight="Bold" Content="     Goldsmith" Width="200" Height="Auto" Padding="10" Background="White" HorizontalAlignment="Left" Margin="63,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.498,-0.948"/>
+            <TextBlock Grid.Row="0" x:Name="ResultTbGroup"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="0" x:Name="ResultTbMetalSample"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="0" x:Name="ResultTbArticle"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="0" x:Name="ResultTbSize"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="0" x:Name="ResultTbWeight"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="0" x:Name="ResultTbPriceWork"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        </Grid>
+
+        <Grid Grid.Row="1"  Grid.Column="0" x:Name="PrintGrid2">
+            <Viewbox Grid.Row="0" Margin="0,10,20,10">
+                <Canvas Width="100" Height="217">
+                    <Path Data="M497,51H15C6.716,51,0,57.716,0,66v380c0,8.284,6.716,15,15,15h482c8.284,0,15-6.716,15-15V66
+			C512,57.716,505.284,51,497,51z" Fill="#000000" Stroke="#000000" StrokeThickness="5" Canvas.Left="4" Height="110" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Canvas.Top="111" Width="90" >
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+
+                    <Border CornerRadius="5" Canvas.Top="177" Background="White" Padding="1" Height="40" Width="80" Canvas.Left="10">
+                        <Image x:Name="BarcodeImage" MaxWidth="100" MaxHeight="70" Height="38" Width="80" Margin="-1,-1,-1,-1"  />
+                    </Border>
+                </Canvas>
+            </Viewbox>
+
+            <TextBlock Grid.Row="0" x:Name="ResultTbArticle2" Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="62,429,0,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+            <TextBlock Grid.Row="0" x:Name="ResultTbWeight2"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="62,470,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="0" x:Name="ResultTbPrice"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="62,511,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="0" x:Name="ResultTbDate"  Width="200" Height="36" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="62,552,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+        </Grid>-->
 
         <Grid x:Name="PrintGrid">
             <Viewbox Grid.Column="0" Margin="10,10,10,11">
@@ -79,17 +136,17 @@
                 </Canvas>
             </Viewbox>
 
-            <Label FontSize="22" FontWeight="Bold" Content="     Goldsmith" Width="200" Height="Auto" Padding="10" Background="White" HorizontalAlignment="Left" Margin="63,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.498,-0.948"/>
-            <TextBlock x:Name="ResultTbGroup"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbMetalSample"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbArticle"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbSize"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbWeight"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbPriceWork"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Label FontSize="22" FontWeight="Bold" Content="     Goldsmith" Width="200" Height="Auto" Padding="10" Background="White" HorizontalAlignment="Left" Margin="63,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.498,-0.948"/>
+            <TextBlock x:Name="ResultTbGroup"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="ResultTbMetalSample"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="ResultTbArticle"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="ResultTbSize"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="ResultTbWeight"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="ResultTbPriceWork"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="ResultTbArticle2"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,444,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="ResultTbWeight2"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,485,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="ResultTbPrice"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,526,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbDate"  Width="200" Height="30" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="ResultTbDate"  Width="200" Height="30" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
         </Grid>
 
@@ -203,26 +260,27 @@
             </StackPanel>
 
             <Grid Grid.Row = "10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="269.4"/>
+
+                <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>-->
 
                 <Button Grid.Column = "0" Margin="10" 
                         Name="FirstPartButton"
-                        Content="Друк 1-ї частини"
+                        Content="Друк"
+                        Click="FirstPartButton_OnClick"
                         Style="{StaticResource BaseButton}">
                 </Button>
 
-                <Button Grid.Column = "1"  Margin="10"
+                <!--<Button Grid.Column = "1" Margin="10" 
                         Name="SecondPartButton"
-                        Content="Друк 2-ї частини"
+                        Content="Друк 2-ї"
+                        Click="SecondPartButton_OnClick"
                         Style="{StaticResource BaseButton}">
-
-                </Button>
-
+                </Button>-->
             </Grid>
-                
+
 
         </Grid>
 

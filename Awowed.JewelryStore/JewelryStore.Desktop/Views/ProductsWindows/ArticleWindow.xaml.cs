@@ -77,7 +77,7 @@ namespace JewelryStore.Desktop.Views
 
         //TODO: Save it or transpose for BarTender
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void FirstPartButton_OnClick(object sender, RoutedEventArgs e)
         {
             var printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
@@ -97,5 +97,14 @@ namespace JewelryStore.Desktop.Views
             //encoder.Frames.Add(BitmapFrame.Create(bitmap));
             //encoder.Save(stream);
         }
+
+        //private void SecondPartButton_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    var printDialog = new PrintDialog();
+        //    if (printDialog.ShowDialog() == true)
+        //    {
+        //        printDialog.PrintVisual(PrintGrid2, "Grid");
+        //    }
+        //}
     }
 }
