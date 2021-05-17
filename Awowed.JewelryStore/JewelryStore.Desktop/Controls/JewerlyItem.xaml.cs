@@ -53,7 +53,7 @@ namespace JewelryStore.Desktop.Controls
             _vm = vm;
             _isExpanded = false;
             using var context = new AppDbContext();
-            TextBlockContent = _vm.ProdItem + $" Постачальник: {context.Suppliers.FirstOrDefault(x => x.Id == _vm.IdSupp).Suplname}";
+            TextBlockContent = _vm.ProdItem + $" Постачальник: {context.Suppliers.FirstOrDefault(x => x.Id == _vm.IdSupp).Suplname} Продаж: {(_vm.IsSold ? "Продано" : "Не продано")}";
         }
 
         #endregion

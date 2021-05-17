@@ -117,6 +117,7 @@ namespace JewelryStore.Desktop.Views
                         Faceting = TbFaceting.Text.Trim(),
                         WeaveWay = CbWeaveWay.SelectionBoxItem.ToString().Trim(),
                         WeaveType = TbWeaveType.Text.Trim(),
+                        IsSold = false,
                         PriceForTheWork = Convert.ToSingle(TblWorkPrice.Text.Substring(0, TblWorkPrice.Text.IndexOf('U') - 1)),
                         Price = Convert.ToSingle(TblPrice.Text.Substring(0, TblPrice.Text.IndexOf('U') - 1))
                     };

@@ -49,6 +49,9 @@
     <Compile Update="Views\ProdGroupsWindows\ProdGroupsMainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ProductsWindows\ScanWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SuppliersWindows\AddSuppWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -121,6 +124,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ProdGroupsWindows\ProdGroupsMainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ProductsWindows\ScanWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SuppliersWindows\AddSuppWindow.xaml">

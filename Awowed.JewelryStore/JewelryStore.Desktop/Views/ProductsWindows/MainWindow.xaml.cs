@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using JewelryStore.Desktop.Controls;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
+using JewelryStore.Desktop.Views.ProductsWindows;
 using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.Views
@@ -87,6 +88,12 @@ namespace JewelryStore.Desktop.Views
         {
             var salesWindow = new SalesWindow();
             salesWindow.ShowDialog();
+        }
+
+        private void ScanButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var scanWindow = new ScanWindow();
+            scanWindow.ShowDialog();
         }
     }
 }

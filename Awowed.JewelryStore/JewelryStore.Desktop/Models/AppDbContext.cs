@@ -26,7 +26,7 @@ namespace JewelryStore.Desktop.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("server=127.0.0.1;uid=root;pwd=root;database=jewerly_store_app");
+                optionsBuilder.UseMySQL("server=127.0.0.1;uid=root;pwd=Serg19072003;database=jewerly_store_app");
                 optionsBuilder.UseLazyLoadingProxies();
                 base.OnConfiguring(optionsBuilder);
             }
@@ -133,8 +133,6 @@ namespace JewelryStore.Desktop.Models
 
                 entity.Property(e => e.Price).HasColumnName("price");
 
-                entity.Property(e => e.IsSold).HasColumnName("is_sold");
-                
                 entity.Property(e => e.PriceForTheWork).HasColumnName("price_for_the_work");
 
                 entity.Property(e => e.ProdItem)
@@ -161,6 +159,8 @@ namespace JewelryStore.Desktop.Models
                     .IsFixedLength(true);
 
                 entity.Property(e => e.Weight).HasColumnName("weight");
+
+                entity.Property(e => e.IsSold).HasColumnName("is_sold");
 
                 entity.HasOne(d => d.IdInsNavigation)
                     .WithMany(p => p.Products)

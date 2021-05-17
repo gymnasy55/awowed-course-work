@@ -118,6 +118,12 @@ namespace JewelryStore.Desktop.ViewModels
             set => _product.Price = value;
         }
 
+        public bool IsSold
+        {
+            get => _product.IsSold;
+            set => _product.IsSold = value;
+        }
+
         #endregion
 
         #region Constructor

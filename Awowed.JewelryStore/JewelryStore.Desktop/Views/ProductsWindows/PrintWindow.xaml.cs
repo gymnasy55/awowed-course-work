@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using NewsStyleUriParser = System.NewsStyleUriParser;
 
 namespace JewelryStore.Desktop.Views
 {
@@ -110,8 +109,8 @@ namespace JewelryStore.Desktop.Views
             using (var context = new AppDbContext())
             {
                 var tempList = predicate == null
-                    ? context.Products.ToList().Select((x,i) => new ExtendedViewModel(x,i + 1))
-                    : context.Products.Where(predicate).ToList().Select((x, i) => new ExtendedViewModel(x, i + 1));
+                    ? context.Products.Where(x => !x.IsSold).ToList().Select((x,i) => new ExtendedViewModel(x,i + 1))
+                    : context.Products.Where(x => !x.IsSold).AsEnumerable().Where(predicate).ToList().Select((x, i) => new ExtendedViewModel(x, i + 1));
                 
                 DataGrid.ItemsSource = tempList;
             }
