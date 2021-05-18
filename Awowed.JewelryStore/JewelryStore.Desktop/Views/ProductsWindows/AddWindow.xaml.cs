@@ -206,9 +206,10 @@ namespace JewelryStore.Desktop.Views
             if (textBox.Text.Length < _dictionary[textBox.Name])
             {
                 _dictionary[textBox.Name]--;
-                if (textBox.Text.Length > 0 && textBox.Text[^1] == ',')
+                if (textBox.Text.Length > 0 && textBox.Text[^1] == ',' && textBox.Name != "TbWeight")
                 {
                     textBox.Text = textBox.Text.Replace(",", "");
+                    _dictionary[textBox.Name]--;
                 }
 
                 textBox.CaretIndex = textBox.Text.Length;
@@ -222,8 +223,8 @@ namespace JewelryStore.Desktop.Views
                     TblWorkPrice.Text = "0 UAH";
                     return;
                 }
-                TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-                TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+                TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
+                TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
             }
         }
     }
