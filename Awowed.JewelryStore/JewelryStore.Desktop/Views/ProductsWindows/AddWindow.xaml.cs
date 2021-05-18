@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -160,6 +161,18 @@ namespace JewelryStore.Desktop.Views
                 e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == ',');
         }
 
-
+        private void TbProdItem_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'")) 
+                return;
+            
+            if (!(sender is TextBox textBox))
+                return;
+            
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+            
+            e.Handled = true;
+        }
     }
 }
