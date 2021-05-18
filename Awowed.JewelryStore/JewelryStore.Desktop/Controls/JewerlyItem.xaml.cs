@@ -140,6 +140,33 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
+                        Text = $"Огранка: {_vm.Faceting}",
+                        Margin = new Thickness(5),
+                        TextAlignment = TextAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        FontFamily = new FontFamily("Calibri"),
+                        FontSize = 16,
+                    });
+                    ItemStackPanel.Children.Add(new TextBlock
+                    {
+                        Text = $"Спосіб плетіння: {_vm.WeaveWay}",
+                        Margin = new Thickness(5),
+                        TextAlignment = TextAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        FontFamily = new FontFamily("Calibri"),
+                        FontSize = 16,
+                    });
+                    ItemStackPanel.Children.Add(new TextBlock
+                    {
+                        Text = $"Тип плетіння: {_vm.WeaveType}",
+                        Margin = new Thickness(5),
+                        TextAlignment = TextAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        FontFamily = new FontFamily("Calibri"),
+                        FontSize = 16,
+                    });
+                    ItemStackPanel.Children.Add(new TextBlock
+                    {
                         Text = $"Ціна за роботу: {_vm.PriceForTheWork}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,

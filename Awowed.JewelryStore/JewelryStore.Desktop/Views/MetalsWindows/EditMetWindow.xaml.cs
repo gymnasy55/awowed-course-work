@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
@@ -45,10 +47,15 @@ namespace JewelryStore.Desktop.Views
             {
                 case MessageBoxResult.Yes:
                     var metal = _context.Metals.FirstOrDefault(x => x.Id == _vm.Id);
-                    if(metal != null)
+                    if(metal != null && TbSample.Text != string.Empty && TbSample.Text.Length == 3)
                     {
                         metal.MetalName = TbMetal.Text.Trim();
                         metal.Sample = System.Convert.ToInt32(TbSample.Text);
+                        if (_context.Metals.Any(x => x.Sample == metal.Sample) && _context.Metals.Any(x => x.MetalName == metal.MetalName))
+                        {
+                            MessageBox.Show("Такий метал вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
                         _context.SaveChanges();
                         MessageBox.Show("Успішно змінено метал в бд!", "Успіх", MessageBoxButton.OK,
                             MessageBoxImage.Information);
@@ -67,6 +74,20 @@ namespace JewelryStore.Desktop.Views
         {
             TbMetal.Text = string.Empty;
             TbSample.Text = string.Empty;
+        }
+
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
+                return;
+
+            if (!(sender is TextBox textBox))
+                return;
+
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
     }
 }

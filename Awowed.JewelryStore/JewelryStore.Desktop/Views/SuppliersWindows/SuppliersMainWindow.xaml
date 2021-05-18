@@ -29,7 +29,7 @@
     </Window.Resources>
 
     <Border BorderThickness="0" x:Name="Main">
-        <Grid Height="{Binding ElementName=Main, Path=ActualHeight}"  VerticalAlignment="Top">
+        <Grid FocusManager.FocusedElement="{Binding ElementName=FindTb}" Height="{Binding ElementName=Main, Path=ActualHeight}"  VerticalAlignment="Top">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

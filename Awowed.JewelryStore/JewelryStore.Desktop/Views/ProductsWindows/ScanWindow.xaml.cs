@@ -27,7 +27,6 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
                 RtsEnable = true,
                 DtrEnable = true
             };
-
             _serialPort.Open();
         }
 

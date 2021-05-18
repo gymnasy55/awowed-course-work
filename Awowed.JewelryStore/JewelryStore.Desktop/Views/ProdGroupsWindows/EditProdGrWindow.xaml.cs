@@ -1,5 +1,8 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +45,11 @@ namespace JewelryStore.Desktop.Views
                     if(prodgroup != null)
                     {
                         prodgroup.ProdGroupName = TbProdGroupName.Text.Trim();
+                        if (_context.Prodgroups.Any(x => x.ProdGroupName == prodgroup.ProdGroupName))
+                        {
+                            MessageBox.Show("Така група виробу вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
                         _context.SaveChanges();
                         MessageBox.Show("Успішно змінено група виробу в бд!", "Успіх", MessageBoxButton.OK,
                             MessageBoxImage.Information);
@@ -60,6 +68,20 @@ namespace JewelryStore.Desktop.Views
         private void ClearBtn_Clicked(object sender, RoutedEventArgs e)
         {
             TbProdGroupName.Text = string.Empty;
+        }
+
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
+                return;
+
+            if (!(sender is TextBox textBox))
+                return;
+
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
     }
 }

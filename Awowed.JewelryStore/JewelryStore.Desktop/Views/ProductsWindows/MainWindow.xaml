@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JewelryStore.Desktop"
         xmlns:ui="clr-namespace:JewelryStore.Desktop.Controls"
         mc:Ignorable="d"
-        Title="Вироби" Height="600" Width="800" MinWidth="640" MinHeight="600" FontFamily="Calibri" FontSize="14"
+        Title="Вироби" Height="700" Width="800" MinWidth="640" MinHeight="600" FontFamily="Calibri" FontSize="14"
         Loaded="MainWindow_OnLoaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Label" x:Key ="BaseLabel">
@@ -45,7 +45,7 @@
                     Background="#efefef"
                     Margin="2"
                     VerticalAlignment="Center">
-                <Grid>
+                <Grid FocusManager.FocusedElement="{Binding ElementName=FindTb}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition Width="*"/>

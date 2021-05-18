@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Printing;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,7 @@ namespace JewelryStore.Desktop.Views
     public partial class EditWindow : Window
     {
         private readonly AppDbContext _context = new AppDbContext();
+        private readonly Dictionary<string, int> _dictionary;
 
         private JewerlyItemViewModel _vm;
         private IQueryable<Metal> _metals;
@@ -82,6 +84,7 @@ namespace JewelryStore.Desktop.Views
             }
 
             TbProdItem.Text = _vm.ProdItem;
+            TblBarCode.Text = _vm.BarCode;
             DpArrDate.DisplayDate = _vm.ArrivalDate ?? DateTime.Now;
             DpArrDate.Text = DpArrDate.DisplayDate.ToString();
             CbMetal.SelectedItem = _metals.First(x => x.Id == _vm.IdMet).MetalName.ToString();
@@ -161,16 +164,73 @@ namespace JewelryStore.Desktop.Views
             TbWeaveType.Text = string.Empty;
         }
 
-        private void TbWeight_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-            TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-        }
-
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (e.Text.Last() == ',')
-                e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == ',');
+            if (!(sender is TextBox textBox))
+                return;
+
+            if ((textBox.Text.Contains(',') && e.Text[^1] == ',')
+                || (!Regex.IsMatch(e.Text[^1].ToString(), @"\d|,"))
+                || (textBox.Text.Length == 0 && e.Text[^1] == ','))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (Regex.IsMatch(textBox.Text, @"\d+") && e.Text[^1] == ',')
+            {
+                textBox.Text += ",0";
+                _dictionary[textBox.Name]++;
+                textBox.CaretIndex = textBox.Text.Length;
+                e.Handled = true;
+            }
+
+            _dictionary[textBox.Name]++;
+        }
+
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
+                return;
+
+            if (!(sender is TextBox textBox))
+                return;
+
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
+        }
+
+        //TODO: IntTextBox_OnTextChanged for EDIT WINDOW. It is too late for me, I'll learn MATH theory for tomorrow
+        private void IntTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            //if (!(sender is TextBox textBox))
+            //    return;
+
+            //if (textBox.Text.Length < _dictionary[textBox.Name])
+            //{
+            //    _dictionary[textBox.Name]--;
+            //    if (textBox.Text.Length > 0 && textBox.Text[^1] == ',' && textBox.Name != "TbWeight")
+            //    {
+            //        textBox.Text = textBox.Text.Replace(",", "");
+            //        _dictionary[textBox.Name]--;
+            //    }
+
+            //    textBox.CaretIndex = textBox.Text.Length;
+            //}
+
+            //if (textBox.Name == "TbWeight")
+            //{
+            //    if (textBox.Text.Length == 0)
+            //    {
+            //        TblPrice.Text = "0 UAH";
+            //        TblWorkPrice.Text = "0 UAH";
+            //        return;
+            //    }
+            //    TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
+            //    TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
+            //}
         }
     }
 }

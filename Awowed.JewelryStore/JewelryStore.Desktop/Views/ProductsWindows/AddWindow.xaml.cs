@@ -108,7 +108,7 @@ namespace JewelryStore.Desktop.Views
                     {
                         Id = _context.Products.OrderBy(x => x.Id).Last().Id + 1,
                         ProdItem = TbProdItem.Text.Trim(),
-                        BarCode = TbProdItem.Text.Trim(),
+                        BarCode = TblBarCode.Text.Trim(),
                         ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks),
                         IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Trim()).Id,
                         IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString().Trim()).Id,
@@ -121,7 +121,7 @@ namespace JewelryStore.Desktop.Views
                             ? _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id
                             : _insertions.First(x => x.InsertName == CbInsert.SelectedItem.ToString()).Id,
                         Faceting = TbFaceting.Text.Trim(),
-                        WeaveWay = CbWeaveWay.SelectionBoxItem.ToString().Trim(),
+                        WeaveWay = CbWeaveWay.SelectionBoxItem.ToString()?.Trim(),
                         WeaveType = TbWeaveType.Text.Trim(),
                         IsSold = false,
                         PriceForTheWork = Convert.ToSingle(TblWorkPrice.Text.Substring(0, TblWorkPrice.Text.IndexOf('U') - 1)),
@@ -153,13 +153,6 @@ namespace JewelryStore.Desktop.Views
             TbWeaveType.Text = string.Empty;
         }
 
-        // private void TbWeight_OnTextChanged(object sender, TextChangedEventArgs e)
-        // {
-        //     TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-        //     TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-        // }
-
-        // TODO: Сделать ввод только цифр с одной точкой - и что бы это работало в TBWeight_OnTextChanged
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if(!(sender is TextBox textBox))

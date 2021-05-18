@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Додавання Вставки" Width="600" Height="200" MinWidth="600" MinHeight="200" MaxWidth="1000" MaxHeight="600" FontFamily="Calibri" FontSize="18"
-        WindowStartupLocation="CenterScreen">
+        Loaded ="AddInsWindow_OnLoaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
         <Style TargetType="Label" x:Key="BaseLabel">
@@ -16,7 +16,7 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="25" />
             <Setter Property="Padding" Value="5,2" />
-            <Setter Property="Margin" Value="1" />
+            <Setter Property="Margin" Value="5" />
         </Style>
 
         <Style TargetType="TextBox" x:Key="BaseTextBox">
@@ -38,6 +38,9 @@
 
         <Style TargetType="ComboBox" x:Key="BaseComboBox">
             <Setter Property="Margin" Value="3" />
+            <Setter Property="Padding" Value = "5,2"/>
+            <Setter Property="FontSize" Value = "25"/>
+            <Setter Property="Margin" Value = "2 1"/>
         </Style>
 
     </Window.Resources>
@@ -60,9 +63,9 @@
             <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource BaseLabel}" Content="Колір" />
             <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource BaseLabel}" Content="Категорія каменя" />
 
-            <TextBox TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbInsert" Style="{StaticResource BaseTextBox}" />
-            <TextBox TextBox.MaxLength="20" Grid.Row="1" Grid.Column="1" Name="TbInsertColor" Style="{StaticResource BaseTextBox}" />
-            <TextBox TextBox.MaxLength="20" Grid.Row="2" Grid.Column="1" Name="TbGemCategory" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbInsert" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="1" Grid.Column="1" Name="TbInsertColor" Style="{StaticResource BaseTextBox}" />
+            <ComboBox Grid.Row="2" Grid.Column="1" Name="CbGemCategory" Style="{StaticResource BaseComboBox}" />
 
             <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>

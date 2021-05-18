@@ -1,5 +1,8 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using JewelryStore.Desktop.Models;
 
 namespace JewelryStore.Desktop.Views
@@ -46,6 +49,20 @@ namespace JewelryStore.Desktop.Views
         private void ClearBtn_Clicked(object sender, RoutedEventArgs e)
         {
             TbProdGroupName.Text = string.Empty;
+        }
+
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
+                return;
+
+            if (!(sender is TextBox textBox))
+                return;
+
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
     }
 }

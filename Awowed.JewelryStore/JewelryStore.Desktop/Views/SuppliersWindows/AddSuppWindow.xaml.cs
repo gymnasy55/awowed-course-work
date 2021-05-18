@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -57,6 +58,19 @@ namespace JewelryStore.Desktop.Views
                 case MessageBoxResult.No:
                     break;
             }
+        }
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
+                return;
+
+            if (!(sender is TextBox textBox))
+                return;
+
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
     }
 }

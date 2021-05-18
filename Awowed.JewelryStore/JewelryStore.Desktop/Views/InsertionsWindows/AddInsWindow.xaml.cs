@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using JewelryStore.Desktop.Models;
 
 namespace JewelryStore.Desktop.Views
@@ -13,9 +17,20 @@ namespace JewelryStore.Desktop.Views
         private readonly AppDbContext _context = new AppDbContext();
 
         private IQueryable<Insertion> _insertions;
+
         public AddInsWindow()
         {
             InitializeComponent();
+        }
+
+        private void AddInsWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var GemCategory = new List<string> { "", "Напівкоштовний", "Коштовний" };
+
+            foreach (var gemCat in GemCategory)
+            {
+                CbGemCategory.Items.Add(gemCat);
+            }
         }
 
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
@@ -29,7 +44,8 @@ namespace JewelryStore.Desktop.Views
                         Id = (byte)(_context.Insertions.OrderBy(x => x.Id).Last().Id + 1),
                         InsertName = TbInsert.Text.Trim(),
                         InsertColor = TbInsertColor.Text.Trim(),
-                        GemCategory = TbGemCategory.Text.Trim()
+                        GemCategory = CbGemCategory.SelectionBoxItem.ToString()?.Trim()
+
                     };
                     if ((_context.Insertions.Any(x => x.InsertName == insertion.InsertName)) && (_context.Insertions.Any(x => x.InsertColor == insertion.InsertColor)))
                     {
@@ -49,7 +65,21 @@ namespace JewelryStore.Desktop.Views
         {
             TbInsert.Text = string.Empty;
             TbInsertColor.Text = string.Empty;
-            TbGemCategory.Text = string.Empty;
+            CbGemCategory.Text = string.Empty;
+        }
+
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
+                return;
+
+            if (!(sender is TextBox textBox))
+                return;
+
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
     }
 }

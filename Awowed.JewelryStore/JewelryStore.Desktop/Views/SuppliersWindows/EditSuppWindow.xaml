@@ -56,7 +56,7 @@
 
             <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource BaseLabel}" Content="Постачальник" />
 
-            <TextBox TextBox.MaxLength="40" Grid.Row="0" Grid.Column="1" Name="TbSupp" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="40" Grid.Row="0" Grid.Column="1" Name="TbSupp" Style="{StaticResource BaseTextBox}" />
 
             <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>

@@ -56,7 +56,7 @@
 
             <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource BaseLabel}" Content="Група виробу" />
 
-            <TextBox TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbProdGroupName" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbProdGroupName" Style="{StaticResource BaseTextBox}" />
 
             <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>

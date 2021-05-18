@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +20,7 @@ namespace JewelryStore.Desktop.Views
 
         private InsertionItemViewModel _vm;
         private IQueryable<Insertion> _insertions;
+        private List<string> _gemCategory = new List<string> { "", "Напівкоштовний", "Коштовний" };
         public EditInsWindow(InsertionItemViewModel vm)
         {
             _vm = vm;
@@ -28,10 +33,17 @@ namespace JewelryStore.Desktop.Views
             _context.Insertions.Load();
 
             _insertions = _context.Insertions;
+            var GemCategory = new List<string> { "", "Напівкоштовний", "Коштовний" };
 
             TbInsert.Text = _vm.InsertName;
             TbInsertColor.Text = _vm.InsertColor;
-            TbGemCategory.Text = _vm.GemCategory;
+
+            foreach (var gemCat in GemCategory)
+            {
+                CbGemCategory.Items.Add(gemCat);
+            }
+
+            CbGemCategory.SelectedIndex = _gemCategory.IndexOf(_vm.GemCategory);
         }
         private void EditBtn_Clicked(object sender, RoutedEventArgs e)
         {
@@ -44,7 +56,12 @@ namespace JewelryStore.Desktop.Views
                     { 
                         insertion.InsertName = TbInsert.Text.Trim();
                         insertion.InsertColor = TbInsertColor.Text.Trim();
-                        insertion.GemCategory = TbGemCategory.Text.Trim();
+                        insertion.GemCategory = CbGemCategory.SelectionBoxItem.ToString()?.Trim();
+                        if ((_context.Insertions.Any(x => x.InsertName == insertion.InsertName)) && (_context.Insertions.Any(x => x.InsertColor == insertion.InsertColor)))
+                        {
+                            MessageBox.Show("Така вставка вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
                         _context.SaveChanges();
                         MessageBox.Show("Успішно змінена вставка в бд!", "Успіх", MessageBoxButton.OK,
                             MessageBoxImage.Information);
@@ -64,7 +81,21 @@ namespace JewelryStore.Desktop.Views
         {
             TbInsert.Text = string.Empty;
             TbInsertColor.Text = string.Empty;
-            TbGemCategory.Text = string.Empty;
+            CbGemCategory.Text = string.Empty;
+        }
+
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
+                return;
+
+            if (!(sender is TextBox textBox))
+                return;
+
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
     }
 }

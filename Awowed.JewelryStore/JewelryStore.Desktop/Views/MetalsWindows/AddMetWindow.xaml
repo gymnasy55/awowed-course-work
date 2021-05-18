@@ -59,7 +59,7 @@
             <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource BaseLabel}" Content="Метал" />
             <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource BaseLabel}" Content="Проба" />
 
-            <TextBox TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbMetal" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbMetal" Style="{StaticResource BaseTextBox}" />
             <TextBox PreviewTextInput="IntPreviewTextInput"  TextBox.MaxLength="3" Grid.Row="1" Grid.Column="1" Name="TbSample" Style="{StaticResource BaseTextBox}" />
 
 

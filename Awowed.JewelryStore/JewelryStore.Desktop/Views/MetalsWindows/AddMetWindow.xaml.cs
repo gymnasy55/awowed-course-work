@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,20 +41,28 @@ namespace JewelryStore.Desktop.Views
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    var metal = new Metal
+                    if (TbSample.Text != string.Empty && TbSample.Text.Length == 3)
                     {
-                        Id =  (byte) (_context.Metals.OrderBy(x => x.Id).Last().Id + 1),
-                        MetalName = TbMetal.Text.Trim(),
-                        Sample = System.Convert.ToInt32(TbSample.Text)
-                    };
-                    if (_context.Metals.Any(x => x.Sample == metal.Sample))
-                    {
-                        MessageBox.Show("Такий метал вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        var metal = new Metal
+                        {
+                            Id = (byte)(_context.Metals.OrderBy(x => x.Id).Last().Id + 1),
+                            MetalName = TbMetal.Text.Trim(),
+                            Sample = System.Convert.ToInt32(TbSample.Text)
+                        };
+                        if (_context.Metals.Any(x => x.Sample == metal.Sample) && _context.Metals.Any(x => x.MetalName == metal.MetalName))
+                        {
+                            MessageBox.Show("Такий метал вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        _context.Metals.Add(metal);
+                        _context.SaveChanges();
+                        MessageBox.Show("Додано метал в бд!");
                     }
-                    _context.Metals.Add(metal);
-                    _context.SaveChanges();
-                    MessageBox.Show("Додано метал в бд!");
+                    else
+                    {
+                        MessageBox.Show("Помилка при додаванні в бд!", "Помилка", MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
                     break;
                 case MessageBoxResult.No:
                     break;
@@ -64,6 +73,20 @@ namespace JewelryStore.Desktop.Views
         {
             TbMetal.Text = string.Empty;
             TbSample.Text = string.Empty;
+        }
+
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
+                return;
+
+            if (!(sender is TextBox textBox))
+                return;
+
+            textBox.Text += '`';
+            textBox.CaretIndex = textBox.Text.Length;
+
+            e.Handled = true;
         }
     }
 }
