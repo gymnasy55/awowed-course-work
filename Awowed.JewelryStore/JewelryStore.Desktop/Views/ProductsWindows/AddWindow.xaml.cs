@@ -17,6 +17,7 @@ namespace JewelryStore.Desktop.Views
     public partial class AddWindow : Window
     {
         private readonly AppDbContext _context = new AppDbContext();
+        private readonly Dictionary<string, int> _dictionary;
 
         private IQueryable<Metal> _metals;
         private IQueryable<Prodgroup> _prodgroups;
@@ -26,6 +27,13 @@ namespace JewelryStore.Desktop.Views
         public AddWindow()
         {
             InitializeComponent();
+            
+            _dictionary = new Dictionary<string, int>
+            {
+                { "TbSize", 0 },
+                { "TbWeight", 0 },
+                { "TbClearWeight", 0 }
+            };
         }
 
         private string BarCodeCreation()
@@ -154,9 +162,6 @@ namespace JewelryStore.Desktop.Views
         // TODO: Сделать ввод только цифр с одной точкой - и что бы это работало в TBWeight_OnTextChanged
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            // if (e.Text.Last() == ',') 
-            //     e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == ',');
-
             if(!(sender is TextBox textBox))
                 return;
 
@@ -171,29 +176,55 @@ namespace JewelryStore.Desktop.Views
             if (Regex.IsMatch(textBox.Text, @"\d+") && e.Text[^1] == ',')
             {
                 textBox.Text += ",0";
+                _dictionary[textBox.Name]++;
                 textBox.CaretIndex = textBox.Text.Length;
                 e.Handled = true;
             }
 
-            if (textBox.Name == "TbWeight")
-            {
-                TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-                TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-            }
+            _dictionary[textBox.Name]++;
         }
 
         private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'")) 
+            if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'"))
                 return;
-            
+
             if (!(sender is TextBox textBox))
                 return;
-            
+
             textBox.Text += '`';
             textBox.CaretIndex = textBox.Text.Length;
-            
+
             e.Handled = true;
+        }
+
+        private void IntTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!(sender is TextBox textBox))
+                return;
+
+            if (textBox.Text.Length < _dictionary[textBox.Name])
+            {
+                _dictionary[textBox.Name]--;
+                if (textBox.Text.Length > 0 && textBox.Text[^1] == ',')
+                {
+                    textBox.Text = textBox.Text.Replace(",", "");
+                }
+
+                textBox.CaretIndex = textBox.Text.Length;
+            }
+            
+            if (textBox.Name == "TbWeight")
+            {
+                if (textBox.Text.Length == 0)
+                {
+                    TblPrice.Text = "0 UAH";
+                    TblWorkPrice.Text = "0 UAH";
+                    return;
+                }
+                TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+                TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+            }
         }
     }
 }
