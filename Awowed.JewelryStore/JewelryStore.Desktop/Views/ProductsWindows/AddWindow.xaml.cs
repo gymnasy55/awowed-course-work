@@ -5,12 +5,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using JewelryStore.Desktop.Models;
 using Microsoft.EntityFrameworkCore;
-using Ubiety.Dns.Core.Records;
-using ZXing;
 
 namespace JewelryStore.Desktop.Views
 {
@@ -148,20 +145,44 @@ namespace JewelryStore.Desktop.Views
             TbWeaveType.Text = string.Empty;
         }
 
-        private void TbWeight_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-            TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
-        }
+        // private void TbWeight_OnTextChanged(object sender, TextChangedEventArgs e)
+        // {
+        //     TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+        //     TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+        // }
 
         // TODO: Сделать ввод только цифр с одной точкой - и что бы это работало в TBWeight_OnTextChanged
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (e.Text.Last() == ',') 
-                e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == ',');
+            // if (e.Text.Last() == ',') 
+            //     e.Handled = !(Char.IsDigit(e.Text, 0) || e.Text.Last() == ',');
+
+            if(!(sender is TextBox textBox))
+                return;
+
+            if ((textBox.Text.Contains(',') && e.Text[^1] == ',')
+                || (!Regex.IsMatch(e.Text[^1].ToString(), @"\d|,"))
+                || (textBox.Text.Length == 0 && e.Text[^1] == ','))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (Regex.IsMatch(textBox.Text, @"\d+") && e.Text[^1] == ',')
+            {
+                textBox.Text += ",0";
+                textBox.CaretIndex = textBox.Text.Length;
+                e.Handled = true;
+            }
+
+            if (textBox.Name == "TbWeight")
+            {
+                TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+                TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(TbWeight.Text == string.Empty ? "0" : TbWeight.Text)} UAH";
+            }
         }
 
-        private void TbProdItem_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!Regex.IsMatch(e.Text[^1].ToString(), "\"|'")) 
                 return;
