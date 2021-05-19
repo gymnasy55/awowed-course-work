@@ -37,6 +37,11 @@ namespace JewelryStore.Desktop.Views
                         MessageBox.Show("Така група виробу вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
+                    if (prodgroup.ProdGroupName == "")
+                    {
+                        MessageBox.Show("Введіть назву групи виробу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                     _context.Prodgroups.Add(prodgroup);
                     _context.SaveChanges();
                     MessageBox.Show("Додано групу виробу в бд!");

@@ -52,6 +52,16 @@ namespace JewelryStore.Desktop.Views
                         MessageBox.Show("Така вставка вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
+                    if (insertion.InsertName == "")
+                    {
+                        MessageBox.Show("Введіть назву вставки!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (insertion.InsertColor == "")
+                    {
+                        MessageBox.Show("Введіть колір вставки!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                     _context.Insertions.Add(insertion);
                     _context.SaveChanges();
                     MessageBox.Show("Додано вставку в бд!");

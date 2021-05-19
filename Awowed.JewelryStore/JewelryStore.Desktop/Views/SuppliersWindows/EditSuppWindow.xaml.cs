@@ -49,6 +49,11 @@ namespace JewelryStore.Desktop.Views
                             MessageBox.Show("Такий постачальник вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
+                        if (supplier.Suplname == "")
+                        {
+                            MessageBox.Show("Введіть назву постачальника!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
                         _context.SaveChanges();
                         MessageBox.Show("Успішно змінено постачальника в бд!", "Успіх", MessageBoxButton.OK,
                             MessageBoxImage.Information);

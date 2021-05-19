@@ -54,6 +54,11 @@ namespace JewelryStore.Desktop.Views
                             MessageBox.Show("Такий метал вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
+                        if (metal.MetalName == "")
+                        {
+                            MessageBox.Show("Введіть назву металу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
                         _context.Metals.Add(metal);
                         _context.SaveChanges();
                         MessageBox.Show("Додано метал в бд!");

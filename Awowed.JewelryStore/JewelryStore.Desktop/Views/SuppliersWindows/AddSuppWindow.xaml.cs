@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Ribbon.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -48,7 +49,12 @@ namespace JewelryStore.Desktop.Views
                     };
                     if (_context.Suppliers.Any(x => x.Suplname == supplier.Suplname))
                     {
-                        MessageBox.Show("Такий постачальник вже є в бд","Помилка",MessageBoxButton.OK, MessageBoxImage.Error  );
+                        MessageBox.Show("Такий постачальник вже є в бд!","Помилка",MessageBoxButton.OK, MessageBoxImage.Error  );
+                        return;
+                    }
+                    if (supplier.Suplname == "")
+                    {
+                        MessageBox.Show("Введіть назву постачальника!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
                     _context.Suppliers.Add(supplier);
