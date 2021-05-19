@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.IO.Ports;
 using System.Linq;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Threading;
 using JewelryStore.Desktop.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +22,7 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
             InitializeComponent();
 
             _list = new List<string>();
-            
+
             _serialPort = new SerialPort("COM1")
             {
                 BaudRate = 9600,
@@ -37,6 +35,11 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
                 DtrEnable = true
             };
             _serialPort.Open();
+        }
+
+        private void ScanWindow_OnClosed(object? sender, EventArgs e)
+        {
+            _serialPort.Close();
         }
 
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)

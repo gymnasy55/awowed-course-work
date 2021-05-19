@@ -1,19 +1,12 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BarcodeLib;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
-using Microsoft.Win32;
 using ZXing;
-using Color = System.Drawing.Color;
-using Size = System.Windows.Size;
 
 namespace JewelryStore.Desktop.Views
 {

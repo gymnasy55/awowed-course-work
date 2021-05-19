@@ -51,11 +51,11 @@
 
         <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
-                   TextAlignment="Center"
+                   TextAlignment="Left"
                    VerticalAlignment="Center"
                    Margin="5"
                    FontFamily="Calibri"
-                   FontSize="16"
+                   FontSize="22"
                    FontWeight="Bold"
                    Text="Ціна грама за працю:" />
 
@@ -64,17 +64,17 @@
                  VerticalAlignment="Center"
                  Margin="5"
                  FontFamily="Calibri"
-                 FontSize="16"
+                 FontSize="22"
                  FontWeight="Bold" 
                  x:Name="PricePerGramWorkTb" />
 
         <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
-                   TextAlignment="Center"
+                   TextAlignment="Left"
                    VerticalAlignment="Center"
                    Margin="5"
                    FontFamily="Calibri"
-                   FontSize="16"
+                   FontSize="22"
                    FontWeight="Bold"
                    Text="Ціна грама за продаж:" />
 
@@ -83,7 +83,7 @@
                  VerticalAlignment="Center"
                  Margin="5"
                  FontFamily="Calibri"
-                 FontSize="16"
+                 FontSize="22"
                  FontWeight="Bold" 
                  x:Name="PricePerGramSaleTb" />
 

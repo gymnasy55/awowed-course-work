@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JewelryStore.Desktop.Models;
-using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Bcpg;
+﻿using JewelryStore.Desktop.Models;
 
 namespace JewelryStore.Desktop.ViewModels
 {

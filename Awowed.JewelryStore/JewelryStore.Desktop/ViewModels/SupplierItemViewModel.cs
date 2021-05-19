@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JewelryStore.Desktop.Models;
+﻿using JewelryStore.Desktop.Models;
 
 namespace JewelryStore.Desktop.ViewModels
 {

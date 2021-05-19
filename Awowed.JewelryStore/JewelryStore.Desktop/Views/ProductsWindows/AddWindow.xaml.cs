@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +19,7 @@ namespace JewelryStore.Desktop.Views
         private readonly AppDbContext _context = new AppDbContext();
         private readonly Dictionary<string, int> _dictionary;
         private readonly List<ComboBox> _cmbs;
+        private readonly List<TextBox> _tbs;
 
         private IQueryable<Metal> _metals;
         private IQueryable<Prodgroup> _prodgroups;
@@ -42,8 +42,15 @@ namespace JewelryStore.Desktop.Views
                 CbInsert,
                 CbMetal,
                 CbSupplier,
-                CbProdGr,
-                CbWeaveWay
+                CbProdGr
+            };
+
+            _tbs = new List<TextBox>
+            {
+                TbProdItem,
+                TbWeight,
+                TbClearWeight,
+                TbSize
             };
         }
 
@@ -112,10 +119,15 @@ namespace JewelryStore.Desktop.Views
         {
             if (_cmbs.Any(cmb => cmb.SelectedItem == null))
             {
-                MessageBox.Show("...");
+                MessageBox.Show("Ви заповнили не заповнили одне з випадаючих списків: Метал, Вставки, Постачальник, Група Виробу!", "Помилка",MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
-            
+            if (_tbs.Any(cmb => cmb.Text == ""))
+            {
+                MessageBox.Show("Ви не заповнили одне з полів: Артикул, Вага, Чиста вага, Розмір!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             DpArrDate.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте додати товар?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
@@ -144,6 +156,7 @@ namespace JewelryStore.Desktop.Views
                         PriceForTheWork = Convert.ToSingle(TblWorkPrice.Text.Substring(0, TblWorkPrice.Text.IndexOf('U') - 1)),
                         Price = Convert.ToSingle(TblPrice.Text.Substring(0, TblPrice.Text.IndexOf('U') - 1))
                     };
+
                     _context.Products.Add(product);
                     _context.SaveChanges();
                     MessageBox.Show("Додано в бд!");

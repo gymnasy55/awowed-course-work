@@ -2,18 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Printing;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +19,8 @@ namespace JewelryStore.Desktop.Views
     {
         private readonly AppDbContext _context = new AppDbContext();
         private readonly Dictionary<string, int> _dictionary;
+        private readonly List<ComboBox> _cmbs;
+        private readonly List<TextBox> _tbs;
 
         private JewerlyItemViewModel _vm;
         private IQueryable<Metal> _metals;
@@ -44,6 +38,22 @@ namespace JewelryStore.Desktop.Views
                 { "TbSize", 0 },
                 { "TbWeight", 0 },
                 { "TbClearWeight", 0 }
+            };
+
+            _cmbs = new List<ComboBox>
+            {
+                CbInsert,
+                CbMetal,
+                CbSupplier,
+                CbProdGr
+            };
+
+            _tbs = new List<TextBox>
+            {
+                TbProdItem,
+                TbWeight,
+                TbClearWeight,
+                TbSize
             };
         }
 
@@ -112,6 +122,16 @@ namespace JewelryStore.Desktop.Views
 
         private void EditBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            if (_cmbs.Any(cmb => cmb.SelectedItem == null))
+            {
+                MessageBox.Show("Ви заповнили не заповнили одне з випадаючих списків: Метал, Вставки, Постачальник, Група Виробу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (_tbs.Any(cmb => cmb.Text == ""))
+            {
+                MessageBox.Show("Ви не заповнили одне з полів: Артикул, Вага, Чиста вага, Розмір!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте змінити товар?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
             {
@@ -208,7 +228,6 @@ namespace JewelryStore.Desktop.Views
             e.Handled = true;
         }
 
-        //TODO: IntTextBox_OnTextChanged for EDIT WINDOW. It is too late for me, I'll learn MATH theory for tomorrow
         private void IntTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (!(sender is TextBox textBox))

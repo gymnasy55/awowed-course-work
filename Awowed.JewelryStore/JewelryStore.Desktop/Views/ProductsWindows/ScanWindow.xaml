@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views.ProductsWindows"
         mc:Ignorable="d"
         Title="Сканування" Height="600" Width="800" MinWidth="640" MinHeight="600" FontFamily="Calibri" FontSize="14"
-        WindowStartupLocation="CenterScreen">
+        Closed="ScanWindow_OnClosed" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Style TargetType="Label" x:Key ="BaseLabel">
