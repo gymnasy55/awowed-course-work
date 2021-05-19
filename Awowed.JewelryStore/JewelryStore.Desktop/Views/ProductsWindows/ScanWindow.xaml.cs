@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.IO.Ports;
+using System.Linq;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Threading;
+using JewelryStore.Desktop.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JewelryStore.Desktop.Views.ProductsWindows
 {
@@ -11,11 +16,15 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
     /// </summary>
     public partial class ScanWindow : Window
     {
+        private List<string> _list;
+        
         private SerialPort _serialPort;
         public ScanWindow()
         {
             InitializeComponent();
 
+            _list = new List<string>();
+            
             _serialPort = new SerialPort("COM1")
             {
                 BaudRate = 9600,
@@ -39,14 +48,53 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
         {
             if (TextBox.Text != string.Empty && TextBox.Text.Length == 8)
             {
-                ListBox.Items.Add(TextBox.Text);
+                if (!ListBox.Items.Contains(TextBox.Text))
+                {
+                    _list.Add(TextBox.Text);
+                    ListBox.Items.Add(TextBox.Text);
+                }
                 TextBox.Text = string.Empty;
             }
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            using var context = new AppDbContext();
+            
+            var products = context.Products;
+            var productsSales = context.Productssales;
+            
+            products.Load();
+            productsSales.Load();
+
+            var exactProducts = _list
+                .Select(barcode => products.FirstOrDefault(product => product.BarCode == barcode))
+                .SkipWhile(x => x == null)
+                .ToList();
+            
+            exactProducts.ForEach(product => product.IsSold = true);
+
+            productsSales.AddRange(exactProducts.Select(product => new ProductsSale
+            {
+                Id = productsSales.Max(productsSale => productsSale.Id) + 1,
+                IdProd = product.Id,
+                SaleDate = DateTime.Now
+            }));
+
+            context.SaveChanges();
+            
+            // TODO: или очищать или вызвать this.Close()
+            _list.Clear();
+            ListBox.Items.Clear();
+        }
+
+        private void ListBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                _list.Remove(ListBox.SelectedItem.ToString());
+                ListBox.Items.Remove(ListBox.SelectedItem);
+            }
         }
     }
 }

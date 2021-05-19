@@ -36,7 +36,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBox KeyDown="TextBox_OnKeyDown" Grid.Row="0" x:Name="TextBox" Width="300" PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="8" HorizontalAlignment="Left" Style ="{StaticResource BaseTextBox}"/>
-        <ListBox Grid.Row="1" x:Name="ListBox" Margin="10"/>
+        <ListBox KeyDown="ListBox_OnKeyDown" Grid.Row="1" x:Name="ListBox" Margin="10"/>
         <Button Grid.Row="2" Content="OK" Click="ButtonBase_OnClick" Margin="10" Style ="{StaticResource BaseButton}">
         </Button>
     </Grid>
