@@ -79,9 +79,6 @@
     <Compile Update="Views\SuppliersWindows\SuppliersMainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\TestWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\InsertionItem.xaml">
@@ -157,9 +154,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SuppliersWindows\SuppliersMainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\TestWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
