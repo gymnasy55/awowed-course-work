@@ -83,7 +83,6 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
 
             context.SaveChanges();
             
-            // TODO: или очищать или вызвать this.Close()
             _list.Clear();
             ListBox.Items.Clear();
         }

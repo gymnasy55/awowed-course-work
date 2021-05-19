@@ -39,6 +39,12 @@ namespace JewelryStore.Desktop.Views
         {
             _vm = vm;
             InitializeComponent();
+            _dictionary = new Dictionary<string, int>
+            {
+                { "TbSize", 0 },
+                { "TbWeight", 0 },
+                { "TbClearWeight", 0 }
+            };
         }
 
         private void EditWindow_Loaded(object sender, RoutedEventArgs e)
@@ -114,7 +120,7 @@ namespace JewelryStore.Desktop.Views
                     if (product != null)
                     {
                         product.ProdItem = TbProdItem.Text.Trim();
-                        product.BarCode = TbProdItem.Text.Trim();
+                        product.BarCode = TblBarCode.Text.Trim();
                         product.ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks);
                         product.IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Trim()).Id;
                         product.IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString().Trim()).Id;
@@ -205,32 +211,32 @@ namespace JewelryStore.Desktop.Views
         //TODO: IntTextBox_OnTextChanged for EDIT WINDOW. It is too late for me, I'll learn MATH theory for tomorrow
         private void IntTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (!(sender is TextBox textBox))
-            //    return;
+            if (!(sender is TextBox textBox))
+                return;
 
-            //if (textBox.Text.Length < _dictionary[textBox.Name])
-            //{
-            //    _dictionary[textBox.Name]--;
-            //    if (textBox.Text.Length > 0 && textBox.Text[^1] == ',' && textBox.Name != "TbWeight")
-            //    {
-            //        textBox.Text = textBox.Text.Replace(",", "");
-            //        _dictionary[textBox.Name]--;
-            //    }
+            if (textBox.Text.Length < _dictionary[textBox.Name])
+            {
+                _dictionary[textBox.Name]--;
+                if (textBox.Text.Length > 0 && textBox.Text[^1] == ',' && textBox.Name != "TbWeight")
+                {
+                    textBox.Text = textBox.Text.Replace(",", "");
+                    _dictionary[textBox.Name]--;
+                }
 
-            //    textBox.CaretIndex = textBox.Text.Length;
-            //}
+                textBox.CaretIndex = textBox.Text.Length;
+            }
 
-            //if (textBox.Name == "TbWeight")
-            //{
-            //    if (textBox.Text.Length == 0)
-            //    {
-            //        TblPrice.Text = "0 UAH";
-            //        TblWorkPrice.Text = "0 UAH";
-            //        return;
-            //    }
-            //    TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
-            //    TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
-            //}
+            if (textBox.Name == "TbWeight")
+            {
+                if (textBox.Text.Length == 0)
+                {
+                    TblPrice.Text = "0 UAH";
+                    TblWorkPrice.Text = "0 UAH";
+                    return;
+                }
+                TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
+                TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
+            }
         }
     }
 }

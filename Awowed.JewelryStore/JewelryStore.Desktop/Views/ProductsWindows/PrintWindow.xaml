@@ -257,12 +257,6 @@
                       Width="160" Height="25"
                       SelectionChanged="CbSupplier_OnSelectionChanged">
 
-                <!--<ComboBox.ItemContainerStyle>
-                    <Style TargetType="ComboBoxItem">
-                        <Setter Property="Background" Value="Yellow"/>
-                        <Setter Property="BorderBrush" Value="Yellow"/>
-                    </Style>
-                </ComboBox.ItemContainerStyle>-->
 
             </ComboBox>
 
@@ -277,19 +271,20 @@
                       Grid.Row="1" 
                       x:Name="DataGrid"
                       AutoGenerateColumns="False" 
-                      MinWidth="700" MaxWidth="750"
+                      MinWidth="750" MaxWidth="750"
                       ColumnWidth="*"
-                      IsReadOnly="True">
+                      IsReadOnly="True"
+                      HorizontalScrollBarVisibility="Hidden">
                 <DataGrid.Columns >
-                    <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=ShowId}"/>
+                    <DataGridTextColumn MinWidth="40" MaxWidth="40" Header="№" Binding="{Binding Path=ShowId}"/>
                     <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
                     <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Штрих-код" Binding="{Binding Path=BarCode}"/>
                     <DataGridTextColumn x:Name="DateColumn" MinWidth="100" MaxWidth="300" Header="Дата пр." Binding="{Binding Path=ArrivalDateString}"/>
                     <DataGridTextColumn MinWidth="100" MaxWidth="300" Header="Назва" Binding="{Binding Path=ProdGroupString}"/>
-                    <DataGridTextColumn MinWidth="70" MaxWidth="120" Header="Ч. вага" Binding="{Binding Path=ClearWeight}" />
-                    <DataGridTextColumn MinWidth="50" MaxWidth="120" Header="Вага" Binding="{Binding Path=Weight}"/>
-                    <DataGridTextColumn MinWidth="80" MaxWidth="200" Header="Ціна роб." Binding="{Binding Path=PriceForTheWork}"/>
-                    <DataGridTextColumn MinWidth="80" MaxWidth="200" Header="Ціна" Binding="{Binding Path=Price}"/>
+                    <DataGridTextColumn MinWidth="60" MaxWidth="120" Header="Ч. вага" Binding="{Binding Path=ClearWeight}" />
+                    <DataGridTextColumn MinWidth="60" MaxWidth="120" Header="Вага" Binding="{Binding Path=Weight}"/>
+                    <DataGridTextColumn MinWidth="80" MaxWidth="110" Header="Ціна роб." Binding="{Binding Path=PriceForTheWork}"/>
+                    <DataGridTextColumn MinWidth="80" MaxWidth="110" Header="Ціна" Binding="{Binding Path=Price}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
