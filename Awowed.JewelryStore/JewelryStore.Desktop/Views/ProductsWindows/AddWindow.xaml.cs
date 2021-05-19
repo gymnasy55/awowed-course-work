@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,7 @@ namespace JewelryStore.Desktop.Views
     {
         private readonly AppDbContext _context = new AppDbContext();
         private readonly Dictionary<string, int> _dictionary;
+        private readonly List<ComboBox> _cmbs;
 
         private IQueryable<Metal> _metals;
         private IQueryable<Prodgroup> _prodgroups;
@@ -33,6 +35,15 @@ namespace JewelryStore.Desktop.Views
                 { "TbSize", 0 },
                 { "TbWeight", 0 },
                 { "TbClearWeight", 0 }
+            };
+
+            _cmbs = new List<ComboBox>
+            {
+                CbInsert,
+                CbMetal,
+                CbSupplier,
+                CbProdGr,
+                CbWeaveWay
             };
         }
 
@@ -99,6 +110,12 @@ namespace JewelryStore.Desktop.Views
 
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            if (_cmbs.Any(cmb => cmb.SelectedItem == null))
+            {
+                MessageBox.Show("...");
+                return;
+            }
+            
             DpArrDate.Text = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте додати товар?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
