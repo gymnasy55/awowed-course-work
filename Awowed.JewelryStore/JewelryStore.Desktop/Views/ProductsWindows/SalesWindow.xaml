@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
         mc:Ignorable="d"
-        Title="Друк проданих виробів" MinHeight="1050" Height="1050" MaxHeight="1050" MinWidth="750" Width="750" MaxWidth="750"
+        Title="Друк проданих виробів" MinHeight="838" Height="838" MaxHeight="838" MinWidth="750" Width="750" MaxWidth="750"
         Loaded="SalesWindow_OnLoaded" WindowStartupLocation="CenterScreen" FontFamily="Calibri" FontSize="16" 
         xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
