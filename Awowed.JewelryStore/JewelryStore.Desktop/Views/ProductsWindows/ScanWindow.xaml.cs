@@ -34,12 +34,12 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
                 RtsEnable = true,
                 DtrEnable = true
             };
-            _serialPort.Open();
+            //_serialPort.Open();
         }
 
         private void ScanWindow_OnClosed(object? sender, EventArgs e)
         {
-            _serialPort.Close();
+            //_serialPort.Close();
         }
 
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
