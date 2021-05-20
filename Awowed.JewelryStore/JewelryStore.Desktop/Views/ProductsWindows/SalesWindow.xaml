@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         xmlns:themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
         mc:Ignorable="d"
-        Title="SalesWindow" MinHeight="1050" Height="1050" MaxHeight="1050" MinWidth="750" Width="750" MaxWidth="750"
+        Title="Друк проданих виробів" MinHeight="1050" Height="1050" MaxHeight="1050" MinWidth="750" Width="750" MaxWidth="750"
         Loaded="SalesWindow_OnLoaded" WindowStartupLocation="CenterScreen" FontFamily="Calibri" FontSize="16" 
         xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
@@ -278,9 +278,10 @@
                       AutoGenerateColumns="False" 
                       MinWidth="700" MaxWidth="750" 
                       ColumnWidth="*"
-                      IsReadOnly="True">
+                      IsReadOnly="True"
+                      HorizontalScrollBarVisibility="Hidden">
                 <DataGrid.Columns >
-                    <DataGridTextColumn MinWidth="40" MaxWidth="80" Header="№" Binding="{Binding Path=ShowId}" />
+                    <DataGridTextColumn MinWidth="40" MaxWidth="40" Header="№" Binding="{Binding Path=ShowId}" />
                     <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Артикул" Binding="{Binding Path=ProdItem}"/>
                     <DataGridTextColumn MinWidth="90" MaxWidth="300" Header="Штрих-код" Binding="{Binding Path=BarCode}"/>
                     <DataGridTextColumn x:Name="DateColumn" MinWidth="100" MaxWidth="300" Header="Дата прод." Binding="{Binding Path=SaleDateString}"/>

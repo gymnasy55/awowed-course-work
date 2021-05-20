@@ -75,7 +75,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Метал: {context.Metals.FirstOrDefault(x => x.Id == _vm.IdMet).MetalName}",
+                        Text = $"Метал: {context.Metals.FirstOrDefault(x => x.Id == _vm.IdMet).MetalName} {context.Metals.FirstOrDefault(x => x.Id == _vm.IdMet).Sample}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -120,7 +120,7 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
-                        Text = $"Вставка: {context.Insertions.FirstOrDefault(x => x.Id == _vm.IdIns).InsertName}",
+                        Text = $"Вставка: {context.Insertions.FirstOrDefault(x => x.Id == _vm.IdIns).InsertName} | {context.Insertions.FirstOrDefault(x => x.Id == _vm.IdIns).InsertColor}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,

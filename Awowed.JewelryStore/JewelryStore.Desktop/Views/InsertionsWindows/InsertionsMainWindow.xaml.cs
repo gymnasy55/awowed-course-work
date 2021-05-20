@@ -54,11 +54,7 @@ namespace JewelryStore.Desktop.Views
                 return;
             }
 
-            using (var context = new AppDbContext())
-            {
-                ShowItems(x => x.InsertName.ToLower().Contains(text) || context.Insertions.First(c => c.Id == x.Id).InsertColor.ToLower().Contains(text) 
-                                                                     || context.Insertions.First(d=>d.Id == x.Id).GemCategory.ToLower().Contains(text));
-            }
+            ShowItems(x => x.InsertName.ToLower().Contains(text) || x.InsertColor.ToLower().Contains(text) || x.GemCategory.ToLower().StartsWith(text));
         }
 
         private void RefreshButton_OnClick(object sender, RoutedEventArgs e)

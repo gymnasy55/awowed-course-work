@@ -160,6 +160,7 @@ namespace JewelryStore.Desktop.Views
                     _context.Products.Add(product);
                     _context.SaveChanges();
                     MessageBox.Show("Додано в бд!");
+                    TblBarCode.Text = BarCodeCreation();
                     break;
                 case MessageBoxResult.No:
                     break;

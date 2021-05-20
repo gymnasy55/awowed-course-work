@@ -109,7 +109,7 @@
                                 Value="Center" />
                         <Setter Property="VerticalContentAlignment"
                                 Value="Center" />
-                        <Setter Property="ToolTip" Value="Друк" />
+                        <Setter Property="ToolTip" Value="Друкувати" />
                     </Style>
                 </Button.Style>
 

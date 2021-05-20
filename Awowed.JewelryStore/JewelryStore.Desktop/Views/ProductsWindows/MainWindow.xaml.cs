@@ -74,7 +74,24 @@ namespace JewelryStore.Desktop.Views
 
             using (var context = new AppDbContext())
             {
-                ShowItems(x => x.ProdItem.Contains(text) || context.Suppliers.First(c => c.Id == x.IdSupp).Suplname.ToLower().Contains(text));
+                ShowItems(x =>
+                    x.ProdItem.Contains(text) || context.Suppliers.First(c => c.Id == x.IdSupp).Suplname.ToLower()
+                                                  .Contains(text)
+                                              || context.Insertions.First(c => c.Id == x.IdIns).InsertName.ToLower()
+                                                  .Contains(text)
+                                              || context.Insertions.First(c => c.Id == x.IdIns).InsertColor.ToLower()
+                                                  .Contains(text)
+                                              || context.Insertions.First(c => c.Id == x.IdIns).GemCategory.ToLower()
+                                                  .StartsWith(text)
+                                              || context.Metals.First(c => c.Id == x.IdMet).MetalName.ToLower()
+                                                  .Contains(text)
+                                              || context.Metals.First(c => c.Id == x.IdMet).Sample.ToString().ToLower()
+                                                  .Contains(text)
+                                              || context.Prodgroups.First(c => c.Id == x.IdProdGr).ProdGroupName
+                                                  .ToLower().Contains(text)
+                                              || ("продано".Equals(text) && x.IsSold) || ("не продано".Equals(text) && !x.IsSold)
+                                              || x.BarCode.ToLower().Contains(text)
+                                              || x.ArrivalDate.ToString().ToLower().Contains(text));
             }
         }
 

@@ -54,10 +54,7 @@ namespace JewelryStore.Desktop.Views
                 return;
             }
 
-            using (var context = new AppDbContext())
-            {
-                ShowItems(x => x.MetalName.ToLower().Contains(text) || context.Metals.First(c => c.Id == x.Id).Sample.ToString().ToLower().Contains(text));
-            }
+            ShowItems(x => x.MetalName.ToLower().Contains(text) || x.Sample.ToString().ToLower().Contains(text));
         }
 
         private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
