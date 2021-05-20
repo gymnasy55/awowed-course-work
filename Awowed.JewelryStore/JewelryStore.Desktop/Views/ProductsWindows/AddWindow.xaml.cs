@@ -96,7 +96,7 @@ namespace JewelryStore.Desktop.Views
 
             foreach (var metal in _metals)
             {
-                CbMetal.Items.Add(metal.MetalName);
+                CbMetal.Items.Add($"{metal.MetalName} {metal.Sample}");
             }
 
             foreach (var prodgroup in _prodgroups)
