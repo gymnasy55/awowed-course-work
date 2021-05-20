@@ -96,7 +96,7 @@ namespace JewelryStore.Desktop.Views
 
             foreach (var metal in _metals)
             {
-                CbMetal.Items.Add($"{metal.MetalName} {metal.Sample}");
+                CbMetal.Items.Add($"{metal.MetalName} | {metal.Sample}");
             }
 
             foreach (var prodgroup in _prodgroups)
@@ -139,7 +139,9 @@ namespace JewelryStore.Desktop.Views
                         ProdItem = TbProdItem.Text.Trim(),
                         BarCode = TblBarCode.Text.Trim(),
                         ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks),
-                        IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Trim()).Id,
+                        IdMet = CbMetal.SelectedItem.ToString().Contains('|')
+                            ? _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Substring(0, CbMetal.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id
+                            : _metals.First(x => x.MetalName == CbMetal.SelectedItem.ToString()).Id,
                         IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString().Trim()).Id,
                         ProdType = TbProdType.Text.Trim(),
                         IdSupp = _suppliers.First(x => x.Suplname == CbSupplier.SelectionBoxItem.ToString().Trim()).Id,

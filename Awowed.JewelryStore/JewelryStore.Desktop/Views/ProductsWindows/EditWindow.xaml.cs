@@ -81,7 +81,7 @@ namespace JewelryStore.Desktop.Views
 
             foreach (var metal in _metals)
             {
-                CbMetal.Items.Add($"{metal.MetalName} {metal.Sample}");
+                CbMetal.Items.Add($"{metal.MetalName} | {metal.Sample}");
             }
 
             foreach (var prodgroup in _prodgroups)
@@ -103,7 +103,9 @@ namespace JewelryStore.Desktop.Views
             TblBarCode.Text = _vm.BarCode;
             DpArrDate.DisplayDate = _vm.ArrivalDate ?? DateTime.Now;
             DpArrDate.Text = DpArrDate.DisplayDate.ToString();
-            CbMetal.SelectedItem = _metals.First(x => x.Id == _vm.IdMet).MetalName.ToString();
+            CbMetal.SelectedItem = _metals.First(x => x.Id == _vm.IdMet).Sample.ToString() != string.Empty
+                ? $"{_metals.First(x => x.Id == _vm.IdMet).MetalName} | {_metals.First(x => x.Id == _vm.IdMet).Sample}"
+                : $"{_metals.First(x => x.Id == _vm.IdMet).MetalName}";
             CbProdGr.SelectedItem = _prodgroups.First(x => x.Id == _vm.IdProdGr).ProdGroupName.ToString();
             TbProdType.Text = _vm.ProdType;
             CbSupplier.SelectedItem = _suppliers.First(x => x.Id == _vm.IdSupp).Suplname.ToString();
@@ -142,7 +144,9 @@ namespace JewelryStore.Desktop.Views
                         product.ProdItem = TbProdItem.Text.Trim();
                         product.BarCode = TblBarCode.Text.Trim();
                         product.ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks);
-                        product.IdMet = _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Trim()).Id;
+                        product.IdMet = CbMetal.SelectedItem.ToString().Contains('|')
+                            ? _metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Substring(0, CbMetal.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id
+                            : _metals.First(x => x.MetalName == CbMetal.SelectedItem.ToString()).Id;
                         product.IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString().Trim()).Id;
                         product.ProdType = TbProdType.Text.Trim();
                         product.IdSupp = _suppliers.First(x => x.Suplname == CbSupplier.SelectionBoxItem.ToString().Trim()).Id;
