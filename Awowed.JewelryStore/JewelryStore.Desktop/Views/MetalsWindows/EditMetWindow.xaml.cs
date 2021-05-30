@@ -34,6 +34,8 @@ namespace JewelryStore.Desktop.Views
 
             TbMetal.Text = _vm.MetalName;
             TbSample.Text = $"{_vm.Sample}";
+            TbPrice.Text = $"{_vm.Price}";
+            TbWorkPrice.Text = $"{_vm.WorkPrice}";
         }
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -42,6 +44,13 @@ namespace JewelryStore.Desktop.Views
 
         private void EditBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            if (TbPrice.Text == string.Empty || TbWorkPrice.Text == string.Empty)
+            {
+                {
+                    MessageBox.Show("Ви не заповнили одне з полів: Ціна за грам, Ціна за роботу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте  змінити метал?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
             {
@@ -51,6 +60,8 @@ namespace JewelryStore.Desktop.Views
                     {
                         metal.MetalName = TbMetal.Text.Trim();
                         metal.Sample = System.Convert.ToInt32(TbSample.Text);
+                        metal.Price = float.Parse(TbPrice.Text);
+                        metal.WorkPrice = float.Parse(TbWorkPrice.Text);
                         if (_context.Metals.Any(x => x.Sample == metal.Sample) && _context.Metals.Any(x => x.MetalName == metal.MetalName))
                         {
                             MessageBox.Show("Такий метал вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -59,6 +70,11 @@ namespace JewelryStore.Desktop.Views
                         if (metal.MetalName == "" )
                         {
                             MessageBox.Show("Введіть назву металу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        if (TbWorkPrice.Text == String.Empty || TbPrice.Text == String.Empty)
+                        {
+                            MessageBox.Show("Введіть ціни металу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
                         _context.SaveChanges();
@@ -75,10 +91,13 @@ namespace JewelryStore.Desktop.Views
                     break;
             }
         }
+
         private void ClearBtn_Clicked(object sender, RoutedEventArgs e)
         {
             TbMetal.Text = string.Empty;
             TbSample.Text = string.Empty;
+            TbPrice.Text = string.Empty;
+            TbWorkPrice.Text = string.Empty;
         }
 
         private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)

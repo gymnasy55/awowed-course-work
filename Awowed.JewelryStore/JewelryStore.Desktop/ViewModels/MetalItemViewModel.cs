@@ -26,6 +26,18 @@ namespace JewelryStore.Desktop.ViewModels
             set => _metal.Sample = value;
         }
 
+        public float Price
+        {
+            get => _metal.Price;
+            set => _metal.Price = value;
+        }
+
+        public float WorkPrice
+        {
+            get => _metal.WorkPrice;
+            set => _metal.WorkPrice = value;
+        }
+
         #endregion
 
         #region Constructor

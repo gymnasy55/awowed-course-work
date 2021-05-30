@@ -62,6 +62,24 @@ namespace JewelryStore.Desktop.Controls
                         FontFamily = new FontFamily("Calibri"),
                         FontSize = 16,
                     });
+                    ItemStackPanel.Children.Add(new TextBlock
+                    {
+                        Text = $"Ціна за карат: {_vm.Price}",
+                        Margin = new Thickness(5),
+                        TextAlignment = TextAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        FontFamily = new FontFamily("Calibri"),
+                        FontSize = 16,
+                    });
+                    ItemStackPanel.Children.Add(new TextBlock
+                    {
+                        Text = $"Ціна за роботу: {_vm.WorkPrice}",
+                        Margin = new Thickness(5),
+                        TextAlignment = TextAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        FontFamily = new FontFamily("Calibri"),
+                        FontSize = 16,
+                    });
                 }
 
                 _isExpanded = true;

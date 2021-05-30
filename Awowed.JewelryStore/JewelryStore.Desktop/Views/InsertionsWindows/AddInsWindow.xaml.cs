@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -33,8 +34,20 @@ namespace JewelryStore.Desktop.Views
             }
         }
 
+        private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            if (TbPrice.Text == string.Empty || TbWorkPrice.Text == string.Empty)
+            {
+                {
+                    MessageBox.Show("Ви не заповнили одне з полів: Ціна за карат, Ціна за роботу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте додати вставку?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
             {
@@ -44,10 +57,12 @@ namespace JewelryStore.Desktop.Views
                         Id = (byte)(_context.Insertions.OrderBy(x => x.Id).Last().Id + 1),
                         InsertName = TbInsert.Text.Trim(),
                         InsertColor = TbInsertColor.Text.Trim(),
-                        GemCategory = CbGemCategory.SelectionBoxItem.ToString()?.Trim()
+                        GemCategory = CbGemCategory.SelectionBoxItem.ToString()?.Trim(),
+                        Price = float.Parse(TbPrice.Text),
+                        WorkPrice = float.Parse(TbWorkPrice.Text)
 
                     };
-                    if ((_context.Insertions.Any(x => x.InsertName == insertion.InsertName)) && (_context.Insertions.Any(x => x.InsertColor == insertion.InsertColor)))
+                    if ((_context.Insertions.Any(x => x.InsertName == insertion.InsertName)) && (_context.Insertions.Any(x => x.InsertColor == insertion.InsertColor)) && TbWorkPrice.Text != String.Empty && TbPrice.Text != String.Empty)
                     {
                         MessageBox.Show("Така вставка вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
@@ -76,6 +91,8 @@ namespace JewelryStore.Desktop.Views
             TbInsert.Text = string.Empty;
             TbInsertColor.Text = string.Empty;
             CbGemCategory.Text = string.Empty;
+            TbPrice.Text = string.Empty;
+            TbWorkPrice.Text = string.Empty;
         }
 
         private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)

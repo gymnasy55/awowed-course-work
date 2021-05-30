@@ -32,6 +32,18 @@ namespace JewelryStore.Desktop.ViewModels
             set => _insertion.GemCategory = value;
         }
 
+        public float Price
+        {
+            get => _insertion.Price;
+            set => _insertion.Price = value;
+        }
+
+        public float WorkPrice
+        {
+            get => _insertion.WorkPrice;
+            set => _insertion.WorkPrice = value;
+        }
+
 
         #endregion
 

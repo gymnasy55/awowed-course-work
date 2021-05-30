@@ -71,6 +71,12 @@ namespace JewelryStore.Desktop.ViewModels
             set => _product.ClearWeight = value;
         }
 
+        public float Carat
+        {
+            get => _product.Carat;
+            set => _product.Carat = value;
+        }
+
         public string ProdType
         {
             get => _product.ProdType;

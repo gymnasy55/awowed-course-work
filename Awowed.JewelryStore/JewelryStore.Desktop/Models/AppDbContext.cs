@@ -31,7 +31,7 @@ namespace JewelryStore.Desktop.Models
                 base.OnConfiguring(optionsBuilder);
             }
         }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Insertion>(entity =>
@@ -58,6 +58,8 @@ namespace JewelryStore.Desktop.Models
                     .HasMaxLength(20)
                     .HasColumnName("insert_name")
                     .IsFixedLength(true);
+                entity.Property(e => e.Price).HasColumnName("price");
+                entity.Property(e => e.WorkPrice).HasColumnName("price_for_the_work");
             });
 
             modelBuilder.Entity<Metal>(entity =>
@@ -75,6 +77,8 @@ namespace JewelryStore.Desktop.Models
                     .IsFixedLength(true);
 
                 entity.Property(e => e.Sample).HasColumnName("sample");
+                entity.Property(e => e.Price).HasColumnName("price");
+                entity.Property(e => e.WorkPrice).HasColumnName("price_for_the_work");
             });
 
             modelBuilder.Entity<Prodgroup>(entity =>
@@ -117,6 +121,9 @@ namespace JewelryStore.Desktop.Models
                     .IsFixedLength(true);
 
                 entity.Property(e => e.ClearWeight).HasColumnName("clear_weight");
+
+                entity.Property(e => e.Carat).HasColumnName("carat");
+
 
                 entity.Property(e => e.Faceting)
                     .HasMaxLength(20)

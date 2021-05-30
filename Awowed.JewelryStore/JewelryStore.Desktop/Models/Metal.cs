@@ -14,6 +14,8 @@ namespace JewelryStore.Desktop.Models
         public byte Id { get; set; }
         public string MetalName { get; set; }
         public int? Sample { get; set; }
+        public float Price { get; set; }
+        public float WorkPrice { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }

@@ -22,6 +22,7 @@ namespace JewelryStore.Desktop.Models
         public string ProdItem { get; set; }
         public float Weight { get; set; }
         public float ClearWeight { get; set; }
+        public float Carat { get; set; }
         public string ProdType { get; set; }
         public float? ProdSize { get; set; }
         public string WeaveType { get; set; }

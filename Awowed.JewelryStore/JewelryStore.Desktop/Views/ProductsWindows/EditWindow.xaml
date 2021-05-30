@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         mc:Ignorable="d"
-        Title="Зміна виробу" Width="600" Height="600" 
-        MinWidth="500" MinHeight="500" FontFamily="Calibri" FontSize="20"
+        Title="Зміна виробу" Width="600" Height="700" 
+        MinWidth="500" MinHeight="700" FontFamily="Calibri" FontSize="20"
         Loaded="EditWindow_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
@@ -67,6 +67,7 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -85,11 +86,12 @@
             <Label Grid.Column="0" Grid.Row="8" Style="{StaticResource BaseLabel}" Content="Вага" />
             <Label Grid.Column="0" Grid.Row="9" Style="{StaticResource BaseLabel}" Content="Чиста вага" />
             <Label Grid.Column="0" Grid.Row="10" Style="{StaticResource BaseLabel}" Content="Вставка" />
-            <Label Grid.Column="0" Grid.Row="11" Style="{StaticResource BaseLabel}" Content="Огранка" />
-            <Label Grid.Column="0" Grid.Row="12" Style="{StaticResource BaseLabel}" Content="Спосіб плетіння" />
-            <Label Grid.Column="0" Grid.Row="13" Style="{StaticResource BaseLabel}" Content="Тип плетіння" />
-            <Label Grid.Column="0" Grid.Row="14" Style="{StaticResource BaseLabel}" Content="Ціна за работу" />
-            <Label Grid.Column="0" Grid.Row="15" Style="{StaticResource BaseLabel}" Content="Ціна" />
+            <Label Grid.Column="0" Grid.Row="11" Style="{StaticResource BaseLabel}" Content="Карат" />
+            <Label Grid.Column="0" Grid.Row="12" Style="{StaticResource BaseLabel}" Content="Огранка" />
+            <Label Grid.Column="0" Grid.Row="13" Style="{StaticResource BaseLabel}" Content="Спосіб плетіння" />
+            <Label Grid.Column="0" Grid.Row="14" Style="{StaticResource BaseLabel}" Content="Тип плетіння" />
+            <Label Grid.Column="0" Grid.Row="15" Style="{StaticResource BaseLabel}" Content="Ціна за работу" />
+            <Label Grid.Column="0" Grid.Row="16" Style="{StaticResource BaseLabel}" Content="Ціна" />
 
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="9" Grid.Row="0" Grid.Column="1" Name="TbProdItem" Style="{StaticResource BaseTextBox}" />
             <TextBlock Grid.Row="1" Grid.Column="1" Name="TblBarCode" Style="{StaticResource BaseTextBlock}" />
@@ -98,17 +100,18 @@
             <ComboBox Grid.Row="4" Grid.Column="1" Name="CbProdGr" Style="{StaticResource BaseComboBox}" />
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="5" Grid.Column="1" Name="TbProdType" Style="{StaticResource BaseTextBox}" />
             <ComboBox Grid.Row="6" Grid.Column="1" Name="CbSupplier" Style="{StaticResource BaseComboBox}" />
-            <TextBox TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="20" Grid.Row="7" Grid.Column="1" Name="TbSize" Style="{StaticResource BaseTextBox}" />
+            <ComboBox Grid.Row="7" Grid.Column="1" Name="CbSize" Style="{StaticResource BaseComboBox}" />
             <TextBox TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="20" Grid.Row="8" Grid.Column="1" Name="TbWeight" Style="{StaticResource BaseTextBox}" />
             <TextBox TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="20" Grid.Row="9" Grid.Column="1" Name="TbClearWeight" Style="{StaticResource BaseTextBox}" />
             <ComboBox Grid.Row="10" Grid.Column="1" Name="CbInsert" Style="{StaticResource BaseComboBox}" />
-            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="11" Grid.Column="1" Name="TbFaceting" Style="{StaticResource BaseTextBox}" />
-            <ComboBox Grid.Row="12" Grid.Column="1" Name="CbWeaveWay" Style="{StaticResource BaseComboBox}" />
-            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="13" Grid.Column="1" Name="TbWeaveType" Style="{StaticResource BaseTextBox}" />
-            <TextBlock  Grid.Row="14" Grid.Column="1" Name="TblWorkPrice" Style="{StaticResource BaseTextBlock}" />
-            <TextBlock Grid.Row="15" Grid.Column="1" Name="TblPrice" Style="{StaticResource BaseTextBlock}" />
+            <TextBox TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" Grid.Row="11" Grid.Column="1" Name="TbCarat" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="12" Grid.Column="1" Name="TbFaceting" Style="{StaticResource BaseTextBox}" />
+            <ComboBox Grid.Row="13" Grid.Column="1" Name="CbWeaveWay" Style="{StaticResource BaseComboBox}" />
+            <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="14" Grid.Column="1" Name="TbWeaveType" Style="{StaticResource BaseTextBox}" />
+            <TextBlock  Grid.Row="16" Grid.Column="1" Name="TblWorkPrice" Style="{StaticResource BaseTextBlock}" />
+            <TextBlock Grid.Row="16" Grid.Column="1" Name="TblPrice" Style="{StaticResource BaseTextBlock}" />
 
-            <Grid Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid Grid.Row="17" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />

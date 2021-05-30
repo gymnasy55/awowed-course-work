@@ -129,6 +129,15 @@ namespace JewelryStore.Desktop.Controls
                     });
                     ItemStackPanel.Children.Add(new TextBlock
                     {
+                        Text = $"Карат: {_vm.Carat}",
+                        Margin = new Thickness(5),
+                        TextAlignment = TextAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        FontFamily = new FontFamily("Calibri"),
+                        FontSize = 16,
+                    });
+                    ItemStackPanel.Children.Add(new TextBlock
+                    {
                         Text = $"Огранка: {_vm.Faceting}",
                         Margin = new Thickness(5),
                         TextAlignment = TextAlignment.Center,

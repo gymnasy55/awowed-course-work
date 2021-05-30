@@ -16,32 +16,15 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
     {
         private List<string> _list;
         
-        private SerialPort _serialPort;
         public ScanWindow()
         {
             InitializeComponent();
 
             _list = new List<string>();
 
-            _serialPort = new SerialPort("COM1")
-            {
-                BaudRate = 9600,
-                Parity = Parity.None,
-                StopBits = StopBits.One,
-                ReceivedBytesThreshold = 8,
-                DataBits = 8,
-                Handshake = Handshake.None,
-                RtsEnable = true,
-                DtrEnable = true
-            };
-            //_serialPort.Open();
         }
 
-        private void ScanWindow_OnClosed(object? sender, EventArgs e)
-        {
-            //_serialPort.Close();
-        }
-
+        //TODO: По штрих-коду смотреть товар в наличии(Если  штрих-код есть и IS_Sold == false) ? Message Box(Есть) и  : Message Box(Нет). Либо добавить в БД поле
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.Text, 0));

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Зміна Вставки" Width="600" Height="200" MinWidth="600" MinHeight="200" MaxWidth="1000" MaxHeight="600" FontFamily="Calibri" FontSize="18"
+        Title="Зміна Вставки" Width="600" Height="350" MinWidth="600" MinHeight="350" MaxWidth="1000" MaxHeight="600" FontFamily="Calibri" FontSize="18"
         Loaded="EditInsWindow_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
@@ -51,6 +51,8 @@
                 <RowDefinition Height ="*" />
                 <RowDefinition Height ="*"/>
                 <RowDefinition Height ="*"/>
+                <RowDefinition Height ="*"/>
+                <RowDefinition Height ="*"/>
                 <RowDefinition Height ="50"/>
             </Grid.RowDefinitions>
 
@@ -62,12 +64,17 @@
             <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource BaseLabel}" Content="Вставка" />
             <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource BaseLabel}" Content="Колір" />
             <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource BaseLabel}" Content="Категорія каменя" />
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource BaseLabel}" Content="Ціна за карат" />
+            <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource BaseLabel}" Content="Ціна за роботу" />
 
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbInsert" Style="{StaticResource BaseTextBox}" />
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="1" Grid.Column="1" Name="TbInsertColor" Style="{StaticResource BaseTextBox}" />
             <ComboBox Grid.Column="1" Grid.Row="2" Name="CbGemCategory" Style="{StaticResource BaseComboBox}" />
+            <TextBox PreviewTextInput="IntPreviewTextInput" Grid.Row="3" Grid.Column="1" Name="TbPrice" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="IntPreviewTextInput" Grid.Row="4" Grid.Column="1" Name="TbWorkPrice" Style="{StaticResource BaseTextBox}" />
 
-            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+
+            <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />

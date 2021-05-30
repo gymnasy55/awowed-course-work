@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Зміна Металу"  Width="400" Height="200" MinWidth="400" MinHeight="200" MaxWidth="1000" MaxHeight="600" FontFamily="Calibri" FontSize="18"
+        Title="Зміна Металу"  Width="400" Height="300" MinWidth="400" MinHeight="300" MaxWidth="1000" MaxHeight="600" FontFamily="Calibri" FontSize="18"
         Loaded="EditMetWindow_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
@@ -47,6 +47,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height ="*" />
                 <RowDefinition Height ="*"/>
+                <RowDefinition Height ="*"/>
+                <RowDefinition Height ="*"/>
                 <RowDefinition Height ="50"/>
             </Grid.RowDefinitions>
 
@@ -57,12 +59,16 @@
 
             <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource BaseLabel}" Content="Метал" />
             <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource BaseLabel}" Content="Проба" />
+            <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource BaseLabel}" Content="Ціна за грам" />
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource BaseLabel}" Content="Ціна за роботу" />
 
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbMetal" Style="{StaticResource BaseTextBox}" />
             <TextBox PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="3" Grid.Row="1" Grid.Column="1" Name="TbSample" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="IntPreviewTextInput" Grid.Row="2" Grid.Column="1" Name="TbPrice" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewTextInput="IntPreviewTextInput" Grid.Row="3" Grid.Column="1" Name="TbWorkPrice" Style="{StaticResource BaseTextBox}" />
 
 
-            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />

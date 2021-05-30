@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -27,6 +28,11 @@ namespace JewelryStore.Desktop.Views
             InitializeComponent();
         }
 
+        private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
         private void EditInsWindow_Loaded(object sender, RoutedEventArgs e)
         {
             _context.Database.EnsureCreated();
@@ -44,9 +50,18 @@ namespace JewelryStore.Desktop.Views
             }
 
             CbGemCategory.SelectedIndex = _gemCategory.IndexOf(_vm.GemCategory);
+            TbPrice.Text = $"{_vm.Price}";
+            TbWorkPrice.Text =$"{_vm.WorkPrice}";
         }
         private void EditBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            if (TbPrice.Text == string.Empty || TbWorkPrice.Text == string.Empty)
+            {
+                {
+                    MessageBox.Show("Ви не заповнили одне з полів: Ціна за карат, Ціна за роботу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте змінити вставку?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
             {
@@ -57,7 +72,9 @@ namespace JewelryStore.Desktop.Views
                         insertion.InsertName = TbInsert.Text.Trim();
                         insertion.InsertColor = TbInsertColor.Text.Trim();
                         insertion.GemCategory = CbGemCategory.SelectionBoxItem.ToString()?.Trim();
-                        if ((_context.Insertions.Any(x => x.InsertName == insertion.InsertName)) && (_context.Insertions.Any(x => x.InsertColor == insertion.InsertColor)))
+                        insertion.Price = float.Parse(TbPrice.Text);
+                        insertion.WorkPrice = float.Parse(TbWorkPrice.Text);
+                        if ((_context.Insertions.Any(x => x.InsertName == insertion.InsertName)) && (_context.Insertions.Any(x => x.InsertColor == insertion.InsertColor)) && TbWorkPrice.Text != String.Empty && TbPrice.Text != String.Empty)
                         {
                             MessageBox.Show("Така вставка вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
@@ -92,6 +109,8 @@ namespace JewelryStore.Desktop.Views
             TbInsert.Text = string.Empty;
             TbInsertColor.Text = string.Empty;
             CbGemCategory.Text = string.Empty;
+            TbPrice.Text = string.Empty;
+            TbWorkPrice.Text = string.Empty;
         }
 
         private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)

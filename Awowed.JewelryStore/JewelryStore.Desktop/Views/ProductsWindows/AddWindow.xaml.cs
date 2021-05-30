@@ -32,9 +32,9 @@ namespace JewelryStore.Desktop.Views
             
             _dictionary = new Dictionary<string, int>
             {
-                { "TbSize", 0 },
                 { "TbWeight", 0 },
-                { "TbClearWeight", 0 }
+                { "TbClearWeight", 0 },
+                { "TbCarat", 0 }
             };
 
             _cmbs = new List<ComboBox>
@@ -42,7 +42,8 @@ namespace JewelryStore.Desktop.Views
                 CbInsert,
                 CbMetal,
                 CbSupplier,
-                CbProdGr
+                CbProdGr,
+                CbSize
             };
 
             _tbs = new List<TextBox>
@@ -50,7 +51,7 @@ namespace JewelryStore.Desktop.Views
                 TbProdItem,
                 TbWeight,
                 TbClearWeight,
-                TbSize
+                TbCarat
             };
         }
 
@@ -88,6 +89,7 @@ namespace JewelryStore.Desktop.Views
             _insertions = _context.Insertions;
 
             var weaveWays = new List<string> { "", "Машинна", "Ручна" };
+            var sizes = new List<float> {0, 14, 14.5f, 15, 15.5f, 16, 16.5f, 17, 17.5f, 18, 18.5f, 19, 19.5f, 20, 20.5f, 21, 21.5f, 22, 22.5f, 23, 23.5f, 24, 40, 42, 45, 50, 55, 58, 60, 65, 70 };
 
             foreach (var insertion in _insertions)
             {
@@ -113,13 +115,18 @@ namespace JewelryStore.Desktop.Views
             {
                 CbWeaveWay.Items.Add(weaveWay);
             }
+
+            foreach (var size in sizes)
+            {
+                CbSize.Items.Add(size);
+            }
         }
 
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
         {
             if (_cmbs.Any(cmb => cmb.SelectedItem == null))
             {
-                MessageBox.Show("Ви заповнили не заповнили одне з випадаючих списків: Метал, Вставки, Постачальник, Група Виробу!", "Помилка",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Ви не заповнили один з випадаючих списків: Метал, Вставки, Постачальник, Група Виробу, Розмір!", "Помилка",MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
             if (_tbs.Any(cmb => cmb.Text == ""))
@@ -145,12 +152,13 @@ namespace JewelryStore.Desktop.Views
                         IdProdGr = _prodgroups.First(x => x.ProdGroupName == CbProdGr.SelectionBoxItem.ToString().Trim()).Id,
                         ProdType = TbProdType.Text.Trim(),
                         IdSupp = _suppliers.First(x => x.Suplname == CbSupplier.SelectionBoxItem.ToString().Trim()).Id,
-                        ProdSize = Convert.ToSingle(TbSize.Text.Trim()),
+                        ProdSize = float.Parse(CbSize.SelectionBoxItem.ToString().Trim()),
                         Weight = Convert.ToSingle(TbWeight.Text.Trim()),
                         ClearWeight = Convert.ToSingle(TbClearWeight.Text.Trim()),
                         IdIns = CbInsert.SelectedItem.ToString().Contains('|')
                             ? _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id
                             : _insertions.First(x => x.InsertName == CbInsert.SelectedItem.ToString()).Id,
+                        Carat = float.Parse(TbCarat.Text),
                         Faceting = TbFaceting.Text.Trim(),
                         WeaveWay = CbWeaveWay.SelectionBoxItem.ToString()?.Trim(),
                         WeaveType = TbWeaveType.Text.Trim(),
@@ -178,9 +186,10 @@ namespace JewelryStore.Desktop.Views
             CbSupplier.Text = string.Empty;
             TbProdType.Text = string.Empty;
             CbInsert.Text = string.Empty;
-            TbSize.Text = string.Empty;
+            CbSize.Text = string.Empty;
             TbWeight.Text = string.Empty;
             TbClearWeight.Text = string.Empty;
+            TbCarat.Text = string.Empty;
             TbFaceting.Text = string.Empty;
             CbWeaveWay.Text = string.Empty;
             TbWeaveType.Text = string.Empty;
@@ -232,7 +241,7 @@ namespace JewelryStore.Desktop.Views
             if (textBox.Text.Length < _dictionary[textBox.Name])
             {
                 _dictionary[textBox.Name]--;
-                if (textBox.Text.Length > 0 && textBox.Text[^1] == ',' && textBox.Name != "TbWeight")
+                if (textBox.Text.Length > 0 && textBox.Text[^1] == ',' && textBox.Name != "TbWeight" && textBox.Name != "TbClearWeight" && textBox.Name != "TbCarat")
                 {
                     textBox.Text = textBox.Text.Replace(",", "");
                     _dictionary[textBox.Name]--;
@@ -241,7 +250,7 @@ namespace JewelryStore.Desktop.Views
                 textBox.CaretIndex = textBox.Text.Length;
             }
             
-            if (textBox.Name == "TbWeight")
+            if (textBox.Name == "TbWeight" && textBox.Name == "TbCarat")
             {
                 if (textBox.Text.Length == 0)
                 {

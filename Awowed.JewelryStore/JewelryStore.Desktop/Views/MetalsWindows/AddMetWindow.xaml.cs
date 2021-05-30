@@ -29,24 +29,34 @@ namespace JewelryStore.Desktop.Views
 
         private void AddBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            if (TbPrice.Text == string.Empty || TbWorkPrice.Text == string.Empty)
+            {
+                {
+                    MessageBox.Show("Ви не заповнили одне з полів: Ціна за грам, Ціна за роботу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
             var result = MessageBox.Show("Чи впевнені Ви, що бажаєте додати метал?", "Підтвердження", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    if (TbSample.Text != string.Empty && TbSample.Text.Length == 3)
+                    if (TbSample.Text != string.Empty && TbSample.Text.Length == 3 && TbWorkPrice.Text != String.Empty && TbPrice.Text != String.Empty)
                     {
                         var metal = new Metal
                         {
                             Id = (byte)(_context.Metals.OrderBy(x => x.Id).Last().Id + 1),
                             MetalName = TbMetal.Text.Trim(),
-                            Sample = System.Convert.ToInt32(TbSample.Text)
+                            Sample = System.Convert.ToInt32(TbSample.Text),
+                            Price = float.Parse(TbPrice.Text),
+                            WorkPrice = float.Parse(TbWorkPrice.Text)
+
                         };
                         if (_context.Metals.Any(x => x.Sample == metal.Sample) && _context.Metals.Any(x => x.MetalName == metal.MetalName))
                         {
                             MessageBox.Show("Такий метал вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
-                        if (metal.MetalName == "")
+                        if (metal.MetalName == String.Empty)
                         {
                             MessageBox.Show("Введіть назву металу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
@@ -70,6 +80,8 @@ namespace JewelryStore.Desktop.Views
         {
             TbMetal.Text = string.Empty;
             TbSample.Text = string.Empty;
+            TbPrice.Text = string.Empty;
+            TbWorkPrice.Text = string.Empty;
         }
 
         private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
