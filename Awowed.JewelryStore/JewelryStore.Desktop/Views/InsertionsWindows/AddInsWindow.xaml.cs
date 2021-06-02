@@ -34,6 +34,10 @@ namespace JewelryStore.Desktop.Views
             }
         }
 
+        private void TextBoxes_OnPreviewSpaceClicked(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space) e.Handled = true;
+        }
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));

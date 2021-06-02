@@ -101,10 +101,10 @@
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" MaxLength="20" Grid.Row="5" Grid.Column="1" Name="TbProdType" Style="{StaticResource BaseTextBox}" />
             <ComboBox Grid.Row="6" Grid.Column="1" Name="CbSupplier" Style="{StaticResource BaseComboBox}" />
             <ComboBox Grid.Row="7" Grid.Column="1" Name="CbSize" Style="{StaticResource BaseComboBox}" />
-            <TextBox TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" MaxLength="20" Grid.Row="8" Grid.Column="1" Name="TbWeight" Style="{StaticResource BaseTextBox}" />
-            <TextBox TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" MaxLength="20" Grid.Row="9" Grid.Column="1" Name="TbClearWeight" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewKeyDown="TextBoxes_OnPreviewSpaceClicked" TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" MaxLength="20" Grid.Row="8" Grid.Column="1" Name="TbWeight" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewKeyDown="TextBoxes_OnPreviewSpaceClicked" TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" MaxLength="20" Grid.Row="9" Grid.Column="1" Name="TbClearWeight" Style="{StaticResource BaseTextBox}" />
             <ComboBox Grid.Row="10" Grid.Column="1" Name="CbInsert" Style="{StaticResource BaseComboBox}" />
-            <TextBox TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" Grid.Row="11" Grid.Column="1" Name="TbCarat" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewKeyDown="TextBoxes_OnPreviewSpaceClicked" TextChanged="IntTextBox_OnTextChanged" PreviewTextInput="IntPreviewTextInput" Grid.Row="11" Grid.Column="1" Name="TbCarat" Style="{StaticResource BaseTextBox}" />
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" MaxLength="20" Grid.Row="12" Grid.Column="1" Name="TbFaceting" Style="{StaticResource BaseTextBox}" />
             <ComboBox Grid.Row="13" Grid.Column="1" Name="CbWeaveWay" Style="{StaticResource BaseComboBox}" />
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" MaxLength="20" Grid.Row="14" Grid.Column="1" Name="TbWeaveType" Style="{StaticResource BaseTextBox}" />

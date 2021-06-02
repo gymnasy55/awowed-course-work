@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -158,7 +159,7 @@ namespace JewelryStore.Desktop.Views
                         IdIns = CbInsert.SelectedItem.ToString().Contains('|')
                             ? _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Id
                             : _insertions.First(x => x.InsertName == CbInsert.SelectedItem.ToString()).Id,
-                        Carat = float.Parse(TbCarat.Text),
+                        Carat = float.Parse(TbCarat.Text.Trim()),
                         Faceting = TbFaceting.Text.Trim(),
                         WeaveWay = CbWeaveWay.SelectionBoxItem.ToString()?.Trim(),
                         WeaveType = TbWeaveType.Text.Trim(),
@@ -195,10 +196,15 @@ namespace JewelryStore.Desktop.Views
             TbWeaveType.Text = string.Empty;
         }
 
+
+
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if(!(sender is TextBox textBox))
+            
+            if (!(sender is TextBox textBox))
                 return;
+
+            if (e.Text.Contains(' ')) MessageBox.Show("fuck");
 
             if ((textBox.Text.Contains(',') && e.Text[^1] == ',')
                 || (!Regex.IsMatch(e.Text[^1].ToString(), @"\d|,"))
@@ -217,6 +223,11 @@ namespace JewelryStore.Desktop.Views
             }
 
             _dictionary[textBox.Name]++;
+        }
+
+        private void TextBoxes_OnPreviewSpaceClicked(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space) e.Handled = true;
         }
 
         private void TextBoxes_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -250,7 +261,7 @@ namespace JewelryStore.Desktop.Views
                 textBox.CaretIndex = textBox.Text.Length;
             }
             
-            if (textBox.Name == "TbWeight" && textBox.Name == "TbCarat")
+            if (textBox.Name == "TbWeight" || textBox.Name == "TbCarat")
             {
                 if (textBox.Text.Length == 0)
                 {
@@ -258,8 +269,21 @@ namespace JewelryStore.Desktop.Views
                     TblWorkPrice.Text = "0 UAH";
                     return;
                 }
-                TblPrice.Text = $"{Settings.GramSalePrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
-                TblWorkPrice.Text = $"{Settings.GramWorkPrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text)} UAH";
+
+                if (CbMetal.SelectionBoxItem.ToString() != string.Empty && CbInsert.SelectionBoxItem.ToString() != string.Empty)
+                {
+                    if (CbInsert.SelectedItem.ToString().Contains("|"))
+                    {
+                        TblPrice.Text = $"{Math.Round(_metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Substring(0, CbMetal.SelectionBoxItem.ToString().IndexOf('|') - 1)).Price * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text) + _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).Price * Convert.ToSingle(Regex.IsMatch(TbCarat.Text, @"\d+,") ? TbCarat.Text + "0" : TbCarat.Text), 1)} UAH";
+                        TblWorkPrice.Text = $"{Math.Round(_metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Substring(0, CbMetal.SelectionBoxItem.ToString().IndexOf('|') - 1)).WorkPrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text) + _insertions.First(x => x.InsertName == CbInsert.SelectionBoxItem.ToString().Substring(0, CbInsert.SelectionBoxItem.ToString().IndexOf('|') - 1)).WorkPrice * Convert.ToSingle(Regex.IsMatch(TbCarat.Text, @"\d+,") ? TbCarat.Text + "0" : TbCarat.Text), 1)} UAH";
+                    }
+                    else
+                    {
+                        TblPrice.Text = $"{Math.Round(_metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Substring(0, CbMetal.SelectionBoxItem.ToString().IndexOf('|') - 1)).Price * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text) + _insertions.First(x => x.InsertName == CbInsert.SelectedItem.ToString()).Price * Convert.ToSingle(Regex.IsMatch(TbCarat.Text, @"\d+,") ? TbCarat.Text + "0" : TbCarat.Text), 1)} UAH";
+                        TblWorkPrice.Text = $"{Math.Round(_metals.First(x => x.MetalName == CbMetal.SelectionBoxItem.ToString().Substring(0, CbMetal.SelectionBoxItem.ToString().IndexOf('|') - 1)).WorkPrice * Convert.ToSingle(Regex.IsMatch(TbWeight.Text, @"\d+,") ? TbWeight.Text + "0" : TbWeight.Text) + _insertions.First(x => x.InsertName == CbInsert.SelectedItem.ToString()).WorkPrice * Convert.ToSingle(Regex.IsMatch(TbCarat.Text, @"\d+,") ? TbCarat.Text + "0" : TbCarat.Text), 1)} UAH";
+                    }
+
+                }
             }
         }
     }

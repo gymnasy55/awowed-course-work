@@ -63,9 +63,9 @@
             <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource BaseLabel}" Content="Ціна за роботу" />
 
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="0" Grid.Column="1" Name="TbMetal" Style="{StaticResource BaseTextBox}" />
-            <TextBox PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="3" Grid.Row="1" Grid.Column="1" Name="TbSample" Style="{StaticResource BaseTextBox}" />
-            <TextBox PreviewTextInput="IntPreviewTextInput" Grid.Row="2" Grid.Column="1" Name="TbPrice" Style="{StaticResource BaseTextBox}" />
-            <TextBox PreviewTextInput="IntPreviewTextInput" Grid.Row="3" Grid.Column="1" Name="TbWorkPrice" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewKeyDown="TextBoxes_OnPreviewSpaceClicked" PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="3" Grid.Row="1" Grid.Column="1" Name="TbSample" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewKeyDown="TextBoxes_OnPreviewSpaceClicked" PreviewTextInput="IntPreviewTextInput" Grid.Row="2" Grid.Column="1" Name="TbPrice" Style="{StaticResource BaseTextBox}" />
+            <TextBox PreviewKeyDown="TextBoxes_OnPreviewSpaceClicked" PreviewTextInput="IntPreviewTextInput" Grid.Row="3" Grid.Column="1" Name="TbWorkPrice" Style="{StaticResource BaseTextBox}" />
 
 
             <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">

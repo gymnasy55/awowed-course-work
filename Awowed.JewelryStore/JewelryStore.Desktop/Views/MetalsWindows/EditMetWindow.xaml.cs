@@ -37,6 +37,11 @@ namespace JewelryStore.Desktop.Views
             TbPrice.Text = $"{_vm.Price}";
             TbWorkPrice.Text = $"{_vm.WorkPrice}";
         }
+        private void TextBoxes_OnPreviewSpaceClicked(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space) e.Handled = true;
+        }
+
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
