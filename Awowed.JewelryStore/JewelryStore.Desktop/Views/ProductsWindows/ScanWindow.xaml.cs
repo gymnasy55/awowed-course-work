@@ -24,7 +24,11 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
 
         }
 
-        //TODO: По штрих-коду смотреть товар в наличии(Если  штрих-код есть и IS_Sold == false) ? Message Box(Есть) и  : Message Box(Нет). Либо добавить в БД поле
+        private void TextBoxes_OnPreviewSpaceClicked(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space) e.Handled = true;
+        }
+
         private void IntPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.Text, 0));

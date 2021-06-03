@@ -35,7 +35,6 @@ namespace JewelryStore.Desktop.Views
         private JewerlyItemViewModel _vm;
         private IQueryable<Supplier> _suppliers;
 
-
         public PrintWindow()
         {
             InitializeComponent();

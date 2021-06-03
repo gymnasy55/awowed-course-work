@@ -112,5 +112,11 @@ namespace JewelryStore.Desktop.Views
             var scanWindow = new ScanWindow();
             scanWindow.ShowDialog();
         }
+
+        private void CheckButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var checkWindow = new CheckWindow();
+            checkWindow.ShowDialog();
+        }
     }
 }

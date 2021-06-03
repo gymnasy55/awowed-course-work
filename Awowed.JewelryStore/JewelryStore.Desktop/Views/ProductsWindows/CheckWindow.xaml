@@ -1,0 +1,98 @@
+﻿<Window x:Class="JewelryStore.Desktop.Views.ProductsWindows.CheckWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JewelryStore.Desktop.Views.ProductsWindows"
+        mc:Ignorable="d"
+        Title="Перевірка виробу на складі" MinHeight="1050" Height="1050" MaxHeight="1050" MinWidth="750" Width="750" MaxWidth="750" FontFamily="Calibri" FontSize="14"
+        Loaded="СheckWindow_OnLoaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Label" x:Key ="BaseLabel">
+            <Setter Property="FontWeight" Value = "Bold"/>
+
+        </Style>
+
+        <Style TargetType="Button" x:Key ="BaseButton">
+            <Setter Property="FontWeight" Value = "Bold" />
+            <Setter Property="Padding" Value = "5,2"/>
+            <Setter Property="FontSize" Value = "25"/>
+            <Setter Property="Margin" Value = "2 1"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="BaseTextBox">
+            <Setter Property="FontWeight" Value = "Regular" />
+            <Setter Property="Padding" Value = "5,2"/>
+            <Setter Property="FontSize" Value = "25"/>
+            <Setter Property="Margin" Value = "10"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=TextBox}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Column="0"  PreviewKeyDown="TextBoxes_OnPreviewSpaceClicked" KeyDown="TextBox_OnKeyDown" Grid.Row="0" x:Name="TextBox" Width="300" PreviewTextInput="IntPreviewTextInput" TextBox.MaxLength="8" HorizontalAlignment="Left" Style ="{StaticResource BaseTextBox}"/>
+        <Button Grid.Column="1" Content="Показати вироби" Click="ShowNewListClicked" Margin="10" Style ="{StaticResource BaseButton}"/>
+
+        <Grid x:Name="PrintGrid"  Grid.Row="1" ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="160" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.ColumnSpan="4" 
+                      Grid.Column="0"
+                      Grid.Row="1" 
+                      x:Name="DataGrid"
+                      AutoGenerateColumns="False" 
+                      MinWidth="750" MaxWidth="750"
+                      ColumnWidth="*"
+                      IsReadOnly="True"
+                      HorizontalScrollBarVisibility="Hidden"
+                      >
+                <DataGrid.Columns>
+                    <DataGridTextColumn MinWidth="40" MaxWidth="40" Header="№" Binding="{Binding ShowId}"/>
+                    <DataGridTextColumn MinWidth="90" MaxWidth="90" Header="Артикул" Binding="{Binding ProdItem}"/>
+                    <DataGridTextColumn x:Name="BarcodeColumn" MinWidth="90" MaxWidth="90" Header="Штрих-код" Binding="{Binding BarCode}"/>
+                    <DataGridTextColumn x:Name="DateColumn" MinWidth="90" MaxWidth="90" Header="Дата пр." Binding="{Binding ArrivalDateString}"/>
+                    <DataGridTextColumn MinWidth="100" MaxWidth="100" Header="Назва" Binding="{Binding ProdGroupString}"/>
+                    <DataGridTextColumn MinWidth="60" MaxWidth="60" Header="Ч. вага" Binding="{Binding ClearWeight}" />
+                    <DataGridTextColumn MinWidth="60" MaxWidth="60" Header="Вага" Binding="{Binding Weight}"/>
+                    <DataGridTextColumn MinWidth="70" MaxWidth="70" Header="Ціна роб." Binding="{Binding PriceForTheWork}"/>
+                    <DataGridTextColumn MinWidth="70" MaxWidth="70" Header="Ціна" Binding="{Binding Price}"/>
+                    <DataGridTextColumn x:Name="ExistsColumn" FontSize="20" FontWeight="Bold" MinWidth="30" MaxWidth="30" Header="Є" Binding="{Binding Exists}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Margin="20,0,20,0" FontWeight="Bold">Всього:</TextBlock>
+                <TextBlock Margin="0,0,5,0">Чистої ваги:</TextBlock>
+                <TextBlock x:Name="ClearWeightTb" Margin="0,0,10,0">ХХ</TextBlock>
+                <TextBlock Margin="0,0,5,0">Ваги:</TextBlock>
+                <TextBlock x:Name="WeightTb" Margin="0,0,10,0">ХХ</TextBlock>
+                <TextBlock Margin="0,0,5,0">Ціни за роботу:</TextBlock>
+                <TextBlock x:Name="WorkPriceTb" Margin="0,0,10,0">ХХ</TextBlock>
+                <TextBlock Margin="0,0,5,0">Ціна за продаж:</TextBlock>
+                <TextBlock x:Name="PriceTb">ХХ</TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <Button Grid.ColumnSpan="2" Grid.Row="2" Content="Друк" Click="ButtonBase_OnClick" Margin="10" Style ="{StaticResource BaseButton}"/>
+    </Grid>
+</Window>
