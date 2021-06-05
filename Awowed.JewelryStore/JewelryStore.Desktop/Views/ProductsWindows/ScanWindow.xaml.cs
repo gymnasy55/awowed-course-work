@@ -77,6 +77,7 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
             ListBox.Items.Clear();
         }
 
+        // TODO: Button printing recipe
         private void ListBox_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)

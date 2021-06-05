@@ -155,7 +155,7 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
                 MessageBox.Show("Деяких товарів нема!");
                 foreach (var item in Collection)
                 {
-                    if(item.BarCode != NewCollection.First(x => !x.IsSold).BarCode)
+                    if(item.BarCode != NewCollection.FirstOrDefault(x => !x.IsSold)?.BarCode)
                         NewCollection.Add(item);
                 }
                 DataGrid.ItemsSource = NewCollection.Where(x => x.Exists == "-");
