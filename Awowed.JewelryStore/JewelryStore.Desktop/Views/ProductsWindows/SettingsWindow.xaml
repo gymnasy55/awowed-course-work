@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JewelryStore.Desktop.Views"
         mc:Ignorable="d"
-        Title="Налаштування" Height="300" Width="800" MinWidth="800" MinHeight="300"
+        Title="Налаштування" Height="100" Width="800" MinWidth="500" MinHeight="100" MaxHeight="100"
         Loaded="SettingsWindow_OnLoaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Label" x:Key ="BaseLabel">
@@ -38,75 +38,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition  />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
+            <ColumnDefinition  />
+            <ColumnDefinition  />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" 
-                   Grid.Column="0" 
-                   TextAlignment="Left"
-                   VerticalAlignment="Center"
-                   Margin="5"
-                   FontFamily="Calibri"
-                   FontSize="22"
-                   FontWeight="Bold"
-                   Text="Ціна грама за працю:" />
-
-        <TextBox Grid.Row="0"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Margin="5"
-                 FontFamily="Calibri"
-                 FontSize="22"
-                 FontWeight="Bold" 
-                 x:Name="PricePerGramWorkTb" />
-
-        <TextBlock Grid.Row="1" 
-                   Grid.Column="0" 
-                   TextAlignment="Left"
-                   VerticalAlignment="Center"
-                   Margin="5"
-                   FontFamily="Calibri"
-                   FontSize="22"
-                   FontWeight="Bold"
-                   Text="Ціна грама за продаж:" />
-
-        <TextBox Grid.Row="1"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Margin="5"
-                 FontFamily="Calibri"
-                 FontSize="22"
-                 FontWeight="Bold" 
-                 x:Name="PricePerGramSaleTb" />
-
-        <Button Grid.Row="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="2" 
-                Content="Зберегти ціну"
-                Height="40"
-                Margin="5"
-                FontFamily="Calibri"
-                FontSize="24"
-                FontWeight="Bold" 
-                Click="ButtonBase_OnClick" />
-        
-        <Grid Grid.Row="3" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-
-            <ComboBox Grid.Column="0" Name="cbOpen"  Style="{StaticResource BaseComboBox}" RenderTransformOrigin="0.5,0.5" />
-            <Button Grid.Column="1" Style ="{StaticResource BaseButton}" Name ="openBtn" Content="Перейти" Click="OpenFromCbWindowBtn_Clicked"/>
-        </Grid>
+        <ComboBox Grid.Column="0" Name="cbOpen"  Style="{StaticResource BaseComboBox}" RenderTransformOrigin="0.5,0.5" />
+        <Button Grid.Column="1" Style ="{StaticResource BaseButton}" Name ="openBtn" Content="Перейти" Click="OpenFromCbWindowBtn_Clicked"/>
     </Grid>
 </Window>

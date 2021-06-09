@@ -73,6 +73,7 @@ namespace JewelryStore.Desktop.Views
         private void FirstPartButton_OnClick(object sender, RoutedEventArgs e)
         {
             var printDialog = new PrintDialog();
+
             if (printDialog.ShowDialog() == true)
             {
                 printDialog.PrintVisual(PrintGrid, "Grid");
