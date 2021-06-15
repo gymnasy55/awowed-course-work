@@ -110,10 +110,11 @@ namespace JewelryStore.Desktop.Views
 
         private void FirstPartButton_OnClick(object sender, RoutedEventArgs e)
         {
+            var tempFilePath = @"D:\ХПКК\3 курс\КУРСАЧ\src\Awowed.JewelryStore\JewelryStore.Desktop";
             var document1 = new Document();
             var document2 = new Document();
-            var samplePath1 = @"d:\Label1.docx";
-            var samplePath2 = @"d:\Label2.docx";
+            var samplePath1 = $@"{tempFilePath}\Label1.docx";
+            var samplePath2 = $@"{tempFilePath}\Label2.docx";
             document1.LoadFromFile(samplePath1);
             document2.LoadFromFile(samplePath2);
 
