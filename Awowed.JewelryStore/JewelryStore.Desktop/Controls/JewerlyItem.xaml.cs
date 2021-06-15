@@ -230,8 +230,17 @@ namespace JewelryStore.Desktop.Controls
 
         private void PrintTagButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var articleWindow = new ArticleWindow(_vm);
-            articleWindow.ShowDialog();
+            using var context = new AppDbContext();
+
+            if (context.Products.FirstOrDefault(x => x.Id == _vm.Id) != null && !context.Products.FirstOrDefault(x => x.Id == _vm.Id).IsSold)
+            {
+                var articleWindow = new ArticleWindow(_vm);
+                articleWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Цей товар проданий!", "Увага", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         #endregion

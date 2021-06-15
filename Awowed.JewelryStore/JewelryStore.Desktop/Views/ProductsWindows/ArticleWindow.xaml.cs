@@ -1,19 +1,29 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using JewelryStore.Desktop.Models;
 using JewelryStore.Desktop.ViewModels;
+using Microsoft.Win32;
 using ZXing;
+using Spire.Doc;
+using Spire.Doc.Documents;
+using Spire.Doc.Fields;
+using Xceed.Words.NET;
+using Document = Spire.Doc.Document;
+
 
 namespace JewelryStore.Desktop.Views
 {
     /// <summary>
     /// Interaction logic for ArticleWindow.xaml
     /// </summary>
-    public partial class ArticleWindow : Window
+    public partial class ArticleWindow : System.Windows.Window
     {
         private readonly JewerlyItemViewModel _vm;
 
@@ -42,7 +52,7 @@ namespace JewelryStore.Desktop.Views
             var writer = new BarcodeWriter() { Format = BarcodeFormat.CODE_128 };
             var img = writer.Write(text);
             BarcodeImage.Source = BitmapToImageSource(img);
-           
+
             TbArticle.Text = _vm.ProdItem;
             TbBarcode.Text = _vm.BarCode;
             TbWeight.Text = $"{_vm.Weight}";
@@ -66,39 +76,97 @@ namespace JewelryStore.Desktop.Views
             ResultTbWeight.Text = $"Вага: {TbWeight.Text}";
             ResultTbWeight2.Text = $"Вага: {TbWeight.Text}";
             ResultTbDate.Text = TbDate.Text;
+
+            var folderPath = @"d:\Label_App_Folder";
+            if (!Directory.Exists(folderPath)) 
+                Directory.CreateDirectory(folderPath);
         }
 
-        //TODO: Save it or transpose for BarTender
+        public Dictionary<string, string> GetReplaceDictionary1()
+        {
+            var replaceDict = new Dictionary<string, string>
+            {
+                {"#prod_group#", TbGroup.Text},
+                {"#metal#", $"{TbMetal.Text} {TbSample.Text}°"},
+                {"#article#", TbArticle.Text.Trim()},
+                {"#size#", $"Розмір: {TbSize.Text}"},
+                {"#weight#", $"Вага: {TbWeight.Text}"},
+                {"#work_price#", $"{TbPriceWork.Text} UAH"}
+            };
+            return replaceDict;
+        }
+
+        public Dictionary<string, string> GetReplaceDictionary2()
+        {
+            var replaceDict = new Dictionary<string, string>
+            {
+                {"#date#", $"{TbDate.Text}"},
+                {"#article#", $"{TbArticle.Text}"},
+                {"#weight#", $"Вага: {TbWeight.Text}"},
+                {"#price#", $"{TbPrice.Text} UAH"},
+            };
+            return replaceDict;
+        }
 
         private void FirstPartButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var printDialog = new PrintDialog();
+            var document1 = new Document();
+            var document2 = new Document();
+            var samplePath1 = @"d:\Label1.docx";
+            var samplePath2 = @"d:\Label2.docx";
+            document1.LoadFromFile(samplePath1);
+            document2.LoadFromFile(samplePath2);
 
-            if (printDialog.ShowDialog() == true)
+            var folderItemPath = $@"d:\Label_App_Folder\Товар_{TbBarcode.Text.Trim()}";
+            if (!Directory.Exists(folderItemPath))
+                Directory.CreateDirectory(folderItemPath);
+
+            var dictReplace1 = GetReplaceDictionary1();
+            var dictReplace2 = GetReplaceDictionary2();
+
+            foreach (var keyValuePair in dictReplace1)
             {
-                printDialog.PrintVisual(PrintGrid, "Grid");
+                document1.Replace(keyValuePair.Key, keyValuePair.Value, true, true);
             }
-            //var fileDialog = new SaveFileDialog
-            //{
-            //    Filter = "PNG files|*.png|All Files|*.*", 
-            //    Title = "Save diagram as PNG"
-            //};
-            //if (fileDialog.ShowDialog() != true) return;
-            //var bitmap = new RenderTargetBitmap((int)PrintGrid.ActualWidth, (int)PrintGrid.ActualHeight, 96, 96, PixelFormats.Pbgra32);
-            //bitmap.Render(PrintGrid);
-            //using var stream = File.Create(fileDialog.FileName);
-            //var encoder = new JpegBitmapEncoder { QualityLevel = 300 };
-            //encoder.Frames.Add(BitmapFrame.Create(bitmap));
-            //encoder.Save(stream);
-        }
+            foreach (var keyValuePair in dictReplace2)
+            {
+                document2.Replace(keyValuePair.Key, keyValuePair.Value, true, true);
+            }
 
-        //private void SecondPartButton_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    var printDialog = new PrintDialog();
-        //    if (printDialog.ShowDialog() == true)
-        //    {
-        //        printDialog.PrintVisual(PrintGrid2, "Grid");
-        //    }
-        //}
+            #region Image
+
+            var text = _vm.BarCode;
+            var writer = new BarcodeWriter() { Format = BarcodeFormat.CODE_128 };
+            var img = writer.Write(text);
+            BarcodeImage.Source = BitmapToImageSource(img);
+
+            var imagePath = $@"{folderItemPath}\img_{TbBarcode.Text.Trim()}.jpg";
+            img.Save(imagePath);
+
+            if (File.Exists(imagePath))
+            {
+                Section section = document2.Sections[0];
+                Paragraph paragraph = section.AddParagraph();
+                DocPicture picture = paragraph.AppendPicture(System.Drawing.Image.FromFile(imagePath));
+                picture.Width = 66;
+                picture.Height = 50;
+            }
+            #endregion
+
+            var fileName1 = $@"{folderItemPath}\{TbBarcode.Text.Trim()}_1.docx";
+            var fileName2 = $@"{folderItemPath}\{TbBarcode.Text.Trim()}_2.docx";
+            if (!File.Exists(fileName1) || !File.Exists(fileName2))
+            {
+                document1.SaveToFile(fileName1);
+                document2.SaveToFile(fileName2);
+                MessageBox.Show("Створено 2 файли-бірки", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
+                document1.Close();
+                document2.Close();
+                return;
+            }
+            MessageBox.Show("Вже є така бирка!", "Увага", MessageBoxButton.OK, MessageBoxImage.Warning);
+            document1.Close();
+            document2.Close();
+        }
     }
 }

@@ -89,7 +89,7 @@ namespace JewelryStore.Desktop.Views
                                                   .Contains(text)
                                               || context.Prodgroups.First(c => c.Id == x.IdProdGr).ProdGroupName
                                                   .ToLower().Contains(text)
-                                              || ("продано".Equals(text) && x.IsSold) || ("не продано".Equals(text) && !x.IsSold)
+                                              || ("продано".StartsWith(text) && x.IsSold) || ("не продано".StartsWith(text) && !x.IsSold)
                                               || x.BarCode.ToLower().Contains(text)
                                               || x.ArrivalDate.ToString().ToLower().Contains(text));
             }

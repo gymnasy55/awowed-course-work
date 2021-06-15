@@ -20,6 +20,8 @@
         <Style x:Key="BaseTextBlock" TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="10" />
             <Setter Property="FontSize" Value="18" />
+            <Setter Property="Height" Value="38" />
+            <Setter Property="MaxHeight" Value="38" />
         </Style>
 
         <Style x:Key="BaseTextBox" TargetType="{x:Type TextBox}">
@@ -136,17 +138,18 @@
                 </Canvas>
             </Viewbox>
 
-            <Label FontSize="22" FontWeight="Bold" Content="     Goldsmith" Width="200" Height="Auto" Padding="10" Background="White" HorizontalAlignment="Left" Margin="63,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.498,-0.948"/>
-            <TextBlock x:Name="ResultTbGroup"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbMetalSample"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbArticle"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbSize"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbWeight"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbPriceWork"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbArticle2"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,444,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbWeight2"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,485,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbPrice"  Width="200" Height="Auto" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,526,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="ResultTbDate"  Width="200" Height="30" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Label FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center" Content="Goldsmith" Width="200" Padding="10" Background="White" HorizontalAlignment="Left" Margin="63,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.498,-0.948"/>
+            <Label FontSize="14" HorizontalContentAlignment="Center" Content="ФОП Ковальов А.О." Width="200" Height="Auto" Background="White" HorizontalAlignment="Left" Margin="63,96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.498,-0.948"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbGroup"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbMetalSample"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbArticle"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbSize"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbWeight"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" FontSize="16" x:Name="ResultTbPriceWork"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbArticle2"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,434,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbWeight2"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,475,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbPrice"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,516,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource BaseTextBlock}" x:Name="ResultTbDate"  Width="200" Padding="10" Background="White" TextAlignment="Center"  HorizontalAlignment="Left" Margin="63,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
         </Grid>
 
