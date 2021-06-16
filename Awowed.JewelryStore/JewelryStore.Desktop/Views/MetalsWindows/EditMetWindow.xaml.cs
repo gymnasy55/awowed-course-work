@@ -18,7 +18,6 @@ namespace JewelryStore.Desktop.Views
         private readonly AppDbContext _context = new AppDbContext();
 
         private MetalItemViewModel _vm;
-        private IQueryable<Metal> _metals;
         public EditMetWindow(MetalItemViewModel vm)
         {
             _vm = vm;
@@ -29,8 +28,9 @@ namespace JewelryStore.Desktop.Views
         {
             _context.Database.EnsureCreated();
             _context.Metals.Load();
+            _context.Insertions.Load();
+            _context.Products.Load();
 
-            _metals = _context.Metals;
 
             TbMetal.Text = _vm.MetalName;
             TbSample.Text = $"{_vm.Sample}";
@@ -61,26 +61,34 @@ namespace JewelryStore.Desktop.Views
             {
                 case MessageBoxResult.Yes:
                     var metal = _context.Metals.FirstOrDefault(x => x.Id == _vm.Id);
-                    if(metal != null && TbSample.Text != string.Empty && TbSample.Text.Length == 3)
+                    if (metal != null && TbSample.Text != string.Empty && TbSample.Text.Length == 3)
                     {
                         metal.MetalName = TbMetal.Text.Trim();
                         metal.Sample = System.Convert.ToInt32(TbSample.Text);
                         metal.Price = float.Parse(TbPrice.Text);
                         metal.WorkPrice = float.Parse(TbWorkPrice.Text);
-                        if (_context.Metals.Any(x => x.Sample == metal.Sample) && _context.Metals.Any(x => x.MetalName == metal.MetalName))
-                        {
-                            MessageBox.Show("Такий метал вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            return;
-                        }
-                        if (metal.MetalName == "" )
+                        if (metal.MetalName == string.Empty)
                         {
                             MessageBox.Show("Введіть назву металу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
-                        if (TbWorkPrice.Text == String.Empty || TbPrice.Text == String.Empty)
+                        if (TbWorkPrice.Text == string.Empty || TbPrice.Text == string.Empty)
                         {
                             MessageBox.Show("Введіть ціни металу!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
+                        }
+
+                        var insertions = _context.Insertions.ToList();
+                        foreach (var product in _context.Products.Where(product => product.IdMet == metal.Id && !product.IsSold))
+                        {
+                            var insertion = insertions.FirstOrDefault(insert => insert.Id == product.IdIns);
+                            if (insertion != null)
+                            {
+                                product.Price =
+                                    (float)Math.Round(metal.Price * product.Weight + insertion.Price * product.Carat, 1);
+                                product.PriceForTheWork =
+                                    (float)Math.Round(metal.WorkPrice * product.Weight + insertion.WorkPrice * product.Carat, 1);
+                            }
                         }
                         _context.SaveChanges();
                         MessageBox.Show("Успішно змінено метал в бд!", "Успіх", MessageBoxButton.OK,

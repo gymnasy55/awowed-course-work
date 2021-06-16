@@ -108,7 +108,7 @@
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="12" Grid.Column="1" Name="TbFaceting" Style="{StaticResource BaseTextBox}" />
             <ComboBox Grid.Row="13" Grid.Column="1" Name="CbWeaveWay" Style="{StaticResource BaseComboBox}" />
             <TextBox PreviewTextInput="TextBoxes_OnPreviewTextInput" TextBox.MaxLength="20" Grid.Row="14" Grid.Column="1" Name="TbWeaveType" Style="{StaticResource BaseTextBox}" />
-            <TextBlock  Grid.Row="16" Grid.Column="1" Name="TblWorkPrice" Style="{StaticResource BaseTextBlock}" />
+            <TextBlock  Grid.Row="15" Grid.Column="1" Name="TblWorkPrice" Style="{StaticResource BaseTextBlock}" />
             <TextBlock Grid.Row="16" Grid.Column="1" Name="TblPrice" Style="{StaticResource BaseTextBlock}" />
 
             <Grid Grid.Row="17" Grid.Column="0" Grid.ColumnSpan="2">

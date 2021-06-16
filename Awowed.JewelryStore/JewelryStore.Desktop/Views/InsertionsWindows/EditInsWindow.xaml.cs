@@ -71,27 +71,40 @@ namespace JewelryStore.Desktop.Views
             {
                 case MessageBoxResult.Yes:
                     var insertion = _context.Insertions.FirstOrDefault(x => x.Id == _vm.Id);
-                    if(insertion != null)
+                    if (insertion != null)
                     { 
                         insertion.InsertName = TbInsert.Text.Trim();
                         insertion.InsertColor = TbInsertColor.Text.Trim();
                         insertion.GemCategory = CbGemCategory.SelectionBoxItem.ToString()?.Trim();
                         insertion.Price = float.Parse(TbPrice.Text);
                         insertion.WorkPrice = float.Parse(TbWorkPrice.Text);
-                        if ((_context.Insertions.Any(x => x.InsertName == insertion.InsertName)) && (_context.Insertions.Any(x => x.InsertColor == insertion.InsertColor)) && TbWorkPrice.Text != String.Empty && TbPrice.Text != String.Empty)
+                        if (TbWorkPrice.Text == string.Empty || TbPrice.Text == string.Empty)
                         {
-                            MessageBox.Show("Така вставка вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Введіть ціни вставки!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
-                        if (insertion.InsertName == "")
+                        if (insertion.InsertName == string.Empty)
                         {
                             MessageBox.Show("Введіть назву вставки!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
-                        if (insertion.InsertColor == "")
+                        if (insertion.InsertColor == string.Empty)
                         {
                             MessageBox.Show("Введіть колір вставки!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
+                        }
+                        var metals = _context.Metals.ToList();
+                        foreach (var product in _context.Products.Where(prod => prod.IdIns == insertion.Id).Where(prod => !prod.IsSold))
+                        {
+                            var metal = metals.FirstOrDefault(met => met.Id == product.IdMet);
+                            if (metal != null)
+                            {
+                                product.Price =
+                                    (float)Math.Round(metal.Price * product.Weight + insertion.Price * product.Carat, 1);
+                                product.PriceForTheWork =
+                                    (float)Math.Round(metal.WorkPrice * product.Weight + insertion.WorkPrice * product.Carat, 1);
+
+                            }
                         }
                         _context.SaveChanges();
                         MessageBox.Show("Успішно змінена вставка в бд!", "Успіх", MessageBoxButton.OK,
