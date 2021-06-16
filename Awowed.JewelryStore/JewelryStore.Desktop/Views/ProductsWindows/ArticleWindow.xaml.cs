@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Windows;
 using System.Windows.Controls;
@@ -110,11 +111,11 @@ namespace JewelryStore.Desktop.Views
 
         private void FirstPartButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var tempFilePath = @"D:\ХПКК\3 курс\КУРСАЧ\src\Awowed.JewelryStore\JewelryStore.Desktop";
+            var newPath = Directory.GetCurrentDirectory();
             var document1 = new Document();
             var document2 = new Document();
-            var samplePath1 = $@"{tempFilePath}\Label1.docx";
-            var samplePath2 = $@"{tempFilePath}\Label2.docx";
+            var samplePath1 = $@"{newPath}\Label1.docx";
+            var samplePath2 = $@"{newPath}\Label2.docx";
             document1.LoadFromFile(samplePath1);
             document2.LoadFromFile(samplePath2);
 
