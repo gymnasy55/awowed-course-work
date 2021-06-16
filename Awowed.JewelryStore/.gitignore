@@ -1,6 +1,4 @@
 bin/
-!bin/Debug/net5.0-windows/Label1.docx
-!bin/Debug/net5.0-windows/Label2.docx
 obj/
 .vs/
 appsettings.json
