@@ -58,7 +58,7 @@ namespace JewelryStore.Desktop.Views
                 case MessageBoxResult.Yes:
                     var insertion = new Insertion
                     {
-                        Id = (byte)(_context.Insertions.OrderBy(x => x.Id).Last().Id + 1),
+                        Id = _context.Insertions.Count() > 0 ? (byte)(_context.Insertions.OrderBy(x => x.Id).Last().Id + 1) : (byte) 1,
                         InsertName = TbInsert.Text.Trim(),
                         InsertColor = TbInsertColor.Text.Trim(),
                         GemCategory = CbGemCategory.SelectionBoxItem.ToString()?.Trim(),
@@ -66,7 +66,7 @@ namespace JewelryStore.Desktop.Views
                         WorkPrice = float.Parse(TbWorkPrice.Text)
 
                     };
-                    if ((_context.Insertions.Any(x => x.InsertName == insertion.InsertName)) && (_context.Insertions.Any(x => x.InsertColor == insertion.InsertColor)) && TbWorkPrice.Text != String.Empty && TbPrice.Text != String.Empty)
+                    if (_context.Insertions.Any(x => x.InsertName == insertion.InsertName) && _context.Insertions.Any(x => x.InsertColor == insertion.InsertColor) && TbWorkPrice.Text != string.Empty && TbPrice.Text != string.Empty)
                     {
                         MessageBox.Show("Така вставка вже є в бд", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;

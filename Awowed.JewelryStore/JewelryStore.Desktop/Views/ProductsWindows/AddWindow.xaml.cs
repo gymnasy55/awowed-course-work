@@ -143,7 +143,7 @@ namespace JewelryStore.Desktop.Views
                 case MessageBoxResult.Yes:
                     var product = new Product
                     {
-                        Id = _context.Products.OrderBy(x => x.Id).Last().Id + 1,
+                        Id = _context.Products.Count() > 0 ? _context.Products.OrderBy(x => x.Id).Last().Id + 1 : 1,
                         ProdItem = TbProdItem.Text.Trim(),
                         BarCode = TblBarCode.Text.Trim(),
                         ArrivalDate = new DateTime(DpArrDate.DisplayDate.Ticks),

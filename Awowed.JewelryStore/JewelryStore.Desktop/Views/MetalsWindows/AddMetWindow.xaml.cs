@@ -48,7 +48,7 @@ namespace JewelryStore.Desktop.Views
                     {
                         var metal = new Metal
                         {
-                            Id = (byte)(_context.Metals.OrderBy(x => x.Id).Last().Id + 1),
+                            Id =  _context.Metals.Count() > 0 ? (byte)(_context.Metals.OrderBy(x => x.Id).Last().Id + 1) : (byte) 1,
                             MetalName = TbMetal.Text.Trim(),
                             Sample = System.Convert.ToInt32(TbSample.Text),
                             Price = float.Parse(TbPrice.Text),

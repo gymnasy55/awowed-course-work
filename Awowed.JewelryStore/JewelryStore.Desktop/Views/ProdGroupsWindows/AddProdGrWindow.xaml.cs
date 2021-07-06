@@ -29,7 +29,7 @@ namespace JewelryStore.Desktop.Views
                 case MessageBoxResult.Yes:
                     var prodgroup = new Prodgroup
                     {
-                        Id = (byte)(_context.Prodgroups.OrderBy(x => x.Id).Last().Id + 1),
+                        Id = _context.Prodgroups.Count() > 0 ? (byte)(_context.Prodgroups.OrderBy(x => x.Id).Last().Id + 1) : (byte) 1,
                         ProdGroupName = TbProdGroupName.Text.Trim()
                     };
                     if (_context.Prodgroups.Any(x => x.ProdGroupName == prodgroup.ProdGroupName))

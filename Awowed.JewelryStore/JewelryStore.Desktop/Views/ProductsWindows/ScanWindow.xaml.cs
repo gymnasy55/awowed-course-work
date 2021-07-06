@@ -66,7 +66,7 @@ namespace JewelryStore.Desktop.Views.ProductsWindows
 
             productsSales.AddRange(exactProducts.Select(product => new ProductsSale
             {
-                Id = productsSales.Max(productsSale => productsSale.Id) + 1,
+                Id = productsSales.Count() > 0 ? productsSales.Max(productsSale => productsSale.Id) + 1 : 1,
                 IdProd = product.Id,
                 SaleDate = DateTime.Now
             }));

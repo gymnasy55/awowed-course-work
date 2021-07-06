@@ -34,7 +34,7 @@ namespace JewelryStore.Desktop.Views
                 case MessageBoxResult.Yes:
                     var supplier = new Supplier
                     {
-                        Id = (byte)(_context.Suppliers.OrderBy(x => x.Id).Last().Id + 1),
+                        Id = _context.Suppliers.Count() > 0 ? (byte)(_context.Suppliers.OrderBy(x => x.Id).Last().Id + 1) : (byte) 1,
                         Suplname = TbSupp.Text.Trim(),
                     };
                     if (_context.Suppliers.Any(x => x.Suplname == supplier.Suplname))
