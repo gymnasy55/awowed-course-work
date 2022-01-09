@@ -204,8 +204,6 @@ namespace JewelryStore.Desktop.Views
             if (!(sender is TextBox textBox))
                 return;
 
-            if (e.Text.Contains(' ')) MessageBox.Show("fuck");
-
             if ((textBox.Text.Contains(',') && e.Text[^1] == ',')
                 || (!Regex.IsMatch(e.Text[^1].ToString(), @"\d|,"))
                 || (textBox.Text.Length == 0 && e.Text[^1] == ','))
